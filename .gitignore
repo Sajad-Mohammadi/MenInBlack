@@ -9,7 +9,6 @@
 *.nar
 *.ear
 *.tar.gz
-*.xml
 
 # Directories
 nbproject/private/
