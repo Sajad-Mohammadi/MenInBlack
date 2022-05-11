@@ -12,10 +12,6 @@
 *.xml
 
 # Directories
-/private.properties
-/private.xml
-nbproject/private/private.properties
-nbproject/private/private.xml
 nbproject/private/
 dist/
 build/
