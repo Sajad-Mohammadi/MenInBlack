@@ -133,7 +133,8 @@ public class HuvudFonster extends javax.swing.JFrame {
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
         try {
             String losenord = new String(pwfLosenord.getPassword());
-            String dbLosenord = idb.fetchSingle("SELECT  losenord from agent where Namn='" + txfAnvandernamn.getText() + "'");
+            
+            String dbLosenord = idb.fetchSingle("Select losenord from agent where Namn='" + txfAnvandernamn.getText() + "'");
             
             if(losenord.equals(dbLosenord)){
                 JOptionPane.showMessageDialog(rootPane, "Du är inloggad");
