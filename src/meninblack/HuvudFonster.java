@@ -6,8 +6,10 @@ package meninblack;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+
 /**
  *
  * @author Sajjad
@@ -15,6 +17,7 @@ import oru.inf.InfException;
 public class HuvudFonster extends javax.swing.JFrame {
 
     private static InfDB idb;
+
     /**
      * Creates new form HuvudFonster
      */
@@ -31,48 +34,111 @@ public class HuvudFonster extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        lblLoggaIn = new javax.swing.JLabel();
+        lblAnvandernamn = new javax.swing.JLabel();
+        txfAnvandernamn = new javax.swing.JTextField();
+        lblLosenord = new javax.swing.JLabel();
+        pwfLosenord = new javax.swing.JPasswordField();
+        btnLoggaIn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Men In Black");
+        setAutoRequestFocus(false);
+        setBackground(new java.awt.Color(25, 25, 25));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setResizable(false);
+        setSize(new java.awt.Dimension(600, 400));
 
-        jLabel1.setText("Hej");
+        jPanel1.setBackground(new java.awt.Color(25, 25, 25));
+        jPanel1.setPreferredSize(new java.awt.Dimension(600, 400));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        lblLoggaIn.setBackground(new java.awt.Color(25, 25, 25));
+        lblLoggaIn.setFont(new java.awt.Font("Franklin Gothic Demi Cond", 0, 24)); // NOI18N
+        lblLoggaIn.setForeground(new java.awt.Color(255, 255, 255));
+        lblLoggaIn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLoggaIn.setText("LOGGA IN");
+        lblLoggaIn.setAlignmentY(0.0F);
+
+        lblAnvandernamn.setForeground(new java.awt.Color(255, 255, 255));
+        lblAnvandernamn.setText("Användernamn");
+
+        txfAnvandernamn.setSelectionColor(new java.awt.Color(241, 80, 37));
+
+        lblLosenord.setForeground(new java.awt.Color(255, 255, 255));
+        lblLosenord.setText("Lösenord");
+
+        pwfLosenord.setSelectionColor(new java.awt.Color(241, 80, 37));
+
+        btnLoggaIn.setText("Logga in");
+        btnLoggaIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLoggaInActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(txfAnvandernamn, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLoggaIn, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pwfLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAnvandernamn, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLoggaIn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(lblLoggaIn, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(lblAnvandernamn, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txfAnvandernamn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pwfLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(btnLoggaIn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(69, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(149, 149, 149)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel1))
-                .addContainerGap(176, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(jLabel1)
-                .addGap(54, 54, 54)
-                .addComponent(jButton1)
-                .addContainerGap(147, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        jLabel1.setText("Hej då!");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
+        try {
+            String losenord = new String(pwfLosenord.getPassword());
+            String dbLosenord = idb.fetchSingle("select losenord from agent where Namn='" + txfAnvandernamn.getText() + "'");
+            
+            if(losenord.equals(dbLosenord)){
+                JOptionPane.showMessageDialog(rootPane, "Du är inloggad");
+            } else{
+                JOptionPane.showMessageDialog(rootPane, "Något gick fel!", "", HEIGHT);
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnLoggaInActionPerformed
 
     /**
      * @param args the command line arguments
@@ -103,7 +169,7 @@ public class HuvudFonster extends javax.swing.JFrame {
 
         try {
             idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
-        } catch(InfException ex){
+        } catch (InfException ex) {
             Logger.getLogger(HuvudFonster.class.getName()).log(Level.SEVERE, null, ex);
         }
         /* Create and display the form */
@@ -115,7 +181,12 @@ public class HuvudFonster extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnLoggaIn;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblAnvandernamn;
+    private javax.swing.JLabel lblLoggaIn;
+    private javax.swing.JLabel lblLosenord;
+    private javax.swing.JPasswordField pwfLosenord;
+    private javax.swing.JTextField txfAnvandernamn;
     // End of variables declaration//GEN-END:variables
 }
