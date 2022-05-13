@@ -59,6 +59,7 @@ public class Agent extends javax.swing.JFrame {
         lblMinSida = new javax.swing.JLabel();
         lblUtrustning = new javax.swing.JLabel();
         tabbedPane = new javax.swing.JTabbedPane();
+        pnlAlien = new javax.swing.JPanel();
         pnlMinSida = new javax.swing.JPanel();
         lblNamn = new javax.swing.JLabel();
         lblTelefon = new javax.swing.JLabel();
@@ -67,15 +68,16 @@ public class Agent extends javax.swing.JFrame {
         lblDBTelefon = new javax.swing.JLabel();
         lblDBAnstallningsdatum = new javax.swing.JLabel();
         lblDBAdministrator = new javax.swing.JLabel();
+        btnAndraLosenord = new javax.swing.JButton();
+        btnLoggaUt = new javax.swing.JButton();
         pnlUrustning = new javax.swing.JPanel();
-        pnlAlien = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         setSize(new java.awt.Dimension(800, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlHeader.setBackground(new java.awt.Color(255, 204, 204));
+        pnlHeader.setBackground(new java.awt.Color(255, 255, 255));
 
         lblAlien.setFont(new java.awt.Font("Franklin Gothic Book", 0, 18)); // NOI18N
         lblAlien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -125,10 +127,25 @@ public class Agent extends javax.swing.JFrame {
                     .addComponent(lblUtrustning)
                     .addComponent(lblMinSida)
                     .addComponent(lblAlien))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        getContentPane().add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
+        getContentPane().add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 80));
+
+        pnlAlien.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout pnlAlienLayout = new javax.swing.GroupLayout(pnlAlien);
+        pnlAlien.setLayout(pnlAlienLayout);
+        pnlAlienLayout.setHorizontalGroup(
+            pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 800, Short.MAX_VALUE)
+        );
+        pnlAlienLayout.setVerticalGroup(
+            pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 427, Short.MAX_VALUE)
+        );
+
+        tabbedPane.addTab("tab1", pnlAlien);
 
         pnlMinSida.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -148,6 +165,15 @@ public class Agent extends javax.swing.JFrame {
 
         lblDBAdministrator.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
+        btnAndraLosenord.setText("Ändra lösenord");
+        btnAndraLosenord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAndraLosenordActionPerformed(evt);
+            }
+        });
+
+        btnLoggaUt.setText("Logga ut");
+
         javax.swing.GroupLayout pnlMinSidaLayout = new javax.swing.GroupLayout(pnlMinSida);
         pnlMinSida.setLayout(pnlMinSidaLayout);
         pnlMinSidaLayout.setHorizontalGroup(
@@ -157,17 +183,23 @@ public class Agent extends javax.swing.JFrame {
                     .addComponent(lblNamn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlMinSidaLayout.createSequentialGroup()
                         .addGap(208, 208, 208)
-                        .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDBTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTelefon))
-                        .addGap(49, 49, 49)
-                        .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblDBAnstallningsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblAnstallningsdatum))
-                        .addGap(92, 92, 92)
-                        .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblAdministrator)
-                            .addComponent(lblDBAdministrator, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(pnlMinSidaLayout.createSequentialGroup()
+                                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblDBTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblTelefon))
+                                .addGap(49, 49, 49)
+                                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblDBAnstallningsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblAnstallningsdatum))
+                                .addGap(92, 92, 92)
+                                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblAdministrator)
+                                    .addComponent(lblDBAdministrator, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(pnlMinSidaLayout.createSequentialGroup()
+                                .addComponent(btnAndraLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 183, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -176,7 +208,7 @@ public class Agent extends javax.swing.JFrame {
             .addGroup(pnlMinSidaLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(lblNamn)
-                .addGap(69, 69, 69)
+                .addGap(82, 82, 82)
                 .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTelefon)
                     .addComponent(lblAdministrator)
@@ -186,7 +218,11 @@ public class Agent extends javax.swing.JFrame {
                     .addComponent(lblDBAnstallningsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDBAdministrator, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDBTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(187, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
+                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAndraLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52))
         );
 
         tabbedPane.addTab("tab2", pnlMinSida);
@@ -201,27 +237,12 @@ public class Agent extends javax.swing.JFrame {
         );
         pnlUrustningLayout.setVerticalGroup(
             pnlUrustningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 367, Short.MAX_VALUE)
+            .addGap(0, 427, Short.MAX_VALUE)
         );
 
         tabbedPane.addTab("tab3", pnlUrustning);
 
-        pnlAlien.setBackground(new java.awt.Color(204, 255, 204));
-
-        javax.swing.GroupLayout pnlAlienLayout = new javax.swing.GroupLayout(pnlAlien);
-        pnlAlien.setLayout(pnlAlienLayout);
-        pnlAlienLayout.setHorizontalGroup(
-            pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-        pnlAlienLayout.setVerticalGroup(
-            pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 367, Short.MAX_VALUE)
-        );
-
-        tabbedPane.addTab("tab1", pnlAlien);
-
-        getContentPane().add(tabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 800, 400));
+        getContentPane().add(tabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 800, 460));
 
         pack();
         setLocationRelativeTo(null);
@@ -238,6 +259,11 @@ public class Agent extends javax.swing.JFrame {
     private void lblUtrustningMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUtrustningMouseClicked
         tabbedPane.setSelectedIndex(2);
     }//GEN-LAST:event_lblUtrustningMouseClicked
+
+    private void btnAndraLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenordActionPerformed
+        AndraLosenord andraLosenord = new AndraLosenord();
+        andraLosenord.setVisible(true);
+    }//GEN-LAST:event_btnAndraLosenordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,6 +304,8 @@ public class Agent extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAndraLosenord;
+    private javax.swing.JButton btnLoggaUt;
     private javax.swing.JLabel lblAdministrator;
     private javax.swing.JLabel lblAlien;
     private javax.swing.JLabel lblAnstallningsdatum;
