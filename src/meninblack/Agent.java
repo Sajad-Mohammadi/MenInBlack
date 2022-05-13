@@ -59,7 +59,6 @@ public class Agent extends javax.swing.JFrame {
         lblMinSida = new javax.swing.JLabel();
         lblUtrustning = new javax.swing.JLabel();
         tabbedPane = new javax.swing.JTabbedPane();
-        pnlAlien = new javax.swing.JPanel();
         pnlMinSida = new javax.swing.JPanel();
         lblNamn = new javax.swing.JLabel();
         lblTelefon = new javax.swing.JLabel();
@@ -69,13 +68,14 @@ public class Agent extends javax.swing.JFrame {
         lblDBAnstallningsdatum = new javax.swing.JLabel();
         lblDBAdministrator = new javax.swing.JLabel();
         pnlUrustning = new javax.swing.JPanel();
+        pnlAlien = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         setSize(new java.awt.Dimension(800, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlHeader.setBackground(new java.awt.Color(255, 255, 255));
+        pnlHeader.setBackground(new java.awt.Color(255, 204, 204));
 
         lblAlien.setFont(new java.awt.Font("Franklin Gothic Book", 0, 18)); // NOI18N
         lblAlien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -125,25 +125,10 @@ public class Agent extends javax.swing.JFrame {
                     .addComponent(lblUtrustning)
                     .addComponent(lblMinSida)
                     .addComponent(lblAlien))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        getContentPane().add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 80));
-
-        pnlAlien.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout pnlAlienLayout = new javax.swing.GroupLayout(pnlAlien);
-        pnlAlien.setLayout(pnlAlienLayout);
-        pnlAlienLayout.setHorizontalGroup(
-            pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-        pnlAlienLayout.setVerticalGroup(
-            pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 427, Short.MAX_VALUE)
-        );
-
-        tabbedPane.addTab("tab1", pnlAlien);
+        getContentPane().add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
 
         pnlMinSida.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -201,7 +186,7 @@ public class Agent extends javax.swing.JFrame {
                     .addComponent(lblDBAnstallningsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDBAdministrator, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDBTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(247, Short.MAX_VALUE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
 
         tabbedPane.addTab("tab2", pnlMinSida);
@@ -216,12 +201,27 @@ public class Agent extends javax.swing.JFrame {
         );
         pnlUrustningLayout.setVerticalGroup(
             pnlUrustningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 427, Short.MAX_VALUE)
+            .addGap(0, 367, Short.MAX_VALUE)
         );
 
         tabbedPane.addTab("tab3", pnlUrustning);
 
-        getContentPane().add(tabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 800, 460));
+        pnlAlien.setBackground(new java.awt.Color(204, 255, 204));
+
+        javax.swing.GroupLayout pnlAlienLayout = new javax.swing.GroupLayout(pnlAlien);
+        pnlAlien.setLayout(pnlAlienLayout);
+        pnlAlienLayout.setHorizontalGroup(
+            pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 800, Short.MAX_VALUE)
+        );
+        pnlAlienLayout.setVerticalGroup(
+            pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 367, Short.MAX_VALUE)
+        );
+
+        tabbedPane.addTab("tab1", pnlAlien);
+
+        getContentPane().add(tabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 800, 400));
 
         pack();
         setLocationRelativeTo(null);
