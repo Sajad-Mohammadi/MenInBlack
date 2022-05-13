@@ -17,6 +17,7 @@ import oru.inf.InfException;
 public class HuvudFonster extends javax.swing.JFrame {
 
     private static InfDB idb;
+    private static String nuvarandeAnvandare;
 
     /**
      * Creates new form HuvudFonster
@@ -51,33 +52,36 @@ public class HuvudFonster extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(600, 400));
 
-        jPanel1.setBackground(new java.awt.Color(25, 25, 25));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 400));
 
         lblLoggaIn.setBackground(new java.awt.Color(25, 25, 25));
         lblLoggaIn.setFont(new java.awt.Font("Franklin Gothic Demi Cond", 0, 24)); // NOI18N
-        lblLoggaIn.setForeground(new java.awt.Color(255, 255, 255));
+        lblLoggaIn.setForeground(new java.awt.Color(102, 102, 102));
         lblLoggaIn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblLoggaIn.setText("LOGGA IN");
         lblLoggaIn.setAlignmentY(0.0F);
 
-        lblAnvandernamn.setForeground(new java.awt.Color(255, 255, 255));
+        lblAnvandernamn.setForeground(new java.awt.Color(102, 102, 102));
         lblAnvandernamn.setText("Användernamn");
 
         txfAnvandernamn.setSelectionColor(new java.awt.Color(241, 80, 37));
 
-        lblLosenord.setForeground(new java.awt.Color(255, 255, 255));
+        lblLosenord.setForeground(new java.awt.Color(102, 102, 102));
         lblLosenord.setText("Lösenord");
 
         pwfLosenord.setSelectionColor(new java.awt.Color(241, 80, 37));
 
         btnLoggaIn.setText("Logga in");
+        btnLoggaIn.setBorder(null);
         btnLoggaIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoggaInActionPerformed(evt);
             }
         });
 
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Men In Black");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -128,23 +132,36 @@ public class HuvudFonster extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
+        nuvarandeAnvandare = txfAnvandernamn.getText();
+        String losenord = new String(pwfLosenord.getPassword());
+
         try {
-            String losenord = new String(pwfLosenord.getPassword());
-            String dbLosenord = idb.fetchSingle("Select losenord from agent where Namn='" + txfAnvandernamn.getText()+"'");
-            
-            if(losenord.equals(dbLosenord)){
-                JOptionPane.showMessageDialog(rootPane, "Du är inloggad");
-            } else{
-                JOptionPane.showMessageDialog(rootPane, "Något gick fellllllll!", "", HEIGHT);
+            String dbLosenord = idb.fetchSingle("Select losenord from agent where Namn='" + nuvarandeAnvandare + "'");
+
+            if (losenord.equals(dbLosenord)) {
+                Agent agentFonster = new Agent();
+                agentFonster.setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Felaktigt användarnamn eller lösenord.", "", HEIGHT);
             }
-        } catch (InfException e) {
+        } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println(e.getMessage());
+            System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_btnLoggaInActionPerformed
+
+    public static String getNuvarandeAnvandare() {
+        return nuvarandeAnvandare;
+    }
+
+    public static InfDB getdb() {
+        return idb;
+    }
 
     /**
      * @param args the command line arguments
