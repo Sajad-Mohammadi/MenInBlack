@@ -35,9 +35,9 @@ public class Agent extends javax.swing.JFrame {
             agentInfo = idb.fetchRow("SELECT Telefon, Anstallningsdatum, Administrator FROM agent where namn ='" + nuvarandeAnvandare + "'");
 
             lblNamn.setText(nuvarandeAnvandare);
-            lblDBTelefon.setText(agentInfo.get("Telefon") + "\t\t");
-            lblDBAnstallningsdatum.setText(agentInfo.get("Anstallningsdatum") + "\t");
-            lblDBAdministrator.setText(agentInfo.get("Administrator") + "\t");
+            lblDBTelefon.setText(agentInfo.get("Telefon"));
+            lblDBAnstallningsdatum.setText(agentInfo.get("Anstallningsdatum"));
+            lblDBAdministrator.setText(agentInfo.get("Administrator"));
 
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "databasfel!");
@@ -78,6 +78,7 @@ public class Agent extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlHeader.setBackground(new java.awt.Color(255, 255, 255));
+        pnlHeader.setPreferredSize(new java.awt.Dimension(800, 75));
 
         lblAlien.setFont(new java.awt.Font("Franklin Gothic Book", 0, 18)); // NOI18N
         lblAlien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -127,10 +128,10 @@ public class Agent extends javax.swing.JFrame {
                     .addComponent(lblUtrustning)
                     .addComponent(lblMinSida)
                     .addComponent(lblAlien))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        getContentPane().add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 80));
+        getContentPane().add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 78));
 
         pnlAlien.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -142,7 +143,7 @@ public class Agent extends javax.swing.JFrame {
         );
         pnlAlienLayout.setVerticalGroup(
             pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 427, Short.MAX_VALUE)
+            .addGap(0, 417, Short.MAX_VALUE)
         );
 
         tabbedPane.addTab("tab1", pnlAlien);
@@ -218,7 +219,7 @@ public class Agent extends javax.swing.JFrame {
                     .addComponent(lblDBAnstallningsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDBAdministrator, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDBTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
                 .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAndraLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -237,12 +238,12 @@ public class Agent extends javax.swing.JFrame {
         );
         pnlUrustningLayout.setVerticalGroup(
             pnlUrustningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 427, Short.MAX_VALUE)
+            .addGap(0, 417, Short.MAX_VALUE)
         );
 
         tabbedPane.addTab("tab3", pnlUrustning);
 
-        getContentPane().add(tabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 800, 460));
+        getContentPane().add(tabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 800, 450));
 
         pack();
         setLocationRelativeTo(null);
