@@ -8,7 +8,6 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 
 import javax.swing.JOptionPane;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -23,11 +22,11 @@ public class Agent extends javax.swing.JFrame {
     /**
      * Creates new form Agent
      */
-    public Agent() {
+    public Agent(InfDB idb, String nuvarandeAnvandare) {
+        
         initComponents();
-
-        nuvarandeAnvandare = HuvudFonster.getNuvarandeAnvandare();
-        idb = HuvudFonster.getdb();
+        this.idb = idb;
+        this.nuvarandeAnvandare = nuvarandeAnvandare;
         tabbedPane.setSelectedIndex(1);
         HashMap<String, String> agentInfo;
 
@@ -58,6 +57,7 @@ public class Agent extends javax.swing.JFrame {
         lblAlien = new javax.swing.JLabel();
         lblMinSida = new javax.swing.JLabel();
         lblUtrustning = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         tabbedPane = new javax.swing.JTabbedPane();
         pnlAlien = new javax.swing.JPanel();
         pnlMinSida = new javax.swing.JPanel();
@@ -77,8 +77,7 @@ public class Agent extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(800, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlHeader.setBackground(new java.awt.Color(255, 255, 255));
-        pnlHeader.setPreferredSize(new java.awt.Dimension(800, 75));
+        pnlHeader.setPreferredSize(new java.awt.Dimension(800, 80));
 
         lblAlien.setFont(new java.awt.Font("Franklin Gothic Book", 0, 18)); // NOI18N
         lblAlien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -107,6 +106,21 @@ public class Agent extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 1));
+        jPanel1.setRequestFocusEnabled(false);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout pnlHeaderLayout = new javax.swing.GroupLayout(pnlHeader);
         pnlHeader.setLayout(pnlHeaderLayout);
         pnlHeaderLayout.setHorizontalGroup(
@@ -119,6 +133,7 @@ public class Agent extends javax.swing.JFrame {
                 .addGap(264, 264, 264)
                 .addComponent(lblUtrustning)
                 .addGap(30, 30, 30))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlHeaderLayout.setVerticalGroup(
             pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,12 +143,11 @@ public class Agent extends javax.swing.JFrame {
                     .addComponent(lblUtrustning)
                     .addComponent(lblMinSida)
                     .addComponent(lblAlien))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        getContentPane().add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 78));
-
-        pnlAlien.setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 80));
 
         javax.swing.GroupLayout pnlAlienLayout = new javax.swing.GroupLayout(pnlAlien);
         pnlAlien.setLayout(pnlAlienLayout);
@@ -143,12 +157,10 @@ public class Agent extends javax.swing.JFrame {
         );
         pnlAlienLayout.setVerticalGroup(
             pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 417, Short.MAX_VALUE)
+            .addGap(0, 427, Short.MAX_VALUE)
         );
 
         tabbedPane.addTab("tab1", pnlAlien);
-
-        pnlMinSida.setBackground(new java.awt.Color(255, 255, 255));
 
         lblNamn.setFont(new java.awt.Font("Franklin Gothic Demi Cond", 0, 24)); // NOI18N
         lblNamn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -219,7 +231,7 @@ public class Agent extends javax.swing.JFrame {
                     .addComponent(lblDBAnstallningsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDBAdministrator, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDBTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
                 .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAndraLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -227,8 +239,6 @@ public class Agent extends javax.swing.JFrame {
         );
 
         tabbedPane.addTab("tab2", pnlMinSida);
-
-        pnlUrustning.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout pnlUrustningLayout = new javax.swing.GroupLayout(pnlUrustning);
         pnlUrustning.setLayout(pnlUrustningLayout);
@@ -238,12 +248,12 @@ public class Agent extends javax.swing.JFrame {
         );
         pnlUrustningLayout.setVerticalGroup(
             pnlUrustningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 417, Short.MAX_VALUE)
+            .addGap(0, 427, Short.MAX_VALUE)
         );
 
         tabbedPane.addTab("tab3", pnlUrustning);
 
-        getContentPane().add(tabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 800, 450));
+        getContentPane().add(tabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 800, 460));
 
         pack();
         setLocationRelativeTo(null);
@@ -262,51 +272,13 @@ public class Agent extends javax.swing.JFrame {
     }//GEN-LAST:event_lblUtrustningMouseClicked
 
     private void btnAndraLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenordActionPerformed
-        AndraLosenord andraLosenord = new AndraLosenord();
-        andraLosenord.setVisible(true);
+        new AndraLosenord(idb, nuvarandeAnvandare).setVisible(true);
     }//GEN-LAST:event_btnAndraLosenordActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Agent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Agent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Agent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Agent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Agent().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAndraLosenord;
     private javax.swing.JButton btnLoggaUt;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAdministrator;
     private javax.swing.JLabel lblAlien;
     private javax.swing.JLabel lblAnstallningsdatum;
