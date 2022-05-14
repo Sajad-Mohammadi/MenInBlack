@@ -4,6 +4,7 @@
  */
 package meninblack;
 
+import java.awt.Font;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -18,16 +19,19 @@ public class Agent extends javax.swing.JFrame {
 
     private String nuvarandeAnvandare;
     private static InfDB idb;
+    Font minFont1 = new Font("Franklin Gothic Book", Font.BOLD, 18);
+    Font minFont2 = new Font("Franklin Gothic Book", Font.PLAIN, 16);
 
     /**
      * Creates new form Agent
      */
     public Agent(InfDB idb, String nuvarandeAnvandare) {
-        
+
         initComponents();
         this.idb = idb;
         this.nuvarandeAnvandare = nuvarandeAnvandare;
         tabbedPane.setSelectedIndex(1);
+        lblMinSida.setFont(minFont1);
         HashMap<String, String> agentInfo;
 
         try {
@@ -39,7 +43,7 @@ public class Agent extends javax.swing.JFrame {
             lblDBAdministrator.setText(agentInfo.get("Administrator"));
 
         } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "databasfel!");
+            JOptionPane.showMessageDialog(null, "Databasfel!");
             System.out.println("/////////////" + ex.getMessage());
         }
     }
@@ -79,7 +83,7 @@ public class Agent extends javax.swing.JFrame {
 
         pnlHeader.setPreferredSize(new java.awt.Dimension(800, 80));
 
-        lblAlien.setFont(new java.awt.Font("Franklin Gothic Book", 0, 18)); // NOI18N
+        lblAlien.setFont(new java.awt.Font("Franklin Gothic Book", 0, 16)); // NOI18N
         lblAlien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAlien.setText("Alien");
         lblAlien.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -88,7 +92,7 @@ public class Agent extends javax.swing.JFrame {
             }
         });
 
-        lblMinSida.setFont(new java.awt.Font("Franklin Gothic Book", 0, 18)); // NOI18N
+        lblMinSida.setFont(new java.awt.Font("Franklin Gothic Book", 0, 16)); // NOI18N
         lblMinSida.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMinSida.setText("Min Sida");
         lblMinSida.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -97,7 +101,7 @@ public class Agent extends javax.swing.JFrame {
             }
         });
 
-        lblUtrustning.setFont(new java.awt.Font("Franklin Gothic Book", 0, 18)); // NOI18N
+        lblUtrustning.setFont(new java.awt.Font("Franklin Gothic Book", 0, 16)); // NOI18N
         lblUtrustning.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblUtrustning.setText("Utrusning");
         lblUtrustning.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -127,11 +131,11 @@ public class Agent extends javax.swing.JFrame {
             pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlHeaderLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(lblAlien)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 298, Short.MAX_VALUE)
-                .addComponent(lblMinSida)
-                .addGap(264, 264, 264)
-                .addComponent(lblUtrustning)
+                .addComponent(lblAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 289, Short.MAX_VALUE)
+                .addComponent(lblMinSida, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(246, 246, 246)
+                .addComponent(lblUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -143,7 +147,7 @@ public class Agent extends javax.swing.JFrame {
                     .addComponent(lblUtrustning)
                     .addComponent(lblMinSida)
                     .addComponent(lblAlien))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -186,34 +190,39 @@ public class Agent extends javax.swing.JFrame {
         });
 
         btnLoggaUt.setText("Logga ut");
+        btnLoggaUt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoggaUtActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlMinSidaLayout = new javax.swing.GroupLayout(pnlMinSida);
         pnlMinSida.setLayout(pnlMinSidaLayout);
         pnlMinSidaLayout.setHorizontalGroup(
             pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMinSidaLayout.createSequentialGroup()
-                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNamn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(208, 208, 208)
+                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnlMinSidaLayout.createSequentialGroup()
-                        .addGap(208, 208, 208)
-                        .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(pnlMinSidaLayout.createSequentialGroup()
-                                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblDBTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblTelefon))
-                                .addGap(49, 49, 49)
-                                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblDBAnstallningsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblAnstallningsdatum))
-                                .addGap(92, 92, 92)
-                                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblAdministrator)
-                                    .addComponent(lblDBAdministrator, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(pnlMinSidaLayout.createSequentialGroup()
-                                .addComponent(btnAndraLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 183, Short.MAX_VALUE)))
+                        .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDBTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTelefon))
+                        .addGap(49, 49, 49)
+                        .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblDBAnstallningsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAnstallningsdatum))
+                        .addGap(92, 92, 92)
+                        .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblAdministrator)
+                            .addComponent(lblDBAdministrator, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlMinSidaLayout.createSequentialGroup()
+                        .addComponent(btnAndraLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(189, Short.MAX_VALUE))
+            .addGroup(pnlMinSidaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblNamn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlMinSidaLayout.setVerticalGroup(
@@ -261,19 +270,33 @@ public class Agent extends javax.swing.JFrame {
 
     private void lblAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAlienMouseClicked
         tabbedPane.setSelectedIndex(0);
+        lblAlien.setFont(minFont1);
+        lblMinSida.setFont(minFont2);
+        lblUtrustning.setFont(minFont2);
     }//GEN-LAST:event_lblAlienMouseClicked
 
     private void lblMinSidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinSidaMouseClicked
         tabbedPane.setSelectedIndex(1);
+        lblAlien.setFont(minFont2);
+        lblMinSida.setFont(minFont1);
+        lblUtrustning.setFont(minFont2);
     }//GEN-LAST:event_lblMinSidaMouseClicked
 
     private void lblUtrustningMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUtrustningMouseClicked
         tabbedPane.setSelectedIndex(2);
+        lblAlien.setFont(minFont2);
+        lblMinSida.setFont(minFont2);
+        lblUtrustning.setFont(minFont1);
     }//GEN-LAST:event_lblUtrustningMouseClicked
 
     private void btnAndraLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenordActionPerformed
         new AndraLosenord(idb, nuvarandeAnvandare).setVisible(true);
     }//GEN-LAST:event_btnAndraLosenordActionPerformed
+
+    private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtActionPerformed
+        new HuvudFonster(idb).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnLoggaUtActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAndraLosenord;

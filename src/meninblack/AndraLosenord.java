@@ -45,11 +45,13 @@ public class AndraLosenord extends javax.swing.JFrame {
         txtGamlaLosenord = new javax.swing.JPasswordField();
         txtNyaLosenord = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
+        lblGamlaLosenord.setForeground(java.awt.Color.gray);
         lblGamlaLosenord.setText("Gamla Lösenord");
 
+        lblNyaLosenord.setForeground(java.awt.Color.gray);
         lblNyaLosenord.setText("Nya Lösenord");
 
         btnAndra.setText("Ändra");
@@ -130,13 +132,13 @@ public class AndraLosenord extends javax.swing.JFrame {
                 lblGamlaLosenord.setForeground(Color.red);
             }
         } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            JOptionPane.showMessageDialog(null, "Databasfel!");
             System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_btnAndraActionPerformed
 
     private void txtGamlaLosenordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtGamlaLosenordMouseClicked
-        lblGamlaLosenord.setForeground(Color.BLACK);
+        lblGamlaLosenord.setForeground(Color.gray);
     }//GEN-LAST:event_txtGamlaLosenordMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

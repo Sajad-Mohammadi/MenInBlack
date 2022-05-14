@@ -146,7 +146,7 @@ public class HuvudFonster extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Felaktigt användarnamn eller lösenord.", "", HEIGHT);
             }
         } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            JOptionPane.showMessageDialog(null, "Databasfel!");
             System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_btnLoggaInActionPerformed
