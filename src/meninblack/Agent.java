@@ -4,11 +4,12 @@
  */
 package meninblack;
 
+import java.awt.Font;
+import java.util.ArrayList;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
 import javax.swing.JOptionPane;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -19,16 +20,19 @@ public class Agent extends javax.swing.JFrame {
 
     private String nuvarandeAnvandare;
     private static InfDB idb;
+    Font minFont1 = new Font("Franklin Gothic Book", Font.BOLD, 20);
+    Font minFont2 = new Font("Franklin Gothic Book", Font.PLAIN, 16);
 
     /**
      * Creates new form Agent
      */
-    public Agent() {
-        initComponents();
+    public Agent(InfDB idb, String nuvarandeAnvandare) {
 
-        nuvarandeAnvandare = HuvudFonster.getNuvarandeAnvandare();
-        idb = HuvudFonster.getdb();
+        initComponents();
+        this.idb = idb;
+        this.nuvarandeAnvandare = nuvarandeAnvandare;
         tabbedPane.setSelectedIndex(1);
+        lblMinSida.setFont(minFont1);
         HashMap<String, String> agentInfo;
 
         try {
@@ -40,7 +44,7 @@ public class Agent extends javax.swing.JFrame {
             lblDBAdministrator.setText(agentInfo.get("Administrator"));
 
         } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "databasfel!");
+            JOptionPane.showMessageDialog(null, "Databasfel!");
             System.out.println("/////////////" + ex.getMessage());
         }
     }
@@ -58,8 +62,22 @@ public class Agent extends javax.swing.JFrame {
         lblAlien = new javax.swing.JLabel();
         lblMinSida = new javax.swing.JLabel();
         lblUtrustning = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         tabbedPane = new javax.swing.JTabbedPane();
         pnlAlien = new javax.swing.JPanel();
+        cbFilter1 = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        cbFilter2 = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        txtSlutDatum = new javax.swing.JTextField();
+        txtStartDatum = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         pnlMinSida = new javax.swing.JPanel();
         lblNamn = new javax.swing.JLabel();
         lblTelefon = new javax.swing.JLabel();
@@ -77,10 +95,9 @@ public class Agent extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(800, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlHeader.setBackground(new java.awt.Color(255, 255, 255));
-        pnlHeader.setPreferredSize(new java.awt.Dimension(800, 75));
+        pnlHeader.setPreferredSize(new java.awt.Dimension(800, 80));
 
-        lblAlien.setFont(new java.awt.Font("Franklin Gothic Book", 0, 18)); // NOI18N
+        lblAlien.setFont(new java.awt.Font("Franklin Gothic Book", 0, 16)); // NOI18N
         lblAlien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAlien.setText("Alien");
         lblAlien.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -89,7 +106,7 @@ public class Agent extends javax.swing.JFrame {
             }
         });
 
-        lblMinSida.setFont(new java.awt.Font("Franklin Gothic Book", 0, 18)); // NOI18N
+        lblMinSida.setFont(new java.awt.Font("Franklin Gothic Book", 0, 16)); // NOI18N
         lblMinSida.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMinSida.setText("Min Sida");
         lblMinSida.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -98,7 +115,7 @@ public class Agent extends javax.swing.JFrame {
             }
         });
 
-        lblUtrustning.setFont(new java.awt.Font("Franklin Gothic Book", 0, 18)); // NOI18N
+        lblUtrustning.setFont(new java.awt.Font("Franklin Gothic Book", 0, 16)); // NOI18N
         lblUtrustning.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblUtrustning.setText("Utrusning");
         lblUtrustning.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -107,18 +124,34 @@ public class Agent extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 1));
+        jPanel1.setRequestFocusEnabled(false);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout pnlHeaderLayout = new javax.swing.GroupLayout(pnlHeader);
         pnlHeader.setLayout(pnlHeaderLayout);
         pnlHeaderLayout.setHorizontalGroup(
             pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlHeaderLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(lblAlien)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 298, Short.MAX_VALUE)
-                .addComponent(lblMinSida)
-                .addGap(264, 264, 264)
-                .addComponent(lblUtrustning)
+                .addComponent(lblAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 271, Short.MAX_VALUE)
+                .addComponent(lblMinSida, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(241, 241, 241)
+                .addComponent(lblUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlHeaderLayout.setVerticalGroup(
             pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,27 +161,100 @@ public class Agent extends javax.swing.JFrame {
                     .addComponent(lblUtrustning)
                     .addComponent(lblMinSida)
                     .addComponent(lblAlien))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        getContentPane().add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 78));
+        getContentPane().add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 80));
 
-        pnlAlien.setBackground(new java.awt.Color(255, 255, 255));
+        cbFilter1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj", "Plats", "Namn", "Ras" }));
+        cbFilter1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbFilter1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Sök på:");
+
+        jLabel2.setText("eller sök efter datum:");
+
+        txtSlutDatum.setText("ÅÅÅÅMMDD");
+
+        txtStartDatum.setText("ÅÅÅÅMMDD");
+
+        jLabel3.setText("Startdatum:");
+
+        jLabel4.setText("Slutdatum:");
+
+        jLabel5.setText("Sökfilter 1:");
+
+        jLabel6.setText("Sökfilter 2:");
+
+        jButton1.setText("jButton1");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout pnlAlienLayout = new javax.swing.GroupLayout(pnlAlien);
         pnlAlien.setLayout(pnlAlienLayout);
         pnlAlienLayout.setHorizontalGroup(
             pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAlienLayout.createSequentialGroup()
+                .addContainerGap(41, Short.MAX_VALUE)
+                .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1)
+                    .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(pnlAlienLayout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(29, 29, 29)
+                            .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(cbFilter1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel5))
+                            .addGap(18, 18, 18)
+                            .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(pnlAlienLayout.createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cbFilter2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(37, 37, 37)
+                            .addComponent(jLabel2)
+                            .addGap(26, 26, 26)
+                            .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtStartDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3))
+                            .addGap(18, 18, 18)
+                            .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4)
+                                .addComponent(txtSlutDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(42, 42, 42))
         );
         pnlAlienLayout.setVerticalGroup(
             pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 417, Short.MAX_VALUE)
+            .addGroup(pnlAlienLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbFilter1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(cbFilter2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSlutDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtStartDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(26, 26, 26)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
 
         tabbedPane.addTab("tab1", pnlAlien);
-
-        pnlMinSida.setBackground(new java.awt.Color(255, 255, 255));
 
         lblNamn.setFont(new java.awt.Font("Franklin Gothic Demi Cond", 0, 24)); // NOI18N
         lblNamn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -174,34 +280,39 @@ public class Agent extends javax.swing.JFrame {
         });
 
         btnLoggaUt.setText("Logga ut");
+        btnLoggaUt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoggaUtActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlMinSidaLayout = new javax.swing.GroupLayout(pnlMinSida);
         pnlMinSida.setLayout(pnlMinSidaLayout);
         pnlMinSidaLayout.setHorizontalGroup(
             pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMinSidaLayout.createSequentialGroup()
-                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNamn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(208, 208, 208)
+                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnlMinSidaLayout.createSequentialGroup()
-                        .addGap(208, 208, 208)
-                        .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(pnlMinSidaLayout.createSequentialGroup()
-                                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblDBTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblTelefon))
-                                .addGap(49, 49, 49)
-                                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblDBAnstallningsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblAnstallningsdatum))
-                                .addGap(92, 92, 92)
-                                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblAdministrator)
-                                    .addComponent(lblDBAdministrator, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(pnlMinSidaLayout.createSequentialGroup()
-                                .addComponent(btnAndraLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 183, Short.MAX_VALUE)))
+                        .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDBTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTelefon))
+                        .addGap(49, 49, 49)
+                        .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblDBAnstallningsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAnstallningsdatum))
+                        .addGap(92, 92, 92)
+                        .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblAdministrator)
+                            .addComponent(lblDBAdministrator, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlMinSidaLayout.createSequentialGroup()
+                        .addComponent(btnAndraLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(189, Short.MAX_VALUE))
+            .addGroup(pnlMinSidaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblNamn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlMinSidaLayout.setVerticalGroup(
@@ -219,7 +330,7 @@ public class Agent extends javax.swing.JFrame {
                     .addComponent(lblDBAnstallningsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDBAdministrator, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDBTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
                 .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAndraLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -227,8 +338,6 @@ public class Agent extends javax.swing.JFrame {
         );
 
         tabbedPane.addTab("tab2", pnlMinSida);
-
-        pnlUrustning.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout pnlUrustningLayout = new javax.swing.GroupLayout(pnlUrustning);
         pnlUrustning.setLayout(pnlUrustningLayout);
@@ -238,12 +347,12 @@ public class Agent extends javax.swing.JFrame {
         );
         pnlUrustningLayout.setVerticalGroup(
             pnlUrustningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 417, Short.MAX_VALUE)
+            .addGap(0, 427, Short.MAX_VALUE)
         );
 
         tabbedPane.addTab("tab3", pnlUrustning);
 
-        getContentPane().add(tabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 800, 450));
+        getContentPane().add(tabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 800, 460));
 
         pack();
         setLocationRelativeTo(null);
@@ -251,62 +360,79 @@ public class Agent extends javax.swing.JFrame {
 
     private void lblAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAlienMouseClicked
         tabbedPane.setSelectedIndex(0);
+        lblAlien.setFont(minFont1);
+        lblMinSida.setFont(minFont2);
+        lblUtrustning.setFont(minFont2);
     }//GEN-LAST:event_lblAlienMouseClicked
 
     private void lblMinSidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinSidaMouseClicked
         tabbedPane.setSelectedIndex(1);
+        lblAlien.setFont(minFont2);
+        lblMinSida.setFont(minFont1);
+        lblUtrustning.setFont(minFont2);
     }//GEN-LAST:event_lblMinSidaMouseClicked
 
     private void lblUtrustningMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUtrustningMouseClicked
         tabbedPane.setSelectedIndex(2);
+        lblAlien.setFont(minFont2);
+        lblMinSida.setFont(minFont2);
+        lblUtrustning.setFont(minFont1);
     }//GEN-LAST:event_lblUtrustningMouseClicked
 
     private void btnAndraLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenordActionPerformed
-        AndraLosenord andraLosenord = new AndraLosenord();
-        andraLosenord.setVisible(true);
+        new AndraLosenord(idb, nuvarandeAnvandare).setVisible(true);
     }//GEN-LAST:event_btnAndraLosenordActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Agent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Agent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Agent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Agent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+    private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtActionPerformed
+        new HuvudFonster(idb).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnLoggaUtActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Agent().setVisible(true);
+    private void cbFilter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFilter1ActionPerformed
+        int filter1 = cbFilter1.getSelectedIndex();
+        String kolumn = "";
+        String tabel = "";
+
+        if (filter1 == 1) {
+            cbFilter2.removeAllItems();
+            kolumn = "Benamning";
+            tabel = "Plats";
+        } else if (filter1 == 2) {
+            cbFilter2.removeAllItems();
+            kolumn = "Namn";
+            tabel = "Alien";
+        }
+
+        String fraga = "Select " + kolumn + " from " + tabel;
+        ArrayList<String> allaAlternativ;
+
+        try {
+            allaAlternativ = idb.fetchColumn(fraga);
+            for (String alternativ : allaAlternativ) {
+                cbFilter2.addItem(alternativ);
             }
-        });
-    }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Databasfel!");
+        }
+
+    }//GEN-LAST:event_cbFilter1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAndraLosenord;
     private javax.swing.JButton btnLoggaUt;
+    private javax.swing.JComboBox<String> cbFilter1;
+    private javax.swing.JComboBox<String> cbFilter2;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblAdministrator;
     private javax.swing.JLabel lblAlien;
     private javax.swing.JLabel lblAnstallningsdatum;
@@ -322,5 +448,7 @@ public class Agent extends javax.swing.JFrame {
     private javax.swing.JPanel pnlMinSida;
     private javax.swing.JPanel pnlUrustning;
     private javax.swing.JTabbedPane tabbedPane;
+    private javax.swing.JTextField txtSlutDatum;
+    private javax.swing.JTextField txtStartDatum;
     // End of variables declaration//GEN-END:variables
 }

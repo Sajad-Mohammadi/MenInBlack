@@ -8,27 +8,25 @@ import java.awt.Color;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
-import static java.awt.image.ImageObserver.HEIGHT;
 import javax.swing.JOptionPane;
-import oru.inf.InfException;
 
 /**
  *
  * @author Sajjad
  */
 public class AndraLosenord extends javax.swing.JFrame {
-    
+
     private static InfDB idb;
     private String nuvarandeAnvandare;
 
     /**
      * Creates new form AndraLosenord
      */
-    public AndraLosenord() {
+    public AndraLosenord(InfDB idb, String nuvarandeAnvandare) {
         initComponents();
-        
-        idb = HuvudFonster.getdb();
-        nuvarandeAnvandare = HuvudFonster.getNuvarandeAnvandare();
+
+        this.idb = idb;
+        this.nuvarandeAnvandare = nuvarandeAnvandare;
     }
 
     /**
@@ -45,13 +43,15 @@ public class AndraLosenord extends javax.swing.JFrame {
         lblNyaLosenord = new javax.swing.JLabel();
         btnAndra = new javax.swing.JButton();
         txtGamlaLosenord = new javax.swing.JPasswordField();
-        txtNyaLosenord = new javax.swing.JPasswordField();
+        pswNyaLosenord = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
+        lblGamlaLosenord.setForeground(java.awt.Color.gray);
         lblGamlaLosenord.setText("Gamla Lösenord");
 
+        lblNyaLosenord.setForeground(java.awt.Color.gray);
         lblNyaLosenord.setText("Nya Lösenord");
 
         btnAndra.setText("Ändra");
@@ -82,7 +82,7 @@ public class AndraLosenord extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtGamlaLosenord)
-                            .addComponent(txtNyaLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(pswNyaLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -95,7 +95,7 @@ public class AndraLosenord extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNyaLosenord)
-                    .addComponent(txtNyaLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pswNyaLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(btnAndra)
                 .addGap(27, 27, 27))
@@ -118,11 +118,11 @@ public class AndraLosenord extends javax.swing.JFrame {
 
     private void btnAndraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraActionPerformed
         String gamlaLosenord = new String(txtGamlaLosenord.getPassword());
-        String nyaLosenord = new String(txtNyaLosenord.getPassword());
-        
+        String nyaLosenord = new String(pswNyaLosenord.getPassword());
+
         try {
             String dbLosenord = idb.fetchSingle("Select losenord from agent where Namn='" + nuvarandeAnvandare + "'");
-            
+
             if (gamlaLosenord.equals(dbLosenord)) {
                 idb.update("update agent set losenord ='" + nyaLosenord + "' where namn='" + nuvarandeAnvandare + "'");
                 JOptionPane.showMessageDialog(null, "Lösenord har ändrat");
@@ -132,56 +132,21 @@ public class AndraLosenord extends javax.swing.JFrame {
                 lblGamlaLosenord.setForeground(Color.red);
             }
         } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            JOptionPane.showMessageDialog(null, "Databasfel!");
             System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_btnAndraActionPerformed
 
     private void txtGamlaLosenordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtGamlaLosenordMouseClicked
-        lblGamlaLosenord.setForeground(Color.BLACK);
+        lblGamlaLosenord.setForeground(Color.gray);
     }//GEN-LAST:event_txtGamlaLosenordMouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AndraLosenord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AndraLosenord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AndraLosenord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AndraLosenord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AndraLosenord().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAndra;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblGamlaLosenord;
     private javax.swing.JLabel lblNyaLosenord;
+    private javax.swing.JPasswordField pswNyaLosenord;
     private javax.swing.JPasswordField txtGamlaLosenord;
-    private javax.swing.JPasswordField txtNyaLosenord;
     // End of variables declaration//GEN-END:variables
 }

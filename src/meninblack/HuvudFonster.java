@@ -4,11 +4,10 @@
  */
 package meninblack;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,13 +16,14 @@ import oru.inf.InfException;
 public class HuvudFonster extends javax.swing.JFrame {
 
     private static InfDB idb;
-    private static String nuvarandeAnvandare;
+    private String nuvarandeAnvandare;
 
     /**
      * Creates new form HuvudFonster
      */
-    public HuvudFonster() {
+    public HuvudFonster(InfDB idb) {
         initComponents();
+        this.idb = idb;
     }
 
     /**
@@ -38,9 +38,9 @@ public class HuvudFonster extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lblLoggaIn = new javax.swing.JLabel();
         lblAnvandernamn = new javax.swing.JLabel();
-        txfAnvandernamn = new javax.swing.JTextField();
+        txtAnvandernamn = new javax.swing.JTextField();
         lblLosenord = new javax.swing.JLabel();
-        pwfLosenord = new javax.swing.JPasswordField();
+        pswLosenord = new javax.swing.JPasswordField();
         btnLoggaIn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -52,10 +52,8 @@ public class HuvudFonster extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(600, 400));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 400));
 
-        lblLoggaIn.setBackground(new java.awt.Color(25, 25, 25));
         lblLoggaIn.setFont(new java.awt.Font("Franklin Gothic Demi Cond", 0, 24)); // NOI18N
         lblLoggaIn.setForeground(new java.awt.Color(102, 102, 102));
         lblLoggaIn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -65,15 +63,14 @@ public class HuvudFonster extends javax.swing.JFrame {
         lblAnvandernamn.setForeground(new java.awt.Color(102, 102, 102));
         lblAnvandernamn.setText("Användernamn");
 
-        txfAnvandernamn.setSelectionColor(new java.awt.Color(241, 80, 37));
+        txtAnvandernamn.setSelectionColor(new java.awt.Color(241, 80, 37));
 
         lblLosenord.setForeground(new java.awt.Color(102, 102, 102));
         lblLosenord.setText("Lösenord");
 
-        pwfLosenord.setSelectionColor(new java.awt.Color(241, 80, 37));
+        pswLosenord.setSelectionColor(new java.awt.Color(241, 80, 37));
 
         btnLoggaIn.setText("Logga in");
-        btnLoggaIn.setBorder(null);
         btnLoggaIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoggaInActionPerformed(evt);
@@ -91,10 +88,10 @@ public class HuvudFonster extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(txfAnvandernamn, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAnvandernamn, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblLoggaIn, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pwfLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pswLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblAnvandernamn, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLoggaIn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -110,11 +107,11 @@ public class HuvudFonster extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lblAnvandernamn, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txfAnvandernamn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtAnvandernamn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pwfLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pswLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
                 .addComponent(btnLoggaIn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(69, Short.MAX_VALUE))
@@ -136,72 +133,23 @@ public class HuvudFonster extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
-        nuvarandeAnvandare = txfAnvandernamn.getText();
-        String losenord = new String(pwfLosenord.getPassword());
+        nuvarandeAnvandare = txtAnvandernamn.getText().toUpperCase();
+        String losenord = new String(pswLosenord.getPassword());
 
         try {
             String dbLosenord = idb.fetchSingle("Select losenord from agent where Namn='" + nuvarandeAnvandare + "'");
 
             if (losenord.equals(dbLosenord)) {
-                Agent agentFonster = new Agent();
-                agentFonster.setVisible(true);
+                new Agent(idb, nuvarandeAnvandare).setVisible(true);
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Felaktigt användarnamn eller lösenord.", "", HEIGHT);
             }
         } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            JOptionPane.showMessageDialog(null, "Databasfel!");
             System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_btnLoggaInActionPerformed
-
-    public static String getNuvarandeAnvandare() {
-        return nuvarandeAnvandare;
-    }
-
-    public static InfDB getdb() {
-        return idb;
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HuvudFonster.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HuvudFonster.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HuvudFonster.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HuvudFonster.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        try {
-            idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
-        } catch (InfException ex) {
-            Logger.getLogger(HuvudFonster.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new HuvudFonster().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLoggaIn;
@@ -210,7 +158,7 @@ public class HuvudFonster extends javax.swing.JFrame {
     private javax.swing.JLabel lblAnvandernamn;
     private javax.swing.JLabel lblLoggaIn;
     private javax.swing.JLabel lblLosenord;
-    private javax.swing.JPasswordField pwfLosenord;
-    private javax.swing.JTextField txfAnvandernamn;
+    private javax.swing.JPasswordField pswLosenord;
+    private javax.swing.JTextField txtAnvandernamn;
     // End of variables declaration//GEN-END:variables
 }
