@@ -43,7 +43,7 @@ public class AndraLosenord extends javax.swing.JFrame {
         lblNyaLosenord = new javax.swing.JLabel();
         btnAndra = new javax.swing.JButton();
         txtGamlaLosenord = new javax.swing.JPasswordField();
-        txtNyaLosenord = new javax.swing.JPasswordField();
+        pswNyaLosenord = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -82,7 +82,7 @@ public class AndraLosenord extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtGamlaLosenord)
-                            .addComponent(txtNyaLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(pswNyaLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -95,7 +95,7 @@ public class AndraLosenord extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNyaLosenord)
-                    .addComponent(txtNyaLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pswNyaLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(btnAndra)
                 .addGap(27, 27, 27))
@@ -118,7 +118,7 @@ public class AndraLosenord extends javax.swing.JFrame {
 
     private void btnAndraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraActionPerformed
         String gamlaLosenord = new String(txtGamlaLosenord.getPassword());
-        String nyaLosenord = new String(txtNyaLosenord.getPassword());
+        String nyaLosenord = new String(pswNyaLosenord.getPassword());
 
         try {
             String dbLosenord = idb.fetchSingle("Select losenord from agent where Namn='" + nuvarandeAnvandare + "'");
@@ -146,7 +146,7 @@ public class AndraLosenord extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblGamlaLosenord;
     private javax.swing.JLabel lblNyaLosenord;
+    private javax.swing.JPasswordField pswNyaLosenord;
     private javax.swing.JPasswordField txtGamlaLosenord;
-    private javax.swing.JPasswordField txtNyaLosenord;
     // End of variables declaration//GEN-END:variables
 }

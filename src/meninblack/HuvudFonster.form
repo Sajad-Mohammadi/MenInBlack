@@ -58,10 +58,10 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="2" attributes="0">
-                      <Component id="txfAnvandernamn" alignment="2" min="-2" pref="250" max="-2" attributes="0"/>
+                      <Component id="txtAnvandernamn" alignment="2" min="-2" pref="250" max="-2" attributes="0"/>
                       <Component id="lblLoggaIn" alignment="2" min="-2" pref="588" max="-2" attributes="0"/>
                       <Component id="lblLosenord" alignment="2" min="-2" pref="250" max="-2" attributes="0"/>
-                      <Component id="pwfLosenord" alignment="2" min="-2" pref="250" max="-2" attributes="0"/>
+                      <Component id="pswLosenord" alignment="2" min="-2" pref="250" max="-2" attributes="0"/>
                       <Component id="lblAnvandernamn" alignment="2" min="-2" pref="250" max="-2" attributes="0"/>
                       <Component id="btnLoggaIn" alignment="2" min="-2" pref="110" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="2" min="-2" pref="80" max="-2" attributes="0"/>
@@ -80,11 +80,11 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="lblAnvandernamn" min="-2" pref="24" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="txfAnvandernamn" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="txtAnvandernamn" min="-2" pref="32" max="-2" attributes="0"/>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Component id="lblLosenord" min="-2" pref="24" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="pwfLosenord" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="pswLosenord" min="-2" pref="32" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                   <Component id="btnLoggaIn" min="-2" pref="34" max="-2" attributes="0"/>
                   <EmptySpace pref="69" max="32767" attributes="0"/>
@@ -114,7 +114,7 @@
             <Property name="text" type="java.lang.String" value="Anv&#xe4;ndernamn"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txfAnvandernamn">
+        <Component class="javax.swing.JTextField" name="txtAnvandernamn">
           <Properties>
             <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="25" green="50" red="f1" type="rgb"/>
@@ -129,7 +129,7 @@
             <Property name="text" type="java.lang.String" value="L&#xf6;senord"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="pwfLosenord">
+        <Component class="javax.swing.JPasswordField" name="pswLosenord">
           <Properties>
             <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="25" green="50" red="f1" type="rgb"/>

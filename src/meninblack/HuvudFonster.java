@@ -38,9 +38,9 @@ public class HuvudFonster extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lblLoggaIn = new javax.swing.JLabel();
         lblAnvandernamn = new javax.swing.JLabel();
-        txfAnvandernamn = new javax.swing.JTextField();
+        txtAnvandernamn = new javax.swing.JTextField();
         lblLosenord = new javax.swing.JLabel();
-        pwfLosenord = new javax.swing.JPasswordField();
+        pswLosenord = new javax.swing.JPasswordField();
         btnLoggaIn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -63,12 +63,12 @@ public class HuvudFonster extends javax.swing.JFrame {
         lblAnvandernamn.setForeground(new java.awt.Color(102, 102, 102));
         lblAnvandernamn.setText("Användernamn");
 
-        txfAnvandernamn.setSelectionColor(new java.awt.Color(241, 80, 37));
+        txtAnvandernamn.setSelectionColor(new java.awt.Color(241, 80, 37));
 
         lblLosenord.setForeground(new java.awt.Color(102, 102, 102));
         lblLosenord.setText("Lösenord");
 
-        pwfLosenord.setSelectionColor(new java.awt.Color(241, 80, 37));
+        pswLosenord.setSelectionColor(new java.awt.Color(241, 80, 37));
 
         btnLoggaIn.setText("Logga in");
         btnLoggaIn.addActionListener(new java.awt.event.ActionListener() {
@@ -88,10 +88,10 @@ public class HuvudFonster extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(txfAnvandernamn, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAnvandernamn, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblLoggaIn, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pwfLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pswLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblAnvandernamn, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLoggaIn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -107,11 +107,11 @@ public class HuvudFonster extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lblAnvandernamn, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txfAnvandernamn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtAnvandernamn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pwfLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pswLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
                 .addComponent(btnLoggaIn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(69, Short.MAX_VALUE))
@@ -133,8 +133,8 @@ public class HuvudFonster extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
-        nuvarandeAnvandare = txfAnvandernamn.getText();
-        String losenord = new String(pwfLosenord.getPassword());
+        nuvarandeAnvandare = txtAnvandernamn.getText().toUpperCase();
+        String losenord = new String(pswLosenord.getPassword());
 
         try {
             String dbLosenord = idb.fetchSingle("Select losenord from agent where Namn='" + nuvarandeAnvandare + "'");
@@ -158,7 +158,7 @@ public class HuvudFonster extends javax.swing.JFrame {
     private javax.swing.JLabel lblAnvandernamn;
     private javax.swing.JLabel lblLoggaIn;
     private javax.swing.JLabel lblLosenord;
-    private javax.swing.JPasswordField pwfLosenord;
-    private javax.swing.JTextField txfAnvandernamn;
+    private javax.swing.JPasswordField pswLosenord;
+    private javax.swing.JTextField txtAnvandernamn;
     // End of variables declaration//GEN-END:variables
 }

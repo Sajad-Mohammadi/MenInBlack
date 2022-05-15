@@ -5,6 +5,7 @@
 package meninblack;
 
 import java.awt.Font;
+import java.util.ArrayList;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -19,7 +20,7 @@ public class Agent extends javax.swing.JFrame {
 
     private String nuvarandeAnvandare;
     private static InfDB idb;
-    Font minFont1 = new Font("Franklin Gothic Book", Font.BOLD, 18);
+    Font minFont1 = new Font("Franklin Gothic Book", Font.BOLD, 20);
     Font minFont2 = new Font("Franklin Gothic Book", Font.PLAIN, 16);
 
     /**
@@ -64,6 +65,19 @@ public class Agent extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         tabbedPane = new javax.swing.JTabbedPane();
         pnlAlien = new javax.swing.JPanel();
+        cbFilter1 = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        cbFilter2 = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        txtSlutDatum = new javax.swing.JTextField();
+        txtStartDatum = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         pnlMinSida = new javax.swing.JPanel();
         lblNamn = new javax.swing.JLabel();
         lblTelefon = new javax.swing.JLabel();
@@ -131,11 +145,11 @@ public class Agent extends javax.swing.JFrame {
             pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlHeaderLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(lblAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 289, Short.MAX_VALUE)
-                .addComponent(lblMinSida, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(246, 246, 246)
-                .addComponent(lblUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 271, Short.MAX_VALUE)
+                .addComponent(lblMinSida, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(241, 241, 241)
+                .addComponent(lblUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -153,15 +167,91 @@ public class Agent extends javax.swing.JFrame {
 
         getContentPane().add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 80));
 
+        cbFilter1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj", "Plats", "Namn", "Ras" }));
+        cbFilter1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbFilter1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Sök på:");
+
+        jLabel2.setText("eller sök efter datum:");
+
+        txtSlutDatum.setText("ÅÅÅÅMMDD");
+
+        txtStartDatum.setText("ÅÅÅÅMMDD");
+
+        jLabel3.setText("Startdatum:");
+
+        jLabel4.setText("Slutdatum:");
+
+        jLabel5.setText("Sökfilter 1:");
+
+        jLabel6.setText("Sökfilter 2:");
+
+        jButton1.setText("jButton1");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
         javax.swing.GroupLayout pnlAlienLayout = new javax.swing.GroupLayout(pnlAlien);
         pnlAlien.setLayout(pnlAlienLayout);
         pnlAlienLayout.setHorizontalGroup(
             pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAlienLayout.createSequentialGroup()
+                .addContainerGap(41, Short.MAX_VALUE)
+                .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1)
+                    .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(pnlAlienLayout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(29, 29, 29)
+                            .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(cbFilter1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel5))
+                            .addGap(18, 18, 18)
+                            .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(pnlAlienLayout.createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cbFilter2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(37, 37, 37)
+                            .addComponent(jLabel2)
+                            .addGap(26, 26, 26)
+                            .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtStartDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3))
+                            .addGap(18, 18, 18)
+                            .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4)
+                                .addComponent(txtSlutDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(42, 42, 42))
         );
         pnlAlienLayout.setVerticalGroup(
             pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 427, Short.MAX_VALUE)
+            .addGroup(pnlAlienLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbFilter1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(cbFilter2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSlutDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtStartDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(26, 26, 26)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
 
         tabbedPane.addTab("tab1", pnlAlien);
@@ -298,10 +388,51 @@ public class Agent extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnLoggaUtActionPerformed
 
+    private void cbFilter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFilter1ActionPerformed
+        int filter1 = cbFilter1.getSelectedIndex();
+        String kolumn = "";
+        String tabel = "";
+
+        if (filter1 == 1) {
+            cbFilter2.removeAllItems();
+            kolumn = "Benamning";
+            tabel = "Plats";
+        } else if (filter1 == 2) {
+            cbFilter2.removeAllItems();
+            kolumn = "Namn";
+            tabel = "Alien";
+        }
+
+        String fraga = "Select " + kolumn + " from " + tabel;
+        ArrayList<String> allaAlternativ;
+
+        try {
+            allaAlternativ = idb.fetchColumn(fraga);
+            for (String alternativ : allaAlternativ) {
+                cbFilter2.addItem(alternativ);
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Databasfel!");
+        }
+
+    }//GEN-LAST:event_cbFilter1ActionPerformed
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAndraLosenord;
     private javax.swing.JButton btnLoggaUt;
+    private javax.swing.JComboBox<String> cbFilter1;
+    private javax.swing.JComboBox<String> cbFilter2;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblAdministrator;
     private javax.swing.JLabel lblAlien;
     private javax.swing.JLabel lblAnstallningsdatum;
@@ -317,5 +448,7 @@ public class Agent extends javax.swing.JFrame {
     private javax.swing.JPanel pnlMinSida;
     private javax.swing.JPanel pnlUrustning;
     private javax.swing.JTabbedPane tabbedPane;
+    private javax.swing.JTextField txtSlutDatum;
+    private javax.swing.JTextField txtStartDatum;
     // End of variables declaration//GEN-END:variables
 }

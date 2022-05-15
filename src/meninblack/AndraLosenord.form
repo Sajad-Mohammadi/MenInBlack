@@ -51,7 +51,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="txtGamlaLosenord" max="32767" attributes="0"/>
-                              <Component id="txtNyaLosenord" min="-2" pref="123" max="-2" attributes="0"/>
+                              <Component id="pswNyaLosenord" min="-2" pref="123" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -70,7 +70,7 @@
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblNyaLosenord" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtNyaLosenord" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="pswNyaLosenord" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="47" max="32767" attributes="0"/>
                   <Component id="btnAndra" min="-2" max="-2" attributes="0"/>
@@ -109,7 +109,7 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtGamlaLosenordMouseClicked"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="txtNyaLosenord">
+        <Component class="javax.swing.JPasswordField" name="pswNyaLosenord">
         </Component>
       </SubComponents>
     </Container>
