@@ -12,6 +12,7 @@ import oru.inf.InfException;
 import javax.swing.JOptionPane;
 import java.util.HashMap;
 import javax.swing.JComboBox;
+import javax.swing.JTextField;
 
 /**
  *
@@ -23,8 +24,6 @@ public class Agent extends javax.swing.JFrame {
     private static InfDB idb;
     Font minFont1 = new Font("Franklin Gothic Book", Font.BOLD, 20);
     Font minFont2 = new Font("Franklin Gothic Book", Font.PLAIN, 16);
-    private int filter1;
-    private String sokMetod;
     private int filterTyp;
     private String filterFraga;
 
@@ -189,9 +188,26 @@ public class Agent extends javax.swing.JFrame {
 
         jLabel2.setText("eller sök efter datum:");
 
+        txtSlutDatum.setEditable(false);
         txtSlutDatum.setText("ÅÅÅÅMMDD");
+        txtSlutDatum.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtSlutDatumFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtSlutDatumFocusLost(evt);
+            }
+        });
 
         txtStartDatum.setText("ÅÅÅÅMMDD");
+        txtStartDatum.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtStartDatumFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtStartDatumFocusLost(evt);
+            }
+        });
 
         jLabel3.setText("Startdatum:");
 
@@ -403,7 +419,7 @@ public class Agent extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoggaUtActionPerformed
 
     private void cbFilter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFilter1ActionPerformed
-        filter1 = cbFilter1.getSelectedIndex();
+        int filter1 = cbFilter1.getSelectedIndex();
         String kolumn = "";
         String tabel = "";
 
@@ -439,7 +455,6 @@ public class Agent extends javax.swing.JFrame {
     }//GEN-LAST:event_cbFilter1ActionPerformed
 
     private void cbFilter2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFilter2ActionPerformed
-        sokMetod = "filter";
         btnSok.setText("Sök med filter");
         try {
             switch (filterTyp) {
@@ -468,6 +483,24 @@ public class Agent extends javax.swing.JFrame {
         txtAreaResultat.setText("");
         gorFetchRows();
     }//GEN-LAST:event_btnSokActionPerformed
+
+    private void txtStartDatumFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtStartDatumFocusGained
+        cbFilter1.setSelectedIndex(0);
+        btnSok.setText("Sök efter datum");
+        txtStartDatum.setText("");
+    }//GEN-LAST:event_txtStartDatumFocusGained
+
+    private void txtStartDatumFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtStartDatumFocusLost
+        valideraDatum(txtStartDatum);
+    }//GEN-LAST:event_txtStartDatumFocusLost
+
+    private void txtSlutDatumFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSlutDatumFocusGained
+        txtSlutDatum.setText("");
+    }//GEN-LAST:event_txtSlutDatumFocusGained
+
+    private void txtSlutDatumFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSlutDatumFocusLost
+        valideraDatum(txtSlutDatum);
+    }//GEN-LAST:event_txtSlutDatumFocusLost
 
     private void gorFetchColumn(String kolumn, String tabel, JComboBox comboBox) {
         ArrayList<String> allaAlternativ;
@@ -503,6 +536,26 @@ public class Agent extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("////" + e.getMessage());
+        }
+    }
+
+    private void valideraDatum(JTextField txtField) {
+        if (!(txtField.getText().length() == 8)) {
+            txtStartDatum.setText("ÅÅÅÅMMDD");
+            txtSlutDatum.setText("ÅÅÅÅMMDD");
+            txtSlutDatum.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Skriv datumet i korrekt format!");
+        } else {
+            try {
+                Integer.parseInt(txtField.getText());
+                txtSlutDatum.setEditable(true);
+            } catch (NumberFormatException e) {
+                txtStartDatum.setText("ÅÅÅÅMMDD");
+                txtSlutDatum.setText("ÅÅÅÅMMDD");
+                txtSlutDatum.setEditable(false);
+                JOptionPane.showMessageDialog(null, "Skriv datumet i korrekt format!!");
+                System.out.println("////" + e.getMessage());
+            }
         }
     }
 
