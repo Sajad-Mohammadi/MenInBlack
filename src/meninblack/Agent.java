@@ -28,6 +28,9 @@ public class Agent extends javax.swing.JFrame {
     private int filterTyp;
     private String filterFraga;
 
+    private String startDatum;
+    private String slutDatum;
+
     /**
      * Creates new form Agent
      */
@@ -68,12 +71,12 @@ public class Agent extends javax.swing.JFrame {
         lblMinSida = new javax.swing.JLabel();
         lblUtrustning = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        lblOmrade = new javax.swing.JLabel();
         tabbedPane = new javax.swing.JTabbedPane();
         pnlAlien = new javax.swing.JPanel();
         cbFilter1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         cbFilter2 = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
         txtSlutDatum = new javax.swing.JTextField();
         txtStartDatum = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -83,6 +86,9 @@ public class Agent extends javax.swing.JFrame {
         btnSok = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaResultat = new javax.swing.JTextArea();
+        andraAlienInfo = new javax.swing.JButton();
+        btnRegistreraAlien = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         pnlMinSida = new javax.swing.JPanel();
         lblNamn = new javax.swing.JLabel();
         lblTelefon = new javax.swing.JLabel();
@@ -97,6 +103,8 @@ public class Agent extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         UTresultat = new javax.swing.JTextArea();
+        pnlOmrade = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -147,18 +155,29 @@ public class Agent extends javax.swing.JFrame {
             .addGap(0, 1, Short.MAX_VALUE)
         );
 
+        lblOmrade.setFont(new java.awt.Font("Franklin Gothic Book", 0, 16)); // NOI18N
+        lblOmrade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblOmrade.setText("Omrade");
+        lblOmrade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblOmradeMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlHeaderLayout = new javax.swing.GroupLayout(pnlHeader);
         pnlHeader.setLayout(pnlHeaderLayout);
         pnlHeaderLayout.setHorizontalGroup(
             pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlHeaderLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(lblAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 271, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
                 .addComponent(lblMinSida, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(241, 241, 241)
+                .addGap(120, 120, 120)
+                .addComponent(lblAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
                 .addComponent(lblUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addGap(142, 142, 142)
+                .addComponent(lblOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlHeaderLayout.setVerticalGroup(
@@ -168,14 +187,15 @@ public class Agent extends javax.swing.JFrame {
                 .addGroup(pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUtrustning)
                     .addComponent(lblMinSida)
-                    .addComponent(lblAlien))
+                    .addComponent(lblAlien)
+                    .addComponent(lblOmrade))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         getContentPane().add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 80));
 
-        cbFilter1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj", "Plats", "Namn", "Ras" }));
+        cbFilter1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj", "Plats", "Namn", "Ras", "Alla" }));
         cbFilter1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbFilter1ActionPerformed(evt);
@@ -190,14 +210,8 @@ public class Agent extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("eller sök efter datum:");
-
-        txtSlutDatum.setEditable(false);
         txtSlutDatum.setText("ÅÅÅÅMMDD");
         txtSlutDatum.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtSlutDatumFocusGained(evt);
-            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtSlutDatumFocusLost(evt);
             }
@@ -205,9 +219,6 @@ public class Agent extends javax.swing.JFrame {
 
         txtStartDatum.setText("ÅÅÅÅMMDD");
         txtStartDatum.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtStartDatumFocusGained(evt);
-            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtStartDatumFocusLost(evt);
             }
@@ -229,9 +240,27 @@ public class Agent extends javax.swing.JFrame {
             }
         });
 
+        txtAreaResultat.setEditable(false);
         txtAreaResultat.setColumns(20);
         txtAreaResultat.setRows(5);
         jScrollPane1.setViewportView(txtAreaResultat);
+
+        andraAlienInfo.setText("Ändra Information om en Alien");
+        andraAlienInfo.setMaximumSize(new java.awt.Dimension(200, 22));
+        andraAlienInfo.setMinimumSize(new java.awt.Dimension(200, 22));
+        andraAlienInfo.setPreferredSize(new java.awt.Dimension(200, 22));
+        andraAlienInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                andraAlienInfoActionPerformed(evt);
+            }
+        });
+
+        btnRegistreraAlien.setText("Registrera Ny Alien");
+        btnRegistreraAlien.setMaximumSize(new java.awt.Dimension(200, 22));
+        btnRegistreraAlien.setMinimumSize(new java.awt.Dimension(200, 22));
+        btnRegistreraAlien.setPreferredSize(new java.awt.Dimension(200, 22));
+
+        jLabel7.setText("Registeringsdatum:");
 
         javax.swing.GroupLayout pnlAlienLayout = new javax.swing.GroupLayout(pnlAlien);
         pnlAlien.setLayout(pnlAlienLayout);
@@ -239,30 +268,39 @@ public class Agent extends javax.swing.JFrame {
             pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAlienLayout.createSequentialGroup()
                 .addContainerGap(41, Short.MAX_VALUE)
-                .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane1)
+                .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlAlienLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(29, 29, 29)
-                        .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbFilter1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(cbFilter2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel2)
-                        .addGap(26, 26, 26)
-                        .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtStartDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(txtSlutDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btnSok, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(42, 42, 42))
+                        .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 717, Short.MAX_VALUE)
+                            .addGroup(pnlAlienLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbFilter1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5))
+                                .addGap(18, 18, 18)
+                                .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlAlienLayout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addGap(55, 55, 55))
+                                    .addComponent(cbFilter2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtStartDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
+                                .addGap(18, 18, 18)
+                                .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(txtSlutDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnSok, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(42, 42, 42))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAlienLayout.createSequentialGroup()
+                        .addComponent(btnRegistreraAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
+                        .addComponent(andraAlienInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(172, 172, 172))))
         );
         pnlAlienLayout.setVerticalGroup(
             pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,12 +318,16 @@ public class Agent extends javax.swing.JFrame {
                     .addComponent(cbFilter2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSlutDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtStartDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel7))
                 .addGap(26, 26, 26)
-                .addComponent(btnSok, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-                .addGap(43, 43, 43)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addComponent(btnSok, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(andraAlienInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegistreraAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42))
         );
 
         tabbedPane.addTab("tab1", pnlAlien);
@@ -407,6 +449,27 @@ public class Agent extends javax.swing.JFrame {
 
         tabbedPane.addTab("tab3", pnlUrustning);
 
+        jLabel2.setText("område");
+
+        javax.swing.GroupLayout pnlOmradeLayout = new javax.swing.GroupLayout(pnlOmrade);
+        pnlOmrade.setLayout(pnlOmradeLayout);
+        pnlOmradeLayout.setHorizontalGroup(
+            pnlOmradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOmradeLayout.createSequentialGroup()
+                .addGap(322, 322, 322)
+                .addComponent(jLabel2)
+                .addContainerGap(437, Short.MAX_VALUE))
+        );
+        pnlOmradeLayout.setVerticalGroup(
+            pnlOmradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOmradeLayout.createSequentialGroup()
+                .addGap(136, 136, 136)
+                .addComponent(jLabel2)
+                .addContainerGap(275, Short.MAX_VALUE))
+        );
+
+        tabbedPane.addTab("tab4", pnlOmrade);
+
         getContentPane().add(tabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 800, 460));
 
         pack();
@@ -414,17 +477,19 @@ public class Agent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAlienMouseClicked
-        tabbedPane.setSelectedIndex(0);
+        tabbedPane.setSelectedIndex(1);
         lblAlien.setFont(minFont1);
         lblMinSida.setFont(minFont2);
         lblUtrustning.setFont(minFont2);
+        lblOmrade.setFont(minFont2);
     }//GEN-LAST:event_lblAlienMouseClicked
 
     private void lblMinSidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinSidaMouseClicked
-        tabbedPane.setSelectedIndex(1);
+        tabbedPane.setSelectedIndex(0);
         lblAlien.setFont(minFont2);
         lblMinSida.setFont(minFont1);
         lblUtrustning.setFont(minFont2);
+        lblOmrade.setFont(minFont2);
     }//GEN-LAST:event_lblMinSidaMouseClicked
 
     private void lblUtrustningMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUtrustningMouseClicked
@@ -432,6 +497,7 @@ public class Agent extends javax.swing.JFrame {
         lblAlien.setFont(minFont2);
         lblMinSida.setFont(minFont2);
         lblUtrustning.setFont(minFont1);
+        lblOmrade.setFont(minFont2);
     }//GEN-LAST:event_lblUtrustningMouseClicked
 
     private void btnAndraLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenordActionPerformed
@@ -449,6 +515,9 @@ public class Agent extends javax.swing.JFrame {
         String tabel = "";
 
         switch (filter1) {
+            case 0:
+                btnSok.setEnabled(false);
+                break;
             case 1:
                 cbFilter2.removeAllItems();
                 kolumn = "Benamning";
@@ -473,6 +542,12 @@ public class Agent extends javax.swing.JFrame {
                 cbFilter2.addItem("Worm");
                 filterTyp = 3;
                 break;
+            case 4:
+                cbFilter2.removeAllItems();
+                filterTyp = 4;
+                filterFraga = "SELECT * FROM alien where Alien_ID > 0";
+                btnSok.setEnabled(true);
+                break;
             default:
                 cbFilter2.removeAllItems();
                 break;
@@ -480,7 +555,7 @@ public class Agent extends javax.swing.JFrame {
     }//GEN-LAST:event_cbFilter1ActionPerformed
 
     private void cbFilter2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFilter2ActionPerformed
-        btnSok.setText("Sök med filter");
+
         try {
             switch (filterTyp) {
                 case 1:
@@ -497,6 +572,7 @@ public class Agent extends javax.swing.JFrame {
             }
         } catch (Exception e) {
         }
+
         if (!(cbFilter2.getSelectedIndex() <= 0)) {
             btnSok.setEnabled(true);
         } else {
@@ -506,26 +582,28 @@ public class Agent extends javax.swing.JFrame {
 
     private void btnSokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokActionPerformed
         txtAreaResultat.setText("");
+
+        if (!(txtStartDatum.getText().equals("ÅÅÅÅMMDD")) && txtSlutDatum.getText().equals("ÅÅÅÅMMDD")) {
+            if (valideraDatum(txtStartDatum.getText())) {
+                getStartDatum(txtStartDatum.getText());
+                filterFraga = filterFraga + " and Registreringsdatum >= '" + startDatum + "'";
+            }
+        } else if (txtStartDatum.getText().equals("ÅÅÅÅMMDD") && !(txtSlutDatum.getText().equals("ÅÅÅÅMMDD"))) {
+            if (valideraDatum(txtSlutDatum.getText())) {
+                getSlutDatum(txtSlutDatum.getText());
+                filterFraga = filterFraga + " and Registreringsdatum <= '" + slutDatum + "'";
+            }
+        } else if (!(txtStartDatum.getText().equals("ÅÅÅÅMMDD")) && !(txtSlutDatum.getText().equals("ÅÅÅÅMMDD"))) {
+            if (valideraDatum(txtStartDatum.getText()) && valideraDatum(txtSlutDatum.getText())) {
+                getStartDatum(txtStartDatum.getText());
+                getSlutDatum(txtSlutDatum.getText());
+                filterFraga = filterFraga + " and Registreringsdatum between '" + startDatum + "' and '" + slutDatum + "'";
+            }
+        }
+        System.out.println("ffff" + filterFraga);
         gorFetchRows();
-    }//GEN-LAST:event_btnSokActionPerformed
-
-    private void txtStartDatumFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtStartDatumFocusGained
         cbFilter1.setSelectedIndex(0);
-        btnSok.setText("Sök efter datum");
-        txtStartDatum.setText("");
-    }//GEN-LAST:event_txtStartDatumFocusGained
-
-    private void txtStartDatumFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtStartDatumFocusLost
-        valideraDatum(txtStartDatum);
-    }//GEN-LAST:event_txtStartDatumFocusLost
-
-    private void txtSlutDatumFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSlutDatumFocusGained
-        txtSlutDatum.setText("");
-    }//GEN-LAST:event_txtSlutDatumFocusGained
-
-    private void txtSlutDatumFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSlutDatumFocusLost
-        valideraDatum(txtSlutDatum);
-    }//GEN-LAST:event_txtSlutDatumFocusLost
+    }//GEN-LAST:event_btnSokActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         int filter1 = jComboBox1.getSelectedIndex();
@@ -561,6 +639,30 @@ public class Agent extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void andraAlienInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraAlienInfoActionPerformed
+        new AndraAlienInfo(idb).setVisible(true);
+    }//GEN-LAST:event_andraAlienInfoActionPerformed
+
+    private void txtStartDatumFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtStartDatumFocusLost
+        if (txtStartDatum.getText().isEmpty()) {
+            txtStartDatum.setText("ÅÅÅÅMMDD");
+        }
+    }//GEN-LAST:event_txtStartDatumFocusLost
+
+    private void txtSlutDatumFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSlutDatumFocusLost
+        if (txtSlutDatum.getText().isEmpty()) {
+            txtSlutDatum.setText("ÅÅÅÅMMDD");
+        }
+    }//GEN-LAST:event_txtSlutDatumFocusLost
+
+    private void lblOmradeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOmradeMouseClicked
+        tabbedPane.setSelectedIndex(3);
+        lblAlien.setFont(minFont2);
+        lblMinSida.setFont(minFont2);
+        lblUtrustning.setFont(minFont2);
+        lblOmrade.setFont(minFont1);
+    }//GEN-LAST:event_lblOmradeMouseClicked
 
     private void gorFetchColumnUtrustning(String kolumn, String tabel, JTextArea textarea) {
         ArrayList<String> allaAlternativ;
@@ -606,7 +708,8 @@ public class Agent extends javax.swing.JFrame {
             for (HashMap<String, String> alien : allaAlien) {
                 txtAreaResultat.append(alien.get("Alien_ID") + "\t");
                 txtAreaResultat.append(alien.get("Namn") + "\t");
-                txtAreaResultat.append(alien.get("Telefon") + "\n");
+                txtAreaResultat.append(alien.get("Telefon") + "\t");
+                txtAreaResultat.append(alien.get("Registreringsdatum") + "\n");
             }
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Databasfel!");
@@ -617,31 +720,38 @@ public class Agent extends javax.swing.JFrame {
         }
     }
 
-    private void valideraDatum(JTextField txtField) {
-        if (!(txtField.getText().length() == 8)) {
-            txtStartDatum.setText("ÅÅÅÅMMDD");
-            txtSlutDatum.setText("ÅÅÅÅMMDD");
-            txtSlutDatum.setEditable(false);
-            JOptionPane.showMessageDialog(null, "Skriv datumet i korrekt format!");
-        } else {
+    private boolean valideraDatum(String datum) {
+        boolean isDatum = false;
+        if (datum.length() == 8) {
+            isDatum = true;
             try {
-                Integer.parseInt(txtField.getText());
-                txtSlutDatum.setEditable(true);
+                Integer.parseInt(datum);
             } catch (NumberFormatException e) {
-                txtStartDatum.setText("ÅÅÅÅMMDD");
-                txtSlutDatum.setText("ÅÅÅÅMMDD");
-                txtSlutDatum.setEditable(false);
-                JOptionPane.showMessageDialog(null, "Skriv datumet i korrekt format!!");
-                System.out.println("////" + e.getMessage());
+                System.out.println("vvvv" + e.getMessage());
+                return false;
             }
         }
+        if (!isDatum) {
+            JOptionPane.showMessageDialog(null, "Felaktigt datumformat!");
+        }
+        return isDatum;
+    }
+
+    private void getStartDatum(String datum) {
+        startDatum = datum.substring(0, 4) + "-" + datum.substring(4, 6) + "-" + datum.substring(6, 8);
+    }
+
+    private void getSlutDatum(String datum) {
+        slutDatum = datum.substring(0, 4) + "-" + datum.substring(4, 6) + "-" + datum.substring(6, 8);
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea UTresultat;
+    private javax.swing.JButton andraAlienInfo;
     private javax.swing.JButton btnAndraLosenord;
     private javax.swing.JButton btnLoggaUt;
+    private javax.swing.JButton btnRegistreraAlien;
     private javax.swing.JButton btnSok;
     private javax.swing.JComboBox<String> cbFilter1;
     private javax.swing.JComboBox<String> cbFilter2;
@@ -652,6 +762,7 @@ public class Agent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -663,11 +774,13 @@ public class Agent extends javax.swing.JFrame {
     private javax.swing.JLabel lblDBTelefon;
     private javax.swing.JLabel lblMinSida;
     private javax.swing.JLabel lblNamn;
+    private javax.swing.JLabel lblOmrade;
     private javax.swing.JLabel lblTelefon;
     private javax.swing.JLabel lblUtrustning;
     private javax.swing.JPanel pnlAlien;
     private javax.swing.JPanel pnlHeader;
     private javax.swing.JPanel pnlMinSida;
+    private javax.swing.JPanel pnlOmrade;
     private javax.swing.JPanel pnlUrustning;
     private javax.swing.JTabbedPane tabbedPane;
     private javax.swing.JTextArea txtAreaResultat;
