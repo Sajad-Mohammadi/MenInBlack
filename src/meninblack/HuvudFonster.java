@@ -135,21 +135,53 @@ public class HuvudFonster extends javax.swing.JFrame {
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
         nuvarandeAnvandare = txtAnvandernamn.getText().toUpperCase();
         String losenord = new String(pswLosenord.getPassword());
+        boolean isAgent = false;
 
         try {
-            String dbLosenord = idb.fetchSingle("Select losenord from agent where Namn='" + nuvarandeAnvandare + "'");
-
-            if (losenord.equals(dbLosenord)) {
-                new Agent(idb, nuvarandeAnvandare).setVisible(true);
-                dispose();
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Felaktigt användarnamn eller lösenord.", "", HEIGHT);
+            if ((nuvarandeAnvandare.substring(0, 5).equals("AGENT"))) {
+                isAgent = true;
             }
-        } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Databasfel!");
-            System.out.println(ex.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        if (isAgent && isPSWright("Agent", nuvarandeAnvandare, losenord)) {
+            try {
+                String isAdmin = idb.fetchSingle("SELECT administrator FROM agent where namn='" + nuvarandeAnvandare + "'");
+                if (isAdmin.equals("J")) {
+                    new Administrator(idb, nuvarandeAnvandare).setVisible(true);
+                } else {
+                    new Agent(idb, nuvarandeAnvandare).setVisible(true);
+                }
+            } catch (InfException e) {
+                JOptionPane.showMessageDialog(null, "Databasfel 1!");
+                System.out.println(e.getMessage());
+            }
+            dispose();
+        } else if (!isAgent) {
+            if (isPSWright("Alien", nuvarandeAnvandare, losenord)) {
+                new Alien(idb, nuvarandeAnvandare).setVisible(true);
+                dispose();
+            }
         }
     }//GEN-LAST:event_btnLoggaInActionPerformed
+
+    private boolean isPSWright(String tabel, String anvandare, String losenord) {
+        boolean isRight = false;
+        try {
+            String dbLosenord = idb.fetchSingle("Select losenord from " + tabel + " where Namn='" + anvandare + "'");
+            if (losenord.equals(dbLosenord)) {
+                isRight = true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Felaktigt användarnamn eller lösenord.");
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Databasfel 2!");
+            System.out.println(e.getMessage());
+        }
+        return isRight;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLoggaIn;
