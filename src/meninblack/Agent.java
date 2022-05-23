@@ -70,8 +70,8 @@ public class Agent extends javax.swing.JFrame {
         lblAlien = new javax.swing.JLabel();
         lblMinSida = new javax.swing.JLabel();
         lblUtrustning = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
         lblOmrade = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         tabbedPane = new javax.swing.JTabbedPane();
         pnlAlien = new javax.swing.JPanel();
         cbFilter1 = new javax.swing.JComboBox<>();
@@ -140,6 +140,15 @@ public class Agent extends javax.swing.JFrame {
             }
         });
 
+        lblOmrade.setFont(new java.awt.Font("Franklin Gothic Book", 0, 16)); // NOI18N
+        lblOmrade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblOmrade.setText("Omrade");
+        lblOmrade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblOmradeMouseClicked(evt);
+            }
+        });
+
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 1));
         jPanel1.setRequestFocusEnabled(false);
@@ -154,15 +163,6 @@ public class Agent extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1, Short.MAX_VALUE)
         );
-
-        lblOmrade.setFont(new java.awt.Font("Franklin Gothic Book", 0, 16)); // NOI18N
-        lblOmrade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblOmrade.setText("Omrade");
-        lblOmrade.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblOmradeMouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout pnlHeaderLayout = new javax.swing.GroupLayout(pnlHeader);
         pnlHeader.setLayout(pnlHeaderLayout);
@@ -280,9 +280,7 @@ public class Agent extends javax.swing.JFrame {
                                     .addComponent(jLabel5))
                                 .addGap(18, 18, 18)
                                 .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pnlAlienLayout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addGap(55, 55, 55))
+                                    .addComponent(jLabel6)
                                     .addComponent(cbFilter2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel7)
@@ -477,7 +475,7 @@ public class Agent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAlienMouseClicked
-        tabbedPane.setSelectedIndex(1);
+        tabbedPane.setSelectedIndex(0);
         lblAlien.setFont(minFont1);
         lblMinSida.setFont(minFont2);
         lblUtrustning.setFont(minFont2);
@@ -485,7 +483,7 @@ public class Agent extends javax.swing.JFrame {
     }//GEN-LAST:event_lblAlienMouseClicked
 
     private void lblMinSidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinSidaMouseClicked
-        tabbedPane.setSelectedIndex(0);
+        tabbedPane.setSelectedIndex(1);
         lblAlien.setFont(minFont2);
         lblMinSida.setFont(minFont1);
         lblUtrustning.setFont(minFont2);
