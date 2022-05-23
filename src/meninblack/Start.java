@@ -9,6 +9,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -29,8 +30,8 @@ public class Start {
 
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
-        } catch (Exception ex) {
-            System.err.println("Failed to initialize LaF");
+        } catch (UnsupportedLookAndFeelException ex) {
+            System.err.println(ex.getMessage());
         }
 
         new HuvudFonster(idb).setVisible(true);
