@@ -100,9 +100,10 @@ public class Agent extends javax.swing.JFrame {
         btnRegistreraAlien = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         pnlUrustning = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbValjUtrustning = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         UTresultat = new javax.swing.JTextArea();
+        btnLaggTillNyUtrustning = new javax.swing.JButton();
         pnlOmrade = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -413,36 +414,44 @@ public class Agent extends javax.swing.JFrame {
 
         tabbedPane.addTab("tab1", pnlAlien);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj", "Kommunikation", "Vapen", "Teknik" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cbValjUtrustning.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alla", "Kommunikation", "Vapen", "Teknik" }));
+        cbValjUtrustning.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cbValjUtrustningActionPerformed(evt);
             }
         });
 
         UTresultat.setColumns(20);
         UTresultat.setRows(5);
+        UTresultat.setEnabled(false);
         jScrollPane2.setViewportView(UTresultat);
+
+        btnLaggTillNyUtrustning.setText("Lägg Ny Utrustning");
 
         javax.swing.GroupLayout pnlUrustningLayout = new javax.swing.GroupLayout(pnlUrustning);
         pnlUrustning.setLayout(pnlUrustningLayout);
         pnlUrustningLayout.setHorizontalGroup(
             pnlUrustningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlUrustningLayout.createSequentialGroup()
-                .addGap(114, 114, 114)
-                .addGroup(pnlUrustningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addGap(51, 51, 51)
+                .addGroup(pnlUrustningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlUrustningLayout.createSequentialGroup()
+                        .addComponent(cbValjUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLaggTillNyUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         pnlUrustningLayout.setVerticalGroup(
             pnlUrustningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlUrustningLayout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addGap(52, 52, 52)
+                .addGroup(pnlUrustningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbValjUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLaggTillNyUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         tabbedPane.addTab("tab3", pnlUrustning);
@@ -496,6 +505,8 @@ public class Agent extends javax.swing.JFrame {
         lblMinSida.setFont(minFont2);
         lblUtrustning.setFont(minFont1);
         lblOmrade.setFont(minFont2);
+
+        cbValjUtrustning.setSelectedIndex(0);
     }//GEN-LAST:event_lblUtrustningMouseClicked
 
     private void btnAndraLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenordActionPerformed
@@ -599,46 +610,41 @@ public class Agent extends javax.swing.JFrame {
             }
         }
         System.out.println("ffff" + filterFraga);
-        gorFetchRows();
+        gorFetchRows(txtAreaResultat);
         cbFilter1.setSelectedIndex(0);
         cbFilter2.removeAllItems();
         cbFilter1.requestFocus();
     }//GEN-LAST:event_btnSokActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        int filter1 = jComboBox1.getSelectedIndex();
-        String kolumn = "";
-        String tabel = "";
+    private void cbValjUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbValjUtrustningActionPerformed
         UTresultat.setText("");
-        switch (filter1) {
-            case 1 -> {
-                ;
-                kolumn = "Overforingsteknik";
-                tabel = "Kommunikation";
-                gorFetchColumnUtrustning(kolumn, tabel, UTresultat);
-                filterTyp = 1;
-            }
-            case 2 -> {
-                ;
 
-                kolumn = "Kaliber";
-                tabel = "Vapen";
-                gorFetchColumnUtrustning(kolumn, tabel, UTresultat);
-                filterTyp = 2;
-            }
-            case 3 -> {
-                ;
-
-                kolumn = "Kraftkalla";
-                tabel = "Teknik";
-                gorFetchColumnUtrustning(kolumn, tabel, UTresultat);
-                filterTyp = 3;
-            }
-
-            default -> {
-            }
+        switch (cbValjUtrustning.getSelectedIndex()) {
+            case 0:
+                ArrayList<String> allaUtrustning;
+                try {
+                    allaUtrustning = idb.fetchColumn("SELECT benamning FROM utrustning");
+                    for (String alternativ : allaUtrustning) {
+                        UTresultat.append(alternativ + "\n");
+                    }
+                } catch (InfException e) {
+                    JOptionPane.showMessageDialog(null, "Databasfel! utt");
+                    System.out.println(e.getMessage());
+                }
+                break;
+            case 1:
+                gorFetchColumnUtrustning("Kommunikation", UTresultat);
+                break;
+            case 2:
+                gorFetchColumnUtrustning("Vapen", UTresultat);
+                break;
+            case 3:
+                gorFetchColumnUtrustning("Teknik", UTresultat);
+                break;
+            default:
+                break;
         }
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_cbValjUtrustningActionPerformed
 
     private void andraAlienInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraAlienInfoActionPerformed
         new AndraAlienInfo(idb).setVisible(true);
@@ -664,14 +670,14 @@ public class Agent extends javax.swing.JFrame {
         lblOmrade.setFont(minFont1);
     }//GEN-LAST:event_lblOmradeMouseClicked
 
-    private void gorFetchColumnUtrustning(String kolumn, String tabel, JTextArea textarea) {
+    private void gorFetchColumnUtrustning(String tabel, JTextArea textarea) {
         ArrayList<String> allaAlternativ;
-        String fraga = "Select " + kolumn + " from " + tabel;
+        String fraga = "SELECT benamning FROM utrustning join " + tabel + " on " + tabel + ".Utrustnings_ID=utrustning.Utrustnings_ID where " + tabel + ".Utrustnings_ID=utrustning.Utrustnings_ID;";
 
         try {
             allaAlternativ = idb.fetchColumn(fraga);
             for (String alternativ : allaAlternativ) {
-                UTresultat.append(alternativ);
+                textarea.append(alternativ + "\n");
             }
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Databasfel!");
@@ -700,16 +706,16 @@ public class Agent extends javax.swing.JFrame {
         }
     }
 
-    private void gorFetchRows() {
+    private void gorFetchRows(JTextArea textArea) {
         ArrayList<HashMap<String, String>> allaAlien;
 
         try {
             allaAlien = idb.fetchRows(filterFraga);
             for (HashMap<String, String> alien : allaAlien) {
-                txtAreaResultat.append(alien.get("Alien_ID") + "\t");
-                txtAreaResultat.append(alien.get("Namn") + "\t");
-                txtAreaResultat.append(alien.get("Telefon") + "\t");
-                txtAreaResultat.append(alien.get("Registreringsdatum") + "\n");
+                textArea.append(alien.get("Alien_ID") + "\t");
+                textArea.append(alien.get("Namn") + "\t");
+                textArea.append(alien.get("Telefon") + "\t");
+                textArea.append(alien.get("Registreringsdatum") + "\n");
             }
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Databasfel!");
@@ -750,12 +756,13 @@ public class Agent extends javax.swing.JFrame {
     private javax.swing.JTextArea UTresultat;
     private javax.swing.JButton andraAlienInfo;
     private javax.swing.JButton btnAndraLosenord;
+    private javax.swing.JButton btnLaggTillNyUtrustning;
     private javax.swing.JButton btnLoggaUt;
     private javax.swing.JButton btnRegistreraAlien;
     private javax.swing.JButton btnSok;
     private javax.swing.JComboBox<String> cbFilter1;
     private javax.swing.JComboBox<String> cbFilter2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cbValjUtrustning;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
