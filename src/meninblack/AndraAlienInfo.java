@@ -331,9 +331,9 @@ public class AndraAlienInfo extends javax.swing.JFrame {
                 }
 
                 try {
-                    idb.delete("Delete from Boglodite where id=(select Alien_ID from Alien where namn='" + alien + "')");
-                    idb.delete("Delete from Squid where id=(select Alien_ID from Alien where namn='" + alien + "')");
-                    idb.delete("Delete from Worm where id=(select Alien_ID from Alien where namn='" + alien + "')");
+                    idb.delete("Delete from Boglodite where Alien_ID=(select Alien_ID from Alien where namn='" + alien + "')");
+                    idb.delete("Delete from Squid where Alien_ID=(select Alien_ID from Alien where namn='" + alien + "')");
+                    idb.delete("Delete from Worm where Alien_ID=(select Alien_ID from Alien where namn='" + alien + "')");
                 } catch (InfException ex) {
                     JOptionPane.showMessageDialog(null, "Databasfel! delete");
                     System.out.println(ex.getMessage());
@@ -344,7 +344,7 @@ public class AndraAlienInfo extends javax.swing.JFrame {
                         try {
                         idb.insert("insert into Squid VALUES(" + nuvarandeID + "," + txtRasDetalj.getText() + ")");
                     } catch (InfException ex) {
-                        JOptionPane.showMessageDialog(null, "Databasfel! insert");
+                        JOptionPane.showMessageDialog(null, "Databasfel! insert squid");
                         System.out.println(ex.getMessage());
                     }
                     break;
@@ -352,7 +352,7 @@ public class AndraAlienInfo extends javax.swing.JFrame {
                         try {
                         idb.insert("insert into Worm VALUES(" + nuvarandeID + ")");
                     } catch (InfException ex) {
-                        JOptionPane.showMessageDialog(null, "Databasfel! insert");
+                        JOptionPane.showMessageDialog(null, "Databasfel! insert worm");
                         System.out.println(ex.getMessage());
                     }
                     break;
@@ -360,7 +360,7 @@ public class AndraAlienInfo extends javax.swing.JFrame {
                         try {
                         idb.insert("insert into Boglodite VALUES(" + nuvarandeID + "," + txtRasDetalj.getText() + ")");
                     } catch (InfException ex) {
-                        JOptionPane.showMessageDialog(null, "Databasfel! insert");
+                        JOptionPane.showMessageDialog(null, "Databasfel! insert boglodite");
                         System.out.println(ex.getMessage());
                     }
                     break;
