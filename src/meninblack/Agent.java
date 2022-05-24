@@ -39,7 +39,7 @@ public class Agent extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.nuvarandeAnvandare = nuvarandeAnvandare;
-        tabbedPane.setSelectedIndex(1);
+        tabbedPane.setSelectedIndex(0);
         lblMinSida.setFont(minFont1);
         HashMap<String, String> agentInfo;
 
@@ -70,9 +70,19 @@ public class Agent extends javax.swing.JFrame {
         lblAlien = new javax.swing.JLabel();
         lblMinSida = new javax.swing.JLabel();
         lblUtrustning = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
         lblOmrade = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         tabbedPane = new javax.swing.JTabbedPane();
+        pnlMinSida = new javax.swing.JPanel();
+        lblNamn = new javax.swing.JLabel();
+        lblTelefon = new javax.swing.JLabel();
+        lblAnstallningsdatum = new javax.swing.JLabel();
+        lblAdministrator = new javax.swing.JLabel();
+        lblDBTelefon = new javax.swing.JLabel();
+        lblDBAnstallningsdatum = new javax.swing.JLabel();
+        lblDBAdministrator = new javax.swing.JLabel();
+        btnAndraLosenord = new javax.swing.JButton();
+        btnLoggaUt = new javax.swing.JButton();
         pnlAlien = new javax.swing.JPanel();
         cbFilter1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
@@ -89,16 +99,6 @@ public class Agent extends javax.swing.JFrame {
         andraAlienInfo = new javax.swing.JButton();
         btnRegistreraAlien = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        pnlMinSida = new javax.swing.JPanel();
-        lblNamn = new javax.swing.JLabel();
-        lblTelefon = new javax.swing.JLabel();
-        lblAnstallningsdatum = new javax.swing.JLabel();
-        lblAdministrator = new javax.swing.JLabel();
-        lblDBTelefon = new javax.swing.JLabel();
-        lblDBAnstallningsdatum = new javax.swing.JLabel();
-        lblDBAdministrator = new javax.swing.JLabel();
-        btnAndraLosenord = new javax.swing.JButton();
-        btnLoggaUt = new javax.swing.JButton();
         pnlUrustning = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -140,6 +140,15 @@ public class Agent extends javax.swing.JFrame {
             }
         });
 
+        lblOmrade.setFont(new java.awt.Font("Franklin Gothic Book", 0, 16)); // NOI18N
+        lblOmrade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblOmrade.setText("Omrade");
+        lblOmrade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblOmradeMouseClicked(evt);
+            }
+        });
+
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 1));
         jPanel1.setRequestFocusEnabled(false);
@@ -154,15 +163,6 @@ public class Agent extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1, Short.MAX_VALUE)
         );
-
-        lblOmrade.setFont(new java.awt.Font("Franklin Gothic Book", 0, 16)); // NOI18N
-        lblOmrade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblOmrade.setText("Omrade");
-        lblOmrade.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblOmradeMouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout pnlHeaderLayout = new javax.swing.GroupLayout(pnlHeader);
         pnlHeader.setLayout(pnlHeaderLayout);
@@ -194,6 +194,89 @@ public class Agent extends javax.swing.JFrame {
         );
 
         getContentPane().add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 80));
+
+        lblNamn.setFont(new java.awt.Font("Franklin Gothic Demi Cond", 0, 24)); // NOI18N
+        lblNamn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNamn.setText("Namn");
+
+        lblTelefon.setText("Telefon");
+
+        lblAnstallningsdatum.setText("Anställningsdatum");
+
+        lblAdministrator.setText("Adminstratör");
+
+        lblDBTelefon.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        lblDBAnstallningsdatum.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        lblDBAdministrator.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        btnAndraLosenord.setText("Ändra lösenord");
+        btnAndraLosenord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAndraLosenordActionPerformed(evt);
+            }
+        });
+
+        btnLoggaUt.setText("Logga ut");
+        btnLoggaUt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoggaUtActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlMinSidaLayout = new javax.swing.GroupLayout(pnlMinSida);
+        pnlMinSida.setLayout(pnlMinSidaLayout);
+        pnlMinSidaLayout.setHorizontalGroup(
+            pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMinSidaLayout.createSequentialGroup()
+                .addGap(208, 208, 208)
+                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pnlMinSidaLayout.createSequentialGroup()
+                        .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDBTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTelefon))
+                        .addGap(49, 49, 49)
+                        .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblDBAnstallningsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAnstallningsdatum))
+                        .addGap(92, 92, 92)
+                        .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblAdministrator)
+                            .addComponent(lblDBAdministrator, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlMinSidaLayout.createSequentialGroup()
+                        .addComponent(btnAndraLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(189, Short.MAX_VALUE))
+            .addGroup(pnlMinSidaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblNamn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlMinSidaLayout.setVerticalGroup(
+            pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMinSidaLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(lblNamn)
+                .addGap(82, 82, 82)
+                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTelefon)
+                    .addComponent(lblAdministrator)
+                    .addComponent(lblAnstallningsdatum))
+                .addGap(18, 18, 18)
+                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDBAnstallningsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDBAdministrator, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDBTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
+                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAndraLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52))
+        );
+
+        tabbedPane.addTab("tab2", pnlMinSida);
 
         cbFilter1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj", "Plats", "Namn", "Ras", "Alla" }));
         cbFilter1.addActionListener(new java.awt.event.ActionListener() {
@@ -280,9 +363,7 @@ public class Agent extends javax.swing.JFrame {
                                     .addComponent(jLabel5))
                                 .addGap(18, 18, 18)
                                 .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pnlAlienLayout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addGap(55, 55, 55))
+                                    .addComponent(jLabel6)
                                     .addComponent(cbFilter2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel7)
@@ -331,89 +412,6 @@ public class Agent extends javax.swing.JFrame {
         );
 
         tabbedPane.addTab("tab1", pnlAlien);
-
-        lblNamn.setFont(new java.awt.Font("Franklin Gothic Demi Cond", 0, 24)); // NOI18N
-        lblNamn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNamn.setText("Namn");
-
-        lblTelefon.setText("Telefon");
-
-        lblAnstallningsdatum.setText("Anställningsdatum");
-
-        lblAdministrator.setText("Adminstratör");
-
-        lblDBTelefon.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
-        lblDBAnstallningsdatum.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
-        lblDBAdministrator.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
-        btnAndraLosenord.setText("Ändra lösenord");
-        btnAndraLosenord.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAndraLosenordActionPerformed(evt);
-            }
-        });
-
-        btnLoggaUt.setText("Logga ut");
-        btnLoggaUt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoggaUtActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlMinSidaLayout = new javax.swing.GroupLayout(pnlMinSida);
-        pnlMinSida.setLayout(pnlMinSidaLayout);
-        pnlMinSidaLayout.setHorizontalGroup(
-            pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlMinSidaLayout.createSequentialGroup()
-                .addGap(208, 208, 208)
-                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(pnlMinSidaLayout.createSequentialGroup()
-                        .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDBTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTelefon))
-                        .addGap(49, 49, 49)
-                        .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblDBAnstallningsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblAnstallningsdatum))
-                        .addGap(92, 92, 92)
-                        .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblAdministrator)
-                            .addComponent(lblDBAdministrator, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pnlMinSidaLayout.createSequentialGroup()
-                        .addComponent(btnAndraLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(189, Short.MAX_VALUE))
-            .addGroup(pnlMinSidaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblNamn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        pnlMinSidaLayout.setVerticalGroup(
-            pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlMinSidaLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(lblNamn)
-                .addGap(82, 82, 82)
-                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTelefon)
-                    .addComponent(lblAdministrator)
-                    .addComponent(lblAnstallningsdatum))
-                .addGap(18, 18, 18)
-                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblDBAnstallningsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDBAdministrator, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDBTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
-                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAndraLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52))
-        );
-
-        tabbedPane.addTab("tab2", pnlMinSida);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj", "Kommunikation", "Vapen", "Teknik" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -603,6 +601,8 @@ public class Agent extends javax.swing.JFrame {
         System.out.println("ffff" + filterFraga);
         gorFetchRows();
         cbFilter1.setSelectedIndex(0);
+        cbFilter2.removeAllItems();
+        cbFilter1.requestFocus();
     }//GEN-LAST:event_btnSokActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
