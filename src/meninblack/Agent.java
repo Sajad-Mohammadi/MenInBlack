@@ -343,6 +343,11 @@ public class Agent extends javax.swing.JFrame {
         btnRegistreraAlien.setMaximumSize(new java.awt.Dimension(200, 22));
         btnRegistreraAlien.setMinimumSize(new java.awt.Dimension(200, 22));
         btnRegistreraAlien.setPreferredSize(new java.awt.Dimension(200, 22));
+        btnRegistreraAlien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistreraAlienActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Registeringsdatum:");
 
@@ -669,6 +674,10 @@ public class Agent extends javax.swing.JFrame {
         lblUtrustning.setFont(minFont2);
         lblOmrade.setFont(minFont1);
     }//GEN-LAST:event_lblOmradeMouseClicked
+
+    private void btnRegistreraAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistreraAlienActionPerformed
+        new RegistreraNyAlien(idb).setVisible(true);
+    }//GEN-LAST:event_btnRegistreraAlienActionPerformed
 
     private void gorFetchColumnUtrustning(String tabel, JTextArea textarea) {
         ArrayList<String> allaAlternativ;
