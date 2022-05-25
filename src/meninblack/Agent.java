@@ -42,6 +42,7 @@ public class Agent extends javax.swing.JFrame {
         tabbedPane.setSelectedIndex(0);
         lblMinSida.setFont(minFont1);
         HashMap<String, String> agentInfo;
+        gorFetchColumn("Benamning", "Plats", cbOmradesKontor);
 
         try {
             agentInfo = idb.fetchRow("SELECT Telefon, Anstallningsdatum, Administrator FROM agent where namn ='" + nuvarandeAnvandare + "'");
@@ -105,7 +106,10 @@ public class Agent extends javax.swing.JFrame {
         UTresultat = new javax.swing.JTextArea();
         btnLaggTillNyUtrustning = new javax.swing.JButton();
         pnlOmrade = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        cbOmradesKontor = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtAreaOmrade = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -432,6 +436,11 @@ public class Agent extends javax.swing.JFrame {
         jScrollPane2.setViewportView(UTresultat);
 
         btnLaggTillNyUtrustning.setText("Lägg Ny Utrustning");
+        btnLaggTillNyUtrustning.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaggTillNyUtrustningActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlUrustningLayout = new javax.swing.GroupLayout(pnlUrustning);
         pnlUrustning.setLayout(pnlUrustningLayout);
@@ -461,23 +470,48 @@ public class Agent extends javax.swing.JFrame {
 
         tabbedPane.addTab("tab3", pnlUrustning);
 
-        jLabel2.setText("område");
+        cbOmradesKontor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj områdeskontor" }));
+        cbOmradesKontor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbOmradesKontorActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Franklin Gothic Book", 0, 18)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Sök fram vem som är områdeschef för ett valt områdeskontor!");
+        jLabel8.setPreferredSize(new java.awt.Dimension(37, 30));
+
+        txtAreaOmrade.setEditable(false);
+        txtAreaOmrade.setColumns(20);
+        txtAreaOmrade.setRows(5);
+        jScrollPane3.setViewportView(txtAreaOmrade);
 
         javax.swing.GroupLayout pnlOmradeLayout = new javax.swing.GroupLayout(pnlOmrade);
         pnlOmrade.setLayout(pnlOmradeLayout);
         pnlOmradeLayout.setHorizontalGroup(
             pnlOmradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlOmradeLayout.createSequentialGroup()
-                .addGap(322, 322, 322)
-                .addComponent(jLabel2)
-                .addContainerGap(437, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(pnlOmradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.CENTER, pnlOmradeLayout.createSequentialGroup()
+                .addGap(330, 330, 330)
+                .addComponent(cbOmradesKontor, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(330, 330, 330))
         );
         pnlOmradeLayout.setVerticalGroup(
             pnlOmradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlOmradeLayout.createSequentialGroup()
-                .addGap(136, 136, 136)
-                .addComponent(jLabel2)
-                .addContainerGap(275, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(cbOmradesKontor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         tabbedPane.addTab("tab4", pnlOmrade);
@@ -679,6 +713,33 @@ public class Agent extends javax.swing.JFrame {
         new RegistreraNyAlien(idb).setVisible(true);
     }//GEN-LAST:event_btnRegistreraAlienActionPerformed
 
+    private void btnLaggTillNyUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillNyUtrustningActionPerformed
+        new RegistreraNyUtrustning(idb).setVisible(true);
+    }//GEN-LAST:event_btnLaggTillNyUtrustningActionPerformed
+
+    private void cbOmradesKontorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbOmradesKontorActionPerformed
+
+        txtAreaOmrade.setText("");
+        String plats = cbOmradesKontor.getSelectedItem().toString();
+        ArrayList<HashMap<String, String>> agentInfo;
+
+        try {
+            agentInfo = idb.fetchRows("SELECT * FROM agent join omradeschef on omradeschef.agent_id = agent.Agent_ID join plats on plats.finns_i = omradeschef.omrade where plats.benamning = '" + plats + "'");
+            for (HashMap<String, String> del : agentInfo) {
+                txtAreaOmrade.append("Namn:" + "\t");
+                txtAreaOmrade.append("Telefon:" + "\n \n");
+                txtAreaOmrade.append(del.get("Namn") + "\t");
+                txtAreaOmrade.append(del.get("Telefon") + "\n");
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Databasfel!");
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("////" + e.getMessage());
+        }
+    }//GEN-LAST:event_cbOmradesKontorActionPerformed
+
     private void gorFetchColumnUtrustning(String tabel, JTextArea textarea) {
         ArrayList<String> allaAlternativ;
         String fraga = "SELECT benamning FROM utrustning join " + tabel + " on " + tabel + ".Utrustnings_ID=utrustning.Utrustnings_ID where " + tabel + ".Utrustnings_ID=utrustning.Utrustnings_ID;";
@@ -719,7 +780,13 @@ public class Agent extends javax.swing.JFrame {
         ArrayList<HashMap<String, String>> allaAlien;
 
         try {
+            textArea.append("ID:" + "\t");
+            textArea.append("Namn:" + "\t");
+            textArea.append("Telefon:" + "\t");
+            textArea.append("Registreringsdatum:" + "\n \n");
+
             allaAlien = idb.fetchRows(filterFraga);
+
             for (HashMap<String, String> alien : allaAlien) {
                 textArea.append(alien.get("Alien_ID") + "\t");
                 textArea.append(alien.get("Namn") + "\t");
@@ -771,17 +838,19 @@ public class Agent extends javax.swing.JFrame {
     private javax.swing.JButton btnSok;
     private javax.swing.JComboBox<String> cbFilter1;
     private javax.swing.JComboBox<String> cbFilter2;
+    private javax.swing.JComboBox<String> cbOmradesKontor;
     private javax.swing.JComboBox<String> cbValjUtrustning;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblAdministrator;
     private javax.swing.JLabel lblAlien;
     private javax.swing.JLabel lblAnstallningsdatum;
@@ -799,6 +868,7 @@ public class Agent extends javax.swing.JFrame {
     private javax.swing.JPanel pnlOmrade;
     private javax.swing.JPanel pnlUrustning;
     private javax.swing.JTabbedPane tabbedPane;
+    private javax.swing.JTextArea txtAreaOmrade;
     private javax.swing.JTextArea txtAreaResultat;
     private javax.swing.JTextField txtSlutDatum;
     private javax.swing.JTextField txtStartDatum;

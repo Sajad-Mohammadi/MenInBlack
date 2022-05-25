@@ -4,14 +4,11 @@
  */
 package meninblack;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -58,7 +55,7 @@ public class RegistreraNyAlien extends javax.swing.JFrame {
         txtID = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
+        lblRasDetalj = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         cbRas = new javax.swing.JComboBox<>();
         txtRasDetalj = new javax.swing.JTextField();
@@ -66,7 +63,6 @@ public class RegistreraNyAlien extends javax.swing.JFrame {
         btnLaggTill = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(400, 500));
         setPreferredSize(new java.awt.Dimension(400, 500));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -98,7 +94,7 @@ public class RegistreraNyAlien extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("Namn:");
+        jLabel1.setText("Namn: *");
 
         txtNamn.setMinimumSize(new java.awt.Dimension(64, 30));
         txtNamn.setPreferredSize(new java.awt.Dimension(64, 30));
@@ -110,10 +106,10 @@ public class RegistreraNyAlien extends javax.swing.JFrame {
         jLabel3.setText("Telefon:");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Plats:");
+        jLabel4.setText("Plats: *");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setText("Ansvarig Agent:");
+        jLabel5.setText("Ansvarig Agent: *");
 
         cbPlats.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "välj" }));
         cbPlats.setMinimumSize(new java.awt.Dimension(72, 30));
@@ -133,7 +129,7 @@ public class RegistreraNyAlien extends javax.swing.JFrame {
         txtID.setPreferredSize(new java.awt.Dimension(64, 30));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel7.setText("ID:");
+        jLabel7.setText("ID: *");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -152,7 +148,7 @@ public class RegistreraNyAlien extends javax.swing.JFrame {
                         .addComponent(txtNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,9 +157,7 @@ public class RegistreraNyAlien extends javax.swing.JFrame {
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4))
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel5)))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -204,12 +198,15 @@ public class RegistreraNyAlien extends javax.swing.JFrame {
         tabbedPane.addTab("tab1", jPanel1);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel8.setText("tyuio:");
+        lblRasDetalj.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblRasDetalj.setText("Detalj:");
+        jPanel2.add(lblRasDetalj, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 69, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel10.setText("Ras:");
+        jLabel10.setText("Ras: *");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 22, -1, -1));
 
         cbRas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "välj", "Squid", "Worm", "Boglodite" }));
         cbRas.setMinimumSize(new java.awt.Dimension(72, 30));
@@ -219,42 +216,16 @@ public class RegistreraNyAlien extends javax.swing.JFrame {
                 cbRasActionPerformed(evt);
             }
         });
+        jPanel2.add(cbRas, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 19, 190, 28));
 
+        txtRasDetalj.setEnabled(false);
         txtRasDetalj.setMinimumSize(new java.awt.Dimension(64, 30));
         txtRasDetalj.setPreferredSize(new java.awt.Dimension(64, 30));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel10))
-                .addGap(69, 69, 69)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtRasDetalj, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbRas, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbRas, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtRasDetalj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addContainerGap(231, Short.MAX_VALUE))
-        );
+        jPanel2.add(txtRasDetalj, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 65, 190, -1));
 
         tabbedPane.addTab("tab1", jPanel2);
 
-        getContentPane().add(tabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 34, -1, 360));
+        getContentPane().add(tabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 34, 350, 360));
 
         btnNasta.setText("Nästa");
         btnNasta.setPreferredSize(new java.awt.Dimension(75, 30));
@@ -294,80 +265,92 @@ public class RegistreraNyAlien extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnNastaActionPerformed
 
-    private void cbRasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRasActionPerformed
-
-    }//GEN-LAST:event_cbRasActionPerformed
-
     private void btnLaggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillActionPerformed
-        String alien = "";
 
         String sqlQuery = "Insert into Alien values(";
+        String sqlQueryRas = "";
+        boolean isOkej = true;
 
         if (!(txtID.getText().isEmpty())) {
-            String id = txtID.getText();
-            sqlQuery = sqlQuery + id + ", '" + java.time.LocalDate.now() + "', '";
+            sqlQuery = sqlQuery + txtID.getText() + ", '" + java.time.LocalDate.now() + "', '";
+        } else {
+            isOkej = false;
         }
         if (!(txtLosenord.getText().isEmpty())) {
-            String losenord = txtLosenord.getText();
-            sqlQuery = sqlQuery + losenord + "', '";
+            sqlQuery = sqlQuery + txtLosenord.getText() + "', '";
+        } else {
+            sqlQuery = sqlQuery + "','";
         }
         if (!(txtNamn.getText().isEmpty())) {
-            String namn = txtNamn.getText();
-            sqlQuery = sqlQuery + namn + "', '";
+            sqlQuery = sqlQuery + txtNamn.getText() + "', '";
+        } else {
+            isOkej = false;
         }
         if (!(txtTelefon.getText().isEmpty())) {
-            String telefon = txtTelefon.getText();
-            sqlQuery = sqlQuery + telefon + "', ";
+            sqlQuery = sqlQuery + txtTelefon.getText() + "', ";
+        } else {
+            sqlQuery = sqlQuery + "','";
         }
         if (cbPlats.getSelectedIndex() > 0) {
-            String plats = cbPlats.getSelectedItem().toString();
-            sqlQuery = sqlQuery + plats + ", ";
+            sqlQuery = sqlQuery + cbPlats.getSelectedItem().toString() + ", ";
+        } else {
+            isOkej = false;
         }
         if (cbAnsvarigAgent.getSelectedIndex() > 0) {
-            String ansvarigAgent = cbAnsvarigAgent.getSelectedItem().toString();
-            sqlQuery = sqlQuery + ansvarigAgent+ ")";
+            sqlQuery = sqlQuery + cbAnsvarigAgent.getSelectedItem().toString() + ")";
+        } else {
+            isOkej = false;
+        }
+
+        switch (cbRas.getSelectedIndex()) {
+            case 1:
+                sqlQueryRas = "insert into Squid VALUES(" + txtID.getText() + "," + txtRasDetalj.getText() + ")";
+                break;
+            case 2:
+                sqlQueryRas = "insert into Worm VALUES(" + txtID.getText() + ")";
+                break;
+            case 3:
+                sqlQueryRas = "insert into Boglodite VALUES(" + txtID.getText() + "," + txtRasDetalj.getText() + ")";
+                break;
+            default:
+                isOkej = false;
+                break;
         }
 
         System.out.println(sqlQuery);
 
-        try {
-            idb.insert(sqlQuery);
-        } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Databasfel! insert a");
-            System.out.println(ex.getMessage());
-        }
-
-        if (cbRas.getSelectedIndex() > 0) {
-            switch (cbRas.getSelectedIndex()) {
-                case 1:
-                try {
-                    idb.insert("insert into Squid VALUES(" + txtID.getText() + "," + txtRasDetalj.getText() + ")");
-                } catch (InfException ex) {
-                    JOptionPane.showMessageDialog(null, "Databasfel! insert squid");
-                    System.out.println(ex.getMessage());
-                }
-                break;
-                case 2:
-                try {
-                    idb.insert("insert into Worm VALUES(" + txtID.getText() + ")");
-                } catch (InfException ex) {
-                    JOptionPane.showMessageDialog(null, "Databasfel! insert worm");
-                    System.out.println(ex.getMessage());
-                }
-                break;
-                case 3:
-                try {
-                    idb.insert("insert into Boglodite VALUES(" + txtID.getText() + "," + txtRasDetalj.getText() + ")");
-                } catch (InfException ex) {
-                    JOptionPane.showMessageDialog(null, "Databasfel! insert boglodite");
-                    System.out.println(ex.getMessage());
-                }
-                break;
-                default:
-                    break;
+        if (isOkej) {
+            try {
+                idb.insert(sqlQuery);
+                idb.insert(sqlQueryRas);
+                JOptionPane.showMessageDialog(null, "Alien har registrerats");
+            } catch (InfException ex) {
+                JOptionPane.showMessageDialog(null, "Databasfel! insert a");
+                System.out.println(ex.getMessage());
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fält markerade med * är obligatoriska och måste fyllas i");
         }
     }//GEN-LAST:event_btnLaggTillActionPerformed
+
+    private void cbRasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRasActionPerformed
+        switch (cbRas.getSelectedIndex()) {
+            case 1:
+                lblRasDetalj.setText("Antal armar:");
+                txtRasDetalj.setEnabled(true);
+                break;
+            case 2:
+                lblRasDetalj.setText("Detalj:");
+                txtRasDetalj.setEnabled(false);
+                break;
+            case 3:
+                lblRasDetalj.setText("Antal boogies:");
+                txtRasDetalj.setEnabled(true);
+                break;
+            default:
+                break;
+        }
+    }//GEN-LAST:event_cbRasActionPerformed
 
     private void gorFetchColumn(String kolumn, String tabel, JComboBox comboBox) {
         ArrayList<String> allaAlternativ;
@@ -401,10 +384,10 @@ public class RegistreraNyAlien extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblRasDetalj;
     private javax.swing.JTabbedPane tabbedPane;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtLosenord;
