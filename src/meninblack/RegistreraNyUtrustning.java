@@ -159,10 +159,10 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
                 idb.insert(sqlQuery);
                 idb.insert(sqlQueryTyp);
                 JOptionPane.showMessageDialog(null, "Utrustning har registrerats");
+                dispose();
             } catch (InfException ex) {
                 JOptionPane.showMessageDialog(null, "Databasfel! insert a");
                 System.out.println(ex.getMessage());
-                dispose();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Fält markerade med * är obligatoriska och måste fyllas i");

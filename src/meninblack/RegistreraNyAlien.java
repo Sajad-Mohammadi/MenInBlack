@@ -324,6 +324,7 @@ public class RegistreraNyAlien extends javax.swing.JFrame {
                 idb.insert(sqlQuery);
                 idb.insert(sqlQueryRas);
                 JOptionPane.showMessageDialog(null, "Alien har registrerats");
+                dispose();
             } catch (InfException ex) {
                 JOptionPane.showMessageDialog(null, "Databasfel! insert a");
                 System.out.println(ex.getMessage());

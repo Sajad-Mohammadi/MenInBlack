@@ -115,16 +115,16 @@ public class TaBortUtrustning extends javax.swing.JFrame {
 
             if (losenord.equals(dbLosenord)) {
                 try {
-                    idb.delete("Delete from Utrustning where namn='" + utrustning + "'");
-                    idb.delete("Delete from Vapen where Utrustnings_ID=(select Utrustnings_ID from Alien where namn='" + utrustning + "')");
-                    idb.delete("Delete from Teknik where Utrustnings_ID=(select Utrustnings_ID from Alien where namn='" + utrustning + "')");
-                    idb.delete("Delete from Kommunikation where Utrustnings_ID=(select Utrustnings_ID from Alien where namn='" + utrustning + "')");
+                    idb.delete("Delete from Vapen where Utrustnings_ID=(select Utrustnings_ID from Utrustning where Benamning='" + utrustning + "')");
+                    idb.delete("Delete from Teknik where Utrustnings_ID=(select Utrustnings_ID from Utrustning where Benamning='" + utrustning + "')");
+                    idb.delete("Delete from Kommunikation where Utrustnings_ID=(select Utrustnings_ID from Utrustning where Benamning='" + utrustning + "')");
+                    idb.delete("Delete from Utrustning where Benamning='" + utrustning + "'");
+                    JOptionPane.showMessageDialog(null, "Utrustning togs bort");
+                    dispose();
                 } catch (InfException ex) {
                     JOptionPane.showMessageDialog(null, "Databasfel! delete");
                     System.out.println(ex.getMessage());
                 }
-                JOptionPane.showMessageDialog(null, "Utrustning togs bort");
-                dispose();
             } else {
                 //JOptionPane.showMessageDialog(rootPane, "Ange korrekt lösenord.", "", HEIGHT);
                 lblLosenord.setForeground(Color.red);
