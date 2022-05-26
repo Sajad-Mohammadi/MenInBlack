@@ -4,7 +4,16 @@
  */
 package meninblack;
 
+import java.awt.Font;
+import java.util.ArrayList;
 import oru.inf.InfDB;
+import oru.inf.InfException;
+
+import javax.swing.JOptionPane;
+import java.util.HashMap;
+import javax.swing.JComboBox;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -14,14 +23,39 @@ public class Administrator extends javax.swing.JFrame {
 
     private String nuvarandeAnvandare;
     private static InfDB idb;
+    Font minFont1 = new Font("Franklin Gothic Book", Font.BOLD, 20);
+    Font minFont2 = new Font("Franklin Gothic Book", Font.PLAIN, 16);
+    private int filterTyp;
+    private String filterFraga;
+
+    private String startDatum;
+    private String slutDatum;
 
     /**
      * Creates new form Administrator
      */
     public Administrator(InfDB idb, String nuvarandeAnvandare) {
+
         initComponents();
         this.idb = idb;
         this.nuvarandeAnvandare = nuvarandeAnvandare;
+        tabbedPane.setSelectedIndex(0);
+        lblMinSida.setFont(minFont1);
+        HashMap<String, String> agentInfo;
+        gorFetchColumn("Benamning", "Plats", cbOmradesKontor);
+
+        try {
+            agentInfo = idb.fetchRow("SELECT Telefon, Anstallningsdatum, Administrator FROM agent where namn ='" + nuvarandeAnvandare + "'");
+
+            lblNamn.setText(nuvarandeAnvandare);
+            lblDBTelefon.setText(agentInfo.get("Telefon"));
+            lblDBAnstallningsdatum.setText(agentInfo.get("Anstallningsdatum"));
+            lblDBAdministrator.setText(agentInfo.get("Administrator"));
+
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Databasfel!");
+            System.out.println("/////////////" + ex.getMessage());
+        }
     }
 
     /**
@@ -33,37 +67,827 @@ public class Administrator extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlHeader = new javax.swing.JPanel();
+        lblAlien = new javax.swing.JLabel();
+        lblMinSida = new javax.swing.JLabel();
+        lblUtrustning = new javax.swing.JLabel();
+        lblOmrade = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        tabbedPane = new javax.swing.JTabbedPane();
+        pnlMinSida = new javax.swing.JPanel();
+        lblNamn = new javax.swing.JLabel();
+        lblTelefon = new javax.swing.JLabel();
+        lblAnstallningsdatum = new javax.swing.JLabel();
+        lblAdministrator = new javax.swing.JLabel();
+        lblDBTelefon = new javax.swing.JLabel();
+        lblDBAnstallningsdatum = new javax.swing.JLabel();
+        lblDBAdministrator = new javax.swing.JLabel();
+        btnAndraLosenord = new javax.swing.JButton();
+        btnLoggaUt = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        pnlAlien = new javax.swing.JPanel();
+        cbFilter1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        cbFilter2 = new javax.swing.JComboBox<>();
+        txtSlutDatum = new javax.swing.JTextField();
+        txtStartDatum = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        btnSok = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtAreaResultat = new javax.swing.JTextArea();
+        andraAlienInfo = new javax.swing.JButton();
+        btnRegistreraAlien = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        pnlUrustning = new javax.swing.JPanel();
+        cbValjUtrustning = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        UTresultat = new javax.swing.JTextArea();
+        btnLaggTillNyUtrustning = new javax.swing.JButton();
+        pnlOmrade = new javax.swing.JPanel();
+        cbOmradesKontor = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtAreaOmrade = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        setSize(new java.awt.Dimension(800, 500));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Administratör");
+        pnlHeader.setPreferredSize(new java.awt.Dimension(800, 80));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(354, 354, 354)
-                .addComponent(jLabel1)
-                .addContainerGap(373, Short.MAX_VALUE))
+        lblAlien.setFont(new java.awt.Font("Franklin Gothic Book", 0, 16)); // NOI18N
+        lblAlien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAlien.setText("Alien");
+        lblAlien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAlienMouseClicked(evt);
+            }
+        });
+
+        lblMinSida.setFont(new java.awt.Font("Franklin Gothic Book", 0, 16)); // NOI18N
+        lblMinSida.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMinSida.setText("Min Sida");
+        lblMinSida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMinSidaMouseClicked(evt);
+            }
+        });
+
+        lblUtrustning.setFont(new java.awt.Font("Franklin Gothic Book", 0, 16)); // NOI18N
+        lblUtrustning.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUtrustning.setText("Utrusning");
+        lblUtrustning.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblUtrustningMouseClicked(evt);
+            }
+        });
+
+        lblOmrade.setFont(new java.awt.Font("Franklin Gothic Book", 0, 16)); // NOI18N
+        lblOmrade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblOmrade.setText("Omrade");
+        lblOmrade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblOmradeMouseClicked(evt);
+            }
+        });
+
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 1));
+        jPanel1.setRequestFocusEnabled(false);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(172, 172, 172)
-                .addComponent(jLabel1)
-                .addContainerGap(312, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1, Short.MAX_VALUE)
         );
+
+        javax.swing.GroupLayout pnlHeaderLayout = new javax.swing.GroupLayout(pnlHeader);
+        pnlHeader.setLayout(pnlHeaderLayout);
+        pnlHeaderLayout.setHorizontalGroup(
+            pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlHeaderLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(lblMinSida, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(134, 134, 134)
+                .addComponent(lblAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                .addComponent(lblUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(112, 112, 112)
+                .addComponent(lblOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnlHeaderLayout.setVerticalGroup(
+            pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlHeaderLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblUtrustning)
+                    .addComponent(lblMinSida)
+                    .addComponent(lblAlien)
+                    .addComponent(lblOmrade))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        getContentPane().add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 80));
+
+        lblNamn.setFont(new java.awt.Font("Franklin Gothic Demi Cond", 0, 24)); // NOI18N
+        lblNamn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNamn.setText("Namn");
+
+        lblTelefon.setText("Telefon");
+
+        lblAnstallningsdatum.setText("Anställningsdatum");
+
+        lblAdministrator.setText("Adminstratör");
+
+        lblDBTelefon.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        lblDBAnstallningsdatum.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        lblDBAdministrator.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        btnAndraLosenord.setText("Ändra lösenord");
+        btnAndraLosenord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAndraLosenordActionPerformed(evt);
+            }
+        });
+
+        btnLoggaUt.setText("Logga ut");
+        btnLoggaUt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoggaUtActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setForeground(new java.awt.Color(255, 102, 102));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("DU ÄR INLOGGAD MED ADMINISTRATÖR BEHÖRIGHET !");
+
+        javax.swing.GroupLayout pnlMinSidaLayout = new javax.swing.GroupLayout(pnlMinSida);
+        pnlMinSida.setLayout(pnlMinSidaLayout);
+        pnlMinSidaLayout.setHorizontalGroup(
+            pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMinSidaLayout.createSequentialGroup()
+                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlMinSidaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblNamn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnlMinSidaLayout.createSequentialGroup()
+                        .addGap(208, 208, 208)
+                        .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(pnlMinSidaLayout.createSequentialGroup()
+                                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblDBTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblTelefon))
+                                .addGap(49, 49, 49)
+                                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblDBAnstallningsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblAnstallningsdatum))
+                                .addGap(92, 92, 92)
+                                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblAdministrator)
+                                    .addComponent(lblDBAdministrator, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(pnlMinSidaLayout.createSequentialGroup()
+                                .addComponent(btnAndraLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 183, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        pnlMinSidaLayout.setVerticalGroup(
+            pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMinSidaLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(lblNamn)
+                .addGap(82, 82, 82)
+                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTelefon)
+                    .addComponent(lblAdministrator)
+                    .addComponent(lblAnstallningsdatum))
+                .addGap(18, 18, 18)
+                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDBAnstallningsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDBAdministrator, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDBTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
+                .addGroup(pnlMinSidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAndraLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(jLabel2)
+                .addContainerGap())
+        );
+
+        tabbedPane.addTab("tab2", pnlMinSida);
+
+        cbFilter1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj", "Plats", "Namn", "Ras", "Alla" }));
+        cbFilter1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbFilter1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Sök på:");
+
+        cbFilter2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbFilter2ActionPerformed(evt);
+            }
+        });
+
+        txtSlutDatum.setText("ÅÅÅÅMMDD");
+        txtSlutDatum.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtSlutDatumFocusLost(evt);
+            }
+        });
+
+        txtStartDatum.setText("ÅÅÅÅMMDD");
+        txtStartDatum.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtStartDatumFocusLost(evt);
+            }
+        });
+
+        jLabel3.setText("Startdatum:");
+
+        jLabel4.setText("Slutdatum:");
+
+        jLabel5.setText("Sökfilter 1:");
+
+        jLabel6.setText("Sökfilter 2:");
+
+        btnSok.setText("Sök");
+        btnSok.setEnabled(false);
+        btnSok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSokActionPerformed(evt);
+            }
+        });
+
+        txtAreaResultat.setEditable(false);
+        txtAreaResultat.setColumns(20);
+        txtAreaResultat.setRows(5);
+        jScrollPane1.setViewportView(txtAreaResultat);
+
+        andraAlienInfo.setText("Ändra Information Om En Alien");
+        andraAlienInfo.setMaximumSize(new java.awt.Dimension(200, 22));
+        andraAlienInfo.setMinimumSize(new java.awt.Dimension(200, 22));
+        andraAlienInfo.setPreferredSize(new java.awt.Dimension(200, 22));
+        andraAlienInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                andraAlienInfoActionPerformed(evt);
+            }
+        });
+
+        btnRegistreraAlien.setText("Registrera Ny Alien");
+        btnRegistreraAlien.setMaximumSize(new java.awt.Dimension(200, 22));
+        btnRegistreraAlien.setMinimumSize(new java.awt.Dimension(200, 22));
+        btnRegistreraAlien.setPreferredSize(new java.awt.Dimension(200, 22));
+        btnRegistreraAlien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistreraAlienActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Registeringsdatum:");
+
+        jButton1.setText("Ta Bort Alien");
+
+        javax.swing.GroupLayout pnlAlienLayout = new javax.swing.GroupLayout(pnlAlien);
+        pnlAlien.setLayout(pnlAlienLayout);
+        pnlAlienLayout.setHorizontalGroup(
+            pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAlienLayout.createSequentialGroup()
+                .addContainerGap(41, Short.MAX_VALUE)
+                .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 717, Short.MAX_VALUE)
+                        .addGroup(pnlAlienLayout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(18, 18, 18)
+                            .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(cbFilter1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel5))
+                            .addGap(18, 18, 18)
+                            .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel6)
+                                .addComponent(cbFilter2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7)
+                            .addGap(18, 18, 18)
+                            .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtStartDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3))
+                            .addGap(18, 18, 18)
+                            .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4)
+                                .addComponent(txtSlutDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnSok, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnlAlienLayout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(btnRegistreraAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(andraAlienInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(42, 42, 42))
+        );
+        pnlAlienLayout.setVerticalGroup(
+            pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAlienLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbFilter1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(cbFilter2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSlutDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtStartDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(26, 26, 26)
+                .addComponent(btnSok, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addGroup(pnlAlienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(andraAlienInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegistreraAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50))
+        );
+
+        tabbedPane.addTab("tab1", pnlAlien);
+
+        cbValjUtrustning.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alla", "Kommunikation", "Vapen", "Teknik" }));
+        cbValjUtrustning.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbValjUtrustningActionPerformed(evt);
+            }
+        });
+
+        UTresultat.setColumns(20);
+        UTresultat.setRows(5);
+        UTresultat.setEnabled(false);
+        jScrollPane2.setViewportView(UTresultat);
+
+        btnLaggTillNyUtrustning.setText("Lägg Ny Utrustning");
+        btnLaggTillNyUtrustning.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaggTillNyUtrustningActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlUrustningLayout = new javax.swing.GroupLayout(pnlUrustning);
+        pnlUrustning.setLayout(pnlUrustningLayout);
+        pnlUrustningLayout.setHorizontalGroup(
+            pnlUrustningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUrustningLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(pnlUrustningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlUrustningLayout.createSequentialGroup()
+                        .addComponent(cbValjUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLaggTillNyUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(55, Short.MAX_VALUE))
+        );
+        pnlUrustningLayout.setVerticalGroup(
+            pnlUrustningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUrustningLayout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addGroup(pnlUrustningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbValjUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLaggTillNyUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(109, Short.MAX_VALUE))
+        );
+
+        tabbedPane.addTab("tab3", pnlUrustning);
+
+        cbOmradesKontor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj områdeskontor" }));
+        cbOmradesKontor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbOmradesKontorActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Franklin Gothic Book", 0, 18)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Sök fram vem som är områdeschef för ett valt områdeskontor!");
+        jLabel8.setPreferredSize(new java.awt.Dimension(37, 30));
+
+        txtAreaOmrade.setEditable(false);
+        txtAreaOmrade.setColumns(20);
+        txtAreaOmrade.setRows(5);
+        jScrollPane3.setViewportView(txtAreaOmrade);
+
+        javax.swing.GroupLayout pnlOmradeLayout = new javax.swing.GroupLayout(pnlOmrade);
+        pnlOmrade.setLayout(pnlOmradeLayout);
+        pnlOmradeLayout.setHorizontalGroup(
+            pnlOmradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOmradeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlOmradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.CENTER, pnlOmradeLayout.createSequentialGroup()
+                .addGap(330, 330, 330)
+                .addComponent(cbOmradesKontor, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(330, 330, 330))
+        );
+        pnlOmradeLayout.setVerticalGroup(
+            pnlOmradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOmradeLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(cbOmradesKontor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(53, Short.MAX_VALUE))
+        );
+
+        tabbedPane.addTab("tab4", pnlOmrade);
+
+        getContentPane().add(tabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 800, 460));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    
+    private void lblAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAlienMouseClicked
+        tabbedPane.setSelectedIndex(1);
+        lblAlien.setFont(minFont1);
+        lblMinSida.setFont(minFont2);
+        lblUtrustning.setFont(minFont2);
+        lblOmrade.setFont(minFont2);
+    }//GEN-LAST:event_lblAlienMouseClicked
+
+    private void lblMinSidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinSidaMouseClicked
+        tabbedPane.setSelectedIndex(0);
+        lblAlien.setFont(minFont2);
+        lblMinSida.setFont(minFont1);
+        lblUtrustning.setFont(minFont2);
+        lblOmrade.setFont(minFont2);
+    }//GEN-LAST:event_lblMinSidaMouseClicked
+
+    private void lblUtrustningMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUtrustningMouseClicked
+        tabbedPane.setSelectedIndex(2);
+        lblAlien.setFont(minFont2);
+        lblMinSida.setFont(minFont2);
+        lblUtrustning.setFont(minFont1);
+        lblOmrade.setFont(minFont2);
+
+        cbValjUtrustning.setSelectedIndex(0);
+    }//GEN-LAST:event_lblUtrustningMouseClicked
+
+    private void btnAndraLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenordActionPerformed
+        new AndraLosenord(idb, nuvarandeAnvandare).setVisible(true);
+    }//GEN-LAST:event_btnAndraLosenordActionPerformed
+
+    private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtActionPerformed
+        new HuvudFonster(idb).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnLoggaUtActionPerformed
+
+    private void cbFilter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFilter1ActionPerformed
+        int filter1 = cbFilter1.getSelectedIndex();
+        String kolumn = "";
+        String tabel = "";
+
+        switch (filter1) {
+            case 0:
+                btnSok.setEnabled(false);
+                break;
+            case 1:
+                cbFilter2.removeAllItems();
+                kolumn = "Benamning";
+                tabel = "Plats";
+                cbFilter2.addItem("Välj plats");
+                gorFetchColumn(kolumn, tabel, cbFilter2);
+                filterTyp = 1;
+                break;
+            case 2:
+                cbFilter2.removeAllItems();
+                kolumn = "Namn";
+                tabel = "Alien";
+                cbFilter2.addItem("Välj namn");
+                gorFetchColumn(kolumn, tabel, cbFilter2);
+                filterTyp = 2;
+                break;
+            case 3:
+                cbFilter2.removeAllItems();
+                cbFilter2.addItem("Välj ras");
+                cbFilter2.addItem("Boglodite");
+                cbFilter2.addItem("Squid");
+                cbFilter2.addItem("Worm");
+                filterTyp = 3;
+                break;
+            case 4:
+                cbFilter2.removeAllItems();
+                filterTyp = 4;
+                filterFraga = "SELECT * FROM alien where Alien_ID > 0";
+                btnSok.setEnabled(true);
+                break;
+            default:
+                cbFilter2.removeAllItems();
+                break;
+        }
+    }//GEN-LAST:event_cbFilter1ActionPerformed
+
+    private void cbFilter2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFilter2ActionPerformed
+
+        try {
+            switch (filterTyp) {
+                case 1:
+                    filterFraga = "SELECT * FROM alien where Plats=(select plats_id from plats where benamning ='" + cbFilter2.getSelectedItem().toString() + "')";
+                    break;
+                case 2:
+                    filterFraga = "SELECT * FROM alien where namn= '" + cbFilter2.getSelectedItem().toString() + "'";
+                    break;
+                case 3:
+                    filterFraga = "SELECT * FROM alien join " + cbFilter2.getSelectedItem().toString() + " on alien.alien_id=" + cbFilter2.getSelectedItem().toString() + ".Alien_ID";
+                    break;
+                default:
+                    break;
+            }
+        } catch (Exception e) {
+        }
+
+        if (!(cbFilter2.getSelectedIndex() <= 0)) {
+            btnSok.setEnabled(true);
+        } else {
+            btnSok.setEnabled(false);
+        }
+    }//GEN-LAST:event_cbFilter2ActionPerformed
+
+    private void btnSokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokActionPerformed
+        txtAreaResultat.setText("");
+
+        if (!(txtStartDatum.getText().equals("ÅÅÅÅMMDD")) && txtSlutDatum.getText().equals("ÅÅÅÅMMDD")) {
+            if (valideraDatum(txtStartDatum.getText())) {
+                getStartDatum(txtStartDatum.getText());
+                filterFraga = filterFraga + " and Registreringsdatum >= '" + startDatum + "'";
+            }
+        } else if (txtStartDatum.getText().equals("ÅÅÅÅMMDD") && !(txtSlutDatum.getText().equals("ÅÅÅÅMMDD"))) {
+            if (valideraDatum(txtSlutDatum.getText())) {
+                getSlutDatum(txtSlutDatum.getText());
+                filterFraga = filterFraga + " and Registreringsdatum <= '" + slutDatum + "'";
+            }
+        } else if (!(txtStartDatum.getText().equals("ÅÅÅÅMMDD")) && !(txtSlutDatum.getText().equals("ÅÅÅÅMMDD"))) {
+            if (valideraDatum(txtStartDatum.getText()) && valideraDatum(txtSlutDatum.getText())) {
+                getStartDatum(txtStartDatum.getText());
+                getSlutDatum(txtSlutDatum.getText());
+                filterFraga = filterFraga + " and Registreringsdatum between '" + startDatum + "' and '" + slutDatum + "'";
+            }
+        }
+        System.out.println("ffff" + filterFraga);
+        gorFetchRows(txtAreaResultat);
+        cbFilter1.setSelectedIndex(0);
+        cbFilter2.removeAllItems();
+        cbFilter1.requestFocus();
+    }//GEN-LAST:event_btnSokActionPerformed
+
+    private void cbValjUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbValjUtrustningActionPerformed
+        UTresultat.setText("");
+
+        switch (cbValjUtrustning.getSelectedIndex()) {
+            case 0:
+                ArrayList<String> allaUtrustning;
+                try {
+                    allaUtrustning = idb.fetchColumn("SELECT benamning FROM utrustning");
+                    for (String alternativ : allaUtrustning) {
+                        UTresultat.append(alternativ + "\n");
+                    }
+                } catch (InfException e) {
+                    JOptionPane.showMessageDialog(null, "Databasfel! utt");
+                    System.out.println(e.getMessage());
+                }
+                break;
+            case 1:
+                gorFetchColumnUtrustning("Kommunikation", UTresultat);
+                break;
+            case 2:
+                gorFetchColumnUtrustning("Vapen", UTresultat);
+                break;
+            case 3:
+                gorFetchColumnUtrustning("Teknik", UTresultat);
+                break;
+            default:
+                break;
+        }
+    }//GEN-LAST:event_cbValjUtrustningActionPerformed
+
+    private void andraAlienInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraAlienInfoActionPerformed
+        new AndraAlienInfo(idb).setVisible(true);
+    }//GEN-LAST:event_andraAlienInfoActionPerformed
+
+    private void txtStartDatumFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtStartDatumFocusLost
+        if (txtStartDatum.getText().isEmpty()) {
+            txtStartDatum.setText("ÅÅÅÅMMDD");
+        }
+    }//GEN-LAST:event_txtStartDatumFocusLost
+
+    private void txtSlutDatumFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSlutDatumFocusLost
+        if (txtSlutDatum.getText().isEmpty()) {
+            txtSlutDatum.setText("ÅÅÅÅMMDD");
+        }
+    }//GEN-LAST:event_txtSlutDatumFocusLost
+
+    private void lblOmradeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOmradeMouseClicked
+        tabbedPane.setSelectedIndex(3);
+        lblAlien.setFont(minFont2);
+        lblMinSida.setFont(minFont2);
+        lblUtrustning.setFont(minFont2);
+        lblOmrade.setFont(minFont1);
+    }//GEN-LAST:event_lblOmradeMouseClicked
+
+    private void btnRegistreraAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistreraAlienActionPerformed
+        new RegistreraNyAlien(idb).setVisible(true);
+    }//GEN-LAST:event_btnRegistreraAlienActionPerformed
+
+    private void btnLaggTillNyUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillNyUtrustningActionPerformed
+        new RegistreraNyUtrustning(idb).setVisible(true);
+    }//GEN-LAST:event_btnLaggTillNyUtrustningActionPerformed
+
+    private void cbOmradesKontorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbOmradesKontorActionPerformed
+
+        txtAreaOmrade.setText("");
+        String plats = cbOmradesKontor.getSelectedItem().toString();
+        ArrayList<HashMap<String, String>> agentInfo;
+
+        try {
+            agentInfo = idb.fetchRows("SELECT * FROM agent join omradeschef on omradeschef.agent_id = agent.Agent_ID join plats on plats.finns_i = omradeschef.omrade where plats.benamning = '" + plats + "'");
+            for (HashMap<String, String> del : agentInfo) {
+                txtAreaOmrade.append("Namn:" + "\t");
+                txtAreaOmrade.append("Telefon:" + "\n \n");
+                txtAreaOmrade.append(del.get("Namn") + "\t");
+                txtAreaOmrade.append(del.get("Telefon") + "\n");
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Databasfel!");
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("////" + e.getMessage());
+        }
+    }//GEN-LAST:event_cbOmradesKontorActionPerformed
+
+    private void gorFetchColumnUtrustning(String tabel, JTextArea textarea) {
+        ArrayList<String> allaAlternativ;
+        String fraga = "SELECT benamning FROM utrustning join " + tabel + " on " + tabel + ".Utrustnings_ID=utrustning.Utrustnings_ID where " + tabel + ".Utrustnings_ID=utrustning.Utrustnings_ID;";
+
+        try {
+            allaAlternativ = idb.fetchColumn(fraga);
+            for (String alternativ : allaAlternativ) {
+                textarea.append(alternativ + "\n");
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Databasfel!");
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("////" + e.getMessage());
+        }
+    }
+
+    private void gorFetchColumn(String kolumn, String tabel, JComboBox comboBox) {
+        ArrayList<String> allaAlternativ;
+        String fraga = "Select " + kolumn + " from " + tabel;
+
+        try {
+            allaAlternativ = idb.fetchColumn(fraga);
+            for (String alternativ : allaAlternativ) {
+                comboBox.addItem(alternativ);
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Databasfel!");
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("////" + e.getMessage());
+        }
+    }
+
+    private void gorFetchRows(JTextArea textArea) {
+        ArrayList<HashMap<String, String>> allaAlien;
+
+        try {
+            textArea.append("ID:" + "\t");
+            textArea.append("Namn:" + "\t");
+            textArea.append("Telefon:" + "\t");
+            textArea.append("Registreringsdatum:" + "\n \n");
+
+            allaAlien = idb.fetchRows(filterFraga);
+
+            for (HashMap<String, String> alien : allaAlien) {
+                textArea.append(alien.get("Alien_ID") + "\t");
+                textArea.append(alien.get("Namn") + "\t");
+                textArea.append(alien.get("Telefon") + "\t");
+                textArea.append(alien.get("Registreringsdatum") + "\n");
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Databasfel!");
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("////" + e.getMessage());
+        }
+    }
+
+    private boolean valideraDatum(String datum) {
+        boolean isDatum = false;
+        if (datum.length() == 8) {
+            isDatum = true;
+            try {
+                Integer.parseInt(datum);
+            } catch (NumberFormatException e) {
+                System.out.println("vvvv" + e.getMessage());
+                return false;
+            }
+        }
+        if (!isDatum) {
+            JOptionPane.showMessageDialog(null, "Felaktigt datumformat!");
+        }
+        return isDatum;
+    }
+
+    private void getStartDatum(String datum) {
+        startDatum = datum.substring(0, 4) + "-" + datum.substring(4, 6) + "-" + datum.substring(6, 8);
+    }
+
+    private void getSlutDatum(String datum) {
+        slutDatum = datum.substring(0, 4) + "-" + datum.substring(4, 6) + "-" + datum.substring(6, 8);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea UTresultat;
+    private javax.swing.JButton andraAlienInfo;
+    private javax.swing.JButton btnAndraLosenord;
+    private javax.swing.JButton btnLaggTillNyUtrustning;
+    private javax.swing.JButton btnLoggaUt;
+    private javax.swing.JButton btnRegistreraAlien;
+    private javax.swing.JButton btnSok;
+    private javax.swing.JComboBox<String> cbFilter1;
+    private javax.swing.JComboBox<String> cbFilter2;
+    private javax.swing.JComboBox<String> cbOmradesKontor;
+    private javax.swing.JComboBox<String> cbValjUtrustning;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblAdministrator;
+    private javax.swing.JLabel lblAlien;
+    private javax.swing.JLabel lblAnstallningsdatum;
+    private javax.swing.JLabel lblDBAdministrator;
+    private javax.swing.JLabel lblDBAnstallningsdatum;
+    private javax.swing.JLabel lblDBTelefon;
+    private javax.swing.JLabel lblMinSida;
+    private javax.swing.JLabel lblNamn;
+    private javax.swing.JLabel lblOmrade;
+    private javax.swing.JLabel lblTelefon;
+    private javax.swing.JLabel lblUtrustning;
+    private javax.swing.JPanel pnlAlien;
+    private javax.swing.JPanel pnlHeader;
+    private javax.swing.JPanel pnlMinSida;
+    private javax.swing.JPanel pnlOmrade;
+    private javax.swing.JPanel pnlUrustning;
+    private javax.swing.JTabbedPane tabbedPane;
+    private javax.swing.JTextArea txtAreaOmrade;
+    private javax.swing.JTextArea txtAreaResultat;
+    private javax.swing.JTextField txtSlutDatum;
+    private javax.swing.JTextField txtStartDatum;
     // End of variables declaration//GEN-END:variables
 }
