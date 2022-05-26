@@ -107,6 +107,7 @@ public class Administrator extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         UTresultat = new javax.swing.JTextArea();
         btnLaggTillNyUtrustning = new javax.swing.JButton();
+        btnTaBortUtrustning = new javax.swing.JButton();
         pnlOmrade = new javax.swing.JPanel();
         cbOmradesKontor = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
@@ -367,6 +368,11 @@ public class Administrator extends javax.swing.JFrame {
         jLabel7.setText("Registeringsdatum:");
 
         jButton1.setText("Ta Bort Alien");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlAlienLayout = new javax.swing.GroupLayout(pnlAlien);
         pnlAlien.setLayout(pnlAlienLayout);
@@ -457,19 +463,28 @@ public class Administrator extends javax.swing.JFrame {
             }
         });
 
+        btnTaBortUtrustning.setText("Ta bort utrustning");
+        btnTaBortUtrustning.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaBortUtrustningActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlUrustningLayout = new javax.swing.GroupLayout(pnlUrustning);
         pnlUrustning.setLayout(pnlUrustningLayout);
         pnlUrustningLayout.setHorizontalGroup(
             pnlUrustningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlUrustningLayout.createSequentialGroup()
                 .addGap(51, 51, 51)
-                .addGroup(pnlUrustningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pnlUrustningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlUrustningLayout.createSequentialGroup()
                         .addComponent(cbValjUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLaggTillNyUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(55, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLaggTillNyUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnTaBortUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         pnlUrustningLayout.setVerticalGroup(
             pnlUrustningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -477,7 +492,8 @@ public class Administrator extends javax.swing.JFrame {
                 .addGap(52, 52, 52)
                 .addGroup(pnlUrustningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbValjUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLaggTillNyUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnLaggTillNyUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTaBortUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(109, Short.MAX_VALUE))
@@ -755,6 +771,14 @@ public class Administrator extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cbOmradesKontorActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new TaBortAlien(idb, nuvarandeAnvandare).setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnTaBortUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortUtrustningActionPerformed
+        new TaBortUtrustning(idb, nuvarandeAnvandare).setVisible(true);
+    }//GEN-LAST:event_btnTaBortUtrustningActionPerformed
+
     private void gorFetchColumnUtrustning(String tabel, JTextArea textarea) {
         ArrayList<String> allaAlternativ;
         String fraga = "SELECT benamning FROM utrustning join " + tabel + " on " + tabel + ".Utrustnings_ID=utrustning.Utrustnings_ID where " + tabel + ".Utrustnings_ID=utrustning.Utrustnings_ID;";
@@ -851,6 +875,7 @@ public class Administrator extends javax.swing.JFrame {
     private javax.swing.JButton btnLoggaUt;
     private javax.swing.JButton btnRegistreraAlien;
     private javax.swing.JButton btnSok;
+    private javax.swing.JButton btnTaBortUtrustning;
     private javax.swing.JComboBox<String> cbFilter1;
     private javax.swing.JComboBox<String> cbFilter2;
     private javax.swing.JComboBox<String> cbOmradesKontor;
