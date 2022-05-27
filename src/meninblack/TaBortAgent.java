@@ -16,19 +16,20 @@ import oru.inf.InfException;
  *
  * @author Sajjad
  */
-public class TaBortAlien extends javax.swing.JFrame {
+public class TaBortAgent extends javax.swing.JFrame {
 
     private String nuvarandeAnvandare;
     private static InfDB idb;
+    private boolean okTaBort;
 
     /**
-     * Creates new form TaBortAlien
+     * Creates new form TaBortAgent
      */
-    public TaBortAlien(InfDB idb, String nuvarandeAnvandare) {
+    public TaBortAgent(InfDB idb, String nuvarandeAnvandare) {
         initComponents();
         this.idb = idb;
         this.nuvarandeAnvandare = nuvarandeAnvandare;
-        gorFetchColumn("Namn", "Alien", cbAlien);
+        gorFetchColumn("Namn", "Agent", cbAgent);
     }
 
     /**
@@ -40,18 +41,18 @@ public class TaBortAlien extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cbAlien = new javax.swing.JComboBox<>();
+        cbAgent = new javax.swing.JComboBox<>();
         pwdLosenord = new javax.swing.JPasswordField();
         lblLosenord = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnTaBort = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        cbAlien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj" }));
-        cbAlien.addActionListener(new java.awt.event.ActionListener() {
+        cbAgent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj" }));
+        cbAgent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbAlienActionPerformed(evt);
+                cbAgentActionPerformed(evt);
             }
         });
 
@@ -59,10 +60,10 @@ public class TaBortAlien extends javax.swing.JFrame {
 
         jLabel2.setText("Alien:");
 
-        jButton1.setText("Ta bort alien");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnTaBort.setText("Ta bort agent");
+        btnTaBort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnTaBortActionPerformed(evt);
             }
         });
 
@@ -77,9 +78,9 @@ public class TaBortAlien extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cbAlien, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbAgent, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pwdLosenord)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
+                    .addComponent(btnTaBort, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -87,14 +88,14 @@ public class TaBortAlien extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(pwdLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblLosenord))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTaBort, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
 
@@ -102,39 +103,60 @@ public class TaBortAlien extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAlienActionPerformed
+    private void btnTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortActionPerformed
+        if (cbAgent.getSelectedIndex() >= 0) {
+            String agent = cbAgent.getSelectedItem().toString();
+            String losenord = new String(pwdLosenord.getPassword());
 
-    }//GEN-LAST:event_cbAlienActionPerformed
+            try {
+                String dbLosenord = idb.fetchSingle("Select losenord from agent where Namn='" + nuvarandeAnvandare + "'");
+                if (losenord.equals(dbLosenord)) {
+                    try {
+                        String agentID = idb.fetchSingle("Select Agent_ID from agent where namn ='" + agent + "'");
+                        idb.delete("Delete from kontorschef where Agent_ID=" + agentID);
+                        idb.delete("Delete from omradeschef where Agent_ID=" + agentID);
+                        idb.delete("Delete from Innehar_fordon where Agent_ID=" + agentID);
+                        idb.delete("Delete from innehar_utrustning where Agent_ID=" + agentID);
+                        idb.delete("Delete from Agent where namn='" + agent + "'");
+                        JOptionPane.showMessageDialog(null, "Agent togs bort");
+                        dispose();
+                    } catch (InfException e) {
+                        JOptionPane.showMessageDialog(null, "Databasfel!");
+                        System.out.println(e.getMessage());
+                    }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String alien = cbAlien.getSelectedItem().toString();
-        String losenord = new String(pwdLosenord.getPassword());
+                } else {
+                    //JOptionPane.showMessageDialog(rootPane, "Ange korrekt lösenord.", "", HEIGHT);
+                    lblLosenord.setForeground(Color.red);
+                }
+            } catch (InfException ex) {
+                JOptionPane.showMessageDialog(null, "Databasfel!");
+                System.out.println(ex.getMessage());
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Välj agent!");
+        }
+    }//GEN-LAST:event_btnTaBortActionPerformed
+
+    private void cbAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAgentActionPerformed
+        String agent = cbAgent.getSelectedItem().toString();
 
         try {
-            String dbLosenord = idb.fetchSingle("Select losenord from agent where Namn='" + nuvarandeAnvandare + "'");
+            ArrayList<HashMap<String, String>> allaAlien;
+            String agentID = idb.fetchSingle("Select Agent_ID from agent where namn ='" + agent + "'");
+            allaAlien = idb.fetchRows("select * from alien where ansvarig_agent=" + agentID);
 
-            if (losenord.equals(dbLosenord)) {
-                try {
-                    idb.delete("Delete from Alien where namn='" + alien + "'");
-                    idb.delete("Delete from Boglodite where Alien_ID=(select Alien_ID from Alien where namn='" + alien + "')");
-                    idb.delete("Delete from Squid where Alien_ID=(select Alien_ID from Alien where namn='" + alien + "')");
-                    idb.delete("Delete from Worm where Alien_ID=(select Alien_ID from Alien where namn='" + alien + "')");
-                    JOptionPane.showMessageDialog(null, "Alien togs bort");
-                } catch (InfException ex) {
-                    JOptionPane.showMessageDialog(null, "Databasfel! delete");
-                    System.out.println(ex.getMessage());
-                }
-                JOptionPane.showMessageDialog(null, "Alien togs bort");
-                dispose();
-            } else {
-                //JOptionPane.showMessageDialog(rootPane, "Ange korrekt lösenord.", "", HEIGHT);
-                lblLosenord.setForeground(Color.red);
+            if (!allaAlien.isEmpty()) {
+                new TilldelaAnsvaret(idb, agent).setVisible(true);
+                cbAgent.setSelectedIndex(-1);
+                cbAgent.requestFocus();
             }
-        } catch (InfException ex) {
+        } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Databasfel!");
-            System.out.println(ex.getMessage());
+            System.out.println(e.getMessage());
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_cbAgentActionPerformed
 
     private void gorFetchColumn(String kolumn, String tabel, JComboBox comboBox) {
         ArrayList<String> allaAlternativ;
@@ -146,7 +168,7 @@ public class TaBortAlien extends javax.swing.JFrame {
                 comboBox.addItem(alternativ);
             }
         } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Databasfel! tb alien");
+            JOptionPane.showMessageDialog(null, "Databasfel! tb agent");
             System.out.println(e.getMessage());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
@@ -155,8 +177,8 @@ public class TaBortAlien extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cbAlien;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnTaBort;
+    private javax.swing.JComboBox<String> cbAgent;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblLosenord;
     private javax.swing.JPasswordField pwdLosenord;

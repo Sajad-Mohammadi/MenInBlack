@@ -149,7 +149,7 @@ public class HuvudFonster extends javax.swing.JFrame {
             try {
                 String isAdmin = idb.fetchSingle("SELECT administrator FROM agent where namn='" + nuvarandeAnvandare + "'");
                 if (isAdmin.equals("J")) {
-                    new Administrator(idb, nuvarandeAnvandare).setVisible(true);
+                    new Administrator(idb, nuvarandeAnvandare,"MinSida").setVisible(true);
                 } else {
                     new Agent(idb, nuvarandeAnvandare).setVisible(true);
                 }

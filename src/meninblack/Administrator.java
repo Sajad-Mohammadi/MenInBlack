@@ -34,13 +34,12 @@ public class Administrator extends javax.swing.JFrame {
     /**
      * Creates new form Administrator
      */
-    public Administrator(InfDB idb, String nuvarandeAnvandare) {
+    public Administrator(InfDB idb, String nuvarandeAnvandare,String sida) {
 
         initComponents();
         this.idb = idb;
         this.nuvarandeAnvandare = nuvarandeAnvandare;
-        tabbedPane.setSelectedIndex(0);
-        lblMinSida.setFont(minFont1);
+        lblTapClicked(sida);
         HashMap<String, String> agentInfo;
         gorFetchColumn("Benamning", "Plats", cbOmradesKontor);
 
@@ -73,6 +72,7 @@ public class Administrator extends javax.swing.JFrame {
         lblUtrustning = new javax.swing.JLabel();
         lblOmrade = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        lblAgent = new javax.swing.JLabel();
         tabbedPane = new javax.swing.JTabbedPane();
         pnlMinSida = new javax.swing.JPanel();
         lblNamn = new javax.swing.JLabel();
@@ -113,6 +113,7 @@ public class Administrator extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtAreaOmrade = new javax.swing.JTextArea();
+        btnAndraOmradeschef = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -172,6 +173,15 @@ public class Administrator extends javax.swing.JFrame {
             .addGap(0, 1, Short.MAX_VALUE)
         );
 
+        lblAgent.setFont(new java.awt.Font("Franklin Gothic Book", 0, 16)); // NOI18N
+        lblAgent.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAgent.setText("Agent");
+        lblAgent.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAgentMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlHeaderLayout = new javax.swing.GroupLayout(pnlHeader);
         pnlHeader.setLayout(pnlHeaderLayout);
         pnlHeaderLayout.setHorizontalGroup(
@@ -179,11 +189,13 @@ public class Administrator extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlHeaderLayout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addComponent(lblMinSida, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(134, 134, 134)
+                .addGap(75, 75, 75)
+                .addComponent(lblAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addComponent(lblAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                .addGap(99, 99, 99)
                 .addComponent(lblUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(112, 112, 112)
+                .addGap(68, 68, 68)
                 .addComponent(lblOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -196,7 +208,8 @@ public class Administrator extends javax.swing.JFrame {
                     .addComponent(lblUtrustning)
                     .addComponent(lblMinSida)
                     .addComponent(lblAlien)
-                    .addComponent(lblOmrade))
+                    .addComponent(lblOmrade)
+                    .addComponent(lblAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -518,20 +531,33 @@ public class Administrator extends javax.swing.JFrame {
         txtAreaOmrade.setRows(5);
         jScrollPane3.setViewportView(txtAreaOmrade);
 
+        btnAndraOmradeschef.setText("Ändra områdeschef för ett område");
+        btnAndraOmradeschef.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAndraOmradeschefActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlOmradeLayout = new javax.swing.GroupLayout(pnlOmrade);
         pnlOmrade.setLayout(pnlOmradeLayout);
         pnlOmradeLayout.setHorizontalGroup(
             pnlOmradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlOmradeLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlOmradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(pnlOmradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlOmradeLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(pnlOmradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)))
+                    .addGroup(pnlOmradeLayout.createSequentialGroup()
+                        .addGap(159, 159, 159)
+                        .addComponent(cbOmradesKontor, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.CENTER, pnlOmradeLayout.createSequentialGroup()
-                .addGap(330, 330, 330)
-                .addComponent(cbOmradesKontor, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(330, 330, 330))
+            .addGroup(pnlOmradeLayout.createSequentialGroup()
+                .addGap(158, 158, 158)
+                .addComponent(btnAndraOmradeschef, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlOmradeLayout.setVerticalGroup(
             pnlOmradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -540,9 +566,11 @@ public class Administrator extends javax.swing.JFrame {
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addComponent(cbOmradesKontor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(btnAndraOmradeschef, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         tabbedPane.addTab("tab4", pnlOmrade);
@@ -779,6 +807,15 @@ public class Administrator extends javax.swing.JFrame {
         new TaBortUtrustning(idb, nuvarandeAnvandare).setVisible(true);
     }//GEN-LAST:event_btnTaBortUtrustningActionPerformed
 
+    private void lblAgentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAgentMouseClicked
+        new AgentInfo(idb, nuvarandeAnvandare).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_lblAgentMouseClicked
+
+    private void btnAndraOmradeschefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraOmradeschefActionPerformed
+        new AndraOmradesChef(idb).setVisible(true);
+    }//GEN-LAST:event_btnAndraOmradeschefActionPerformed
+
     private void gorFetchColumnUtrustning(String tabel, JTextArea textarea) {
         ArrayList<String> allaAlternativ;
         String fraga = "SELECT benamning FROM utrustning join " + tabel + " on " + tabel + ".Utrustnings_ID=utrustning.Utrustnings_ID where " + tabel + ".Utrustnings_ID=utrustning.Utrustnings_ID;";
@@ -866,11 +903,49 @@ public class Administrator extends javax.swing.JFrame {
         slutDatum = datum.substring(0, 4) + "-" + datum.substring(4, 6) + "-" + datum.substring(6, 8);
     }
 
+    public void lblTapClicked(String title) {
+        switch (title) {
+            case "MinSida":
+                tabbedPane.setSelectedIndex(0);
+                lblAlien.setFont(minFont2);
+                lblMinSida.setFont(minFont1);
+                lblUtrustning.setFont(minFont2);
+                lblOmrade.setFont(minFont2);
+                break;
+            case "Alien":
+                tabbedPane.setSelectedIndex(1);
+                lblAlien.setFont(minFont1);
+                lblMinSida.setFont(minFont2);
+                lblUtrustning.setFont(minFont2);
+                lblOmrade.setFont(minFont2);
+                break;
+            case "Utrustning":
+                tabbedPane.setSelectedIndex(2);
+                lblAlien.setFont(minFont2);
+                lblMinSida.setFont(minFont2);
+                lblUtrustning.setFont(minFont1);
+                lblOmrade.setFont(minFont2);
+
+                cbValjUtrustning.setSelectedIndex(0);
+                break;
+            case "Omrade":
+                tabbedPane.setSelectedIndex(3);
+                lblAlien.setFont(minFont2);
+                lblMinSida.setFont(minFont2);
+                lblUtrustning.setFont(minFont2);
+                lblOmrade.setFont(minFont1);
+                break;
+            default:
+                break;
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea UTresultat;
     private javax.swing.JButton andraAlienInfo;
     private javax.swing.JButton btnAndraLosenord;
+    private javax.swing.JButton btnAndraOmradeschef;
     private javax.swing.JButton btnLaggTillNyUtrustning;
     private javax.swing.JButton btnLoggaUt;
     private javax.swing.JButton btnRegistreraAlien;
@@ -894,6 +969,7 @@ public class Administrator extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblAdministrator;
+    private javax.swing.JLabel lblAgent;
     private javax.swing.JLabel lblAlien;
     private javax.swing.JLabel lblAnstallningsdatum;
     private javax.swing.JLabel lblDBAdministrator;

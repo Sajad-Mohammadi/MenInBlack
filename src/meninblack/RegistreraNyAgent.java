@@ -14,19 +14,18 @@ import oru.inf.InfException;
  *
  * @author Sajjad
  */
-public class RegistreraNyAlien extends javax.swing.JFrame {
+public class RegistreraNyAgent extends javax.swing.JFrame {
 
     private static InfDB idb;
     private int sida = 1;
 
     /**
-     * Creates new form RegistreraNyAlien
+     * Creates new form RegistreraNyAgent
      */
-    public RegistreraNyAlien(InfDB idb) {
+    public RegistreraNyAgent(InfDB idb) {
         initComponents();
         this.idb = idb;
-        gorFetchColumn("Benamning", "Plats", cbPlats);
-        gorFetchColumn("Namn", "Agent", cbAnsvarigAgent);
+        gorFetchColumn("Benamning", "Omrade", cbOmrade);
     }
 
     /**
@@ -48,29 +47,23 @@ public class RegistreraNyAlien extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        cbPlats = new javax.swing.JComboBox<>();
+        cbOmrade = new javax.swing.JComboBox<>();
         txtLosenord = new javax.swing.JTextField();
         txtTelefon = new javax.swing.JTextField();
-        cbAnsvarigAgent = new javax.swing.JComboBox<>();
+        cbBehorig = new javax.swing.JComboBox<>();
         txtID = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        lblRasDetalj = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        cbRas = new javax.swing.JComboBox<>();
-        txtRasDetalj = new javax.swing.JTextField();
-        btnNasta = new javax.swing.JButton();
         btnLaggTill = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(400, 500));
+        setMinimumSize(new java.awt.Dimension(400, 500));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setPreferredSize(new java.awt.Dimension(400, 55));
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("REGISTRERA NY ALIEN");
+        jLabel6.setText("REGISTRERA NY AGENT");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -106,14 +99,14 @@ public class RegistreraNyAlien extends javax.swing.JFrame {
         jLabel3.setText("Telefon:");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Plats: *");
+        jLabel4.setText("Område: *");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setText("Ansvarig Agent: *");
+        jLabel5.setText("Administrator? *");
 
-        cbPlats.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "välj" }));
-        cbPlats.setMinimumSize(new java.awt.Dimension(72, 30));
-        cbPlats.setPreferredSize(new java.awt.Dimension(72, 30));
+        cbOmrade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "välj" }));
+        cbOmrade.setMinimumSize(new java.awt.Dimension(72, 30));
+        cbOmrade.setPreferredSize(new java.awt.Dimension(72, 30));
 
         txtLosenord.setMinimumSize(new java.awt.Dimension(64, 30));
         txtLosenord.setPreferredSize(new java.awt.Dimension(64, 30));
@@ -121,9 +114,9 @@ public class RegistreraNyAlien extends javax.swing.JFrame {
         txtTelefon.setMinimumSize(new java.awt.Dimension(64, 30));
         txtTelefon.setPreferredSize(new java.awt.Dimension(64, 30));
 
-        cbAnsvarigAgent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "välj" }));
-        cbAnsvarigAgent.setMinimumSize(new java.awt.Dimension(72, 30));
-        cbAnsvarigAgent.setPreferredSize(new java.awt.Dimension(72, 30));
+        cbBehorig.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "välj", "JA", "NEJ" }));
+        cbBehorig.setMinimumSize(new java.awt.Dimension(72, 30));
+        cbBehorig.setPreferredSize(new java.awt.Dimension(72, 30));
 
         txtID.setMinimumSize(new java.awt.Dimension(64, 30));
         txtID.setPreferredSize(new java.awt.Dimension(64, 30));
@@ -160,9 +153,9 @@ public class RegistreraNyAlien extends javax.swing.JFrame {
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbAnsvarigAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cbBehorig, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(25, 25, 25))
         );
         jPanel1Layout.setVerticalGroup(
@@ -186,100 +179,42 @@ public class RegistreraNyAlien extends javax.swing.JFrame {
                     .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbAnsvarigAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbBehorig, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
         tabbedPane.addTab("tab1", jPanel1);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblRasDetalj.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblRasDetalj.setText("Detalj:");
-        jPanel2.add(lblRasDetalj, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 69, -1, -1));
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel10.setText("Ras: *");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 22, -1, -1));
-
-        cbRas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "välj", "Squid", "Worm", "Boglodite" }));
-        cbRas.setMinimumSize(new java.awt.Dimension(72, 30));
-        cbRas.setPreferredSize(new java.awt.Dimension(72, 30));
-        cbRas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbRasActionPerformed(evt);
-            }
-        });
-        jPanel2.add(cbRas, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 19, 190, 28));
-
-        txtRasDetalj.setEnabled(false);
-        txtRasDetalj.setMinimumSize(new java.awt.Dimension(64, 30));
-        txtRasDetalj.setPreferredSize(new java.awt.Dimension(64, 30));
-        jPanel2.add(txtRasDetalj, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 65, 190, -1));
-
-        tabbedPane.addTab("tab1", jPanel2);
-
         getContentPane().add(tabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 34, 350, 360));
 
-        btnNasta.setText("Nästa");
-        btnNasta.setPreferredSize(new java.awt.Dimension(75, 30));
-        btnNasta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNastaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnNasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 130, -1));
-
         btnLaggTill.setText("Lägg till");
-        btnLaggTill.setEnabled(false);
         btnLaggTill.setPreferredSize(new java.awt.Dimension(75, 30));
         btnLaggTill.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLaggTillActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLaggTill, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 410, 130, -1));
+        getContentPane().add(btnLaggTill, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 340, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnNastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNastaActionPerformed
-
-        if (sida == 1) {
-            tabbedPane.setSelectedIndex(1);
-            btnNasta.setText("Tillbaka");
-            btnLaggTill.setEnabled(true);
-            sida = 2;
-        } else {
-            tabbedPane.setSelectedIndex(0);
-            btnNasta.setText("Nästa");
-            btnLaggTill.setEnabled(false);
-            sida = 1;
-        }
-    }//GEN-LAST:event_btnNastaActionPerformed
-
     private void btnLaggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillActionPerformed
 
-        String sqlQuery = "Insert into Alien values(";
+        String sqlQuery = "Insert into Agent values(";
         String sqlQueryRas = "";
         boolean isOkej = true;
 
         if (!(txtID.getText().isEmpty())) {
-            sqlQuery = sqlQuery + txtID.getText() + ", '" + java.time.LocalDate.now() + "', '";
+            sqlQuery = sqlQuery + txtID.getText() + ", '";
         } else {
             isOkej = false;
-        }
-        if (!(txtLosenord.getText().isEmpty())) {
-            sqlQuery = sqlQuery + txtLosenord.getText() + "', '";
-        } else {
-            sqlQuery = sqlQuery + "','";
         }
         if (!(txtNamn.getText().isEmpty())) {
             sqlQuery = sqlQuery + txtNamn.getText() + "', '";
@@ -287,45 +222,29 @@ public class RegistreraNyAlien extends javax.swing.JFrame {
             isOkej = false;
         }
         if (!(txtTelefon.getText().isEmpty())) {
-            sqlQuery = sqlQuery + txtTelefon.getText() + "', ";
+            sqlQuery = sqlQuery + txtTelefon.getText() + "', '";
+        } else {
+            sqlQuery = sqlQuery + "','";
+        }
+        if (cbBehorig.getSelectedIndex() > 0) {
+            sqlQuery = sqlQuery + java.time.LocalDate.now() + "', '" + cbBehorig.getSelectedItem().toString().substring(0, 1) + "', '";
+        } else {
+            isOkej = false;
+        }
+        if (!(txtLosenord.getText().isEmpty())) {
+            sqlQuery = sqlQuery + txtLosenord.getText() + "', ";
         } else {
             sqlQuery = sqlQuery + "', ";
         }
-        if (cbPlats.getSelectedIndex() > 0) {
+        if (cbOmrade.getSelectedIndex() > 0) {
             try {
-                String platsID = idb.fetchSingle("Select plats_ID from plats where Benamning ='" + cbPlats.getSelectedItem().toString() + "'");
-                sqlQuery = sqlQuery + platsID + ", ";
+                String omradeID = idb.fetchSingle("Select Omrades_id from Omrade where Benamning ='" + cbOmrade.getSelectedItem().toString() + "'");
+                sqlQuery = sqlQuery + omradeID + ")";
             } catch (InfException ex) {
                 System.out.println(ex.getMessage());
             }
         } else {
             isOkej = false;
-        }
-        if (cbAnsvarigAgent.getSelectedIndex() > 0) {
-            try {
-                String agentID = idb.fetchSingle("Select agent_ID from agent where namn ='" + cbAnsvarigAgent.getSelectedItem().toString() + "'");
-                sqlQuery = sqlQuery + agentID + ")";
-            } catch (InfException ex) {
-                System.out.println(ex.getMessage());
-            }
-
-        } else {
-            isOkej = false;
-        }
-
-        switch (cbRas.getSelectedIndex()) {
-            case 1:
-                sqlQueryRas = "insert into Squid VALUES(" + txtID.getText() + "," + txtRasDetalj.getText() + ")";
-                break;
-            case 2:
-                sqlQueryRas = "insert into Worm VALUES(" + txtID.getText() + ")";
-                break;
-            case 3:
-                sqlQueryRas = "insert into Boglodite VALUES(" + txtID.getText() + "," + txtRasDetalj.getText() + ")";
-                break;
-            default:
-                isOkej = false;
-                break;
         }
 
         System.out.println(sqlQuery);
@@ -333,8 +252,7 @@ public class RegistreraNyAlien extends javax.swing.JFrame {
         if (isOkej) {
             try {
                 idb.insert(sqlQuery);
-                idb.insert(sqlQueryRas);
-                JOptionPane.showMessageDialog(null, "Alien har registrerats");
+                JOptionPane.showMessageDialog(null, "Agent har registrerats");
                 dispose();
             } catch (InfException ex) {
                 JOptionPane.showMessageDialog(null, "Databasfel! insert a");
@@ -344,25 +262,6 @@ public class RegistreraNyAlien extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Fält markerade med * är obligatoriska och måste fyllas i");
         }
     }//GEN-LAST:event_btnLaggTillActionPerformed
-
-    private void cbRasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRasActionPerformed
-        switch (cbRas.getSelectedIndex()) {
-            case 1:
-                lblRasDetalj.setText("Antal armar:");
-                txtRasDetalj.setEnabled(true);
-                break;
-            case 2:
-                lblRasDetalj.setText("Detalj:");
-                txtRasDetalj.setEnabled(false);
-                break;
-            case 3:
-                lblRasDetalj.setText("Antal boogies:");
-                txtRasDetalj.setEnabled(true);
-                break;
-            default:
-                break;
-        }
-    }//GEN-LAST:event_cbRasActionPerformed
 
     private void gorFetchColumn(String kolumn, String tabel, JComboBox comboBox) {
         ArrayList<String> allaAlternativ;
@@ -384,12 +283,9 @@ public class RegistreraNyAlien extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLaggTill;
-    private javax.swing.JButton btnNasta;
-    private javax.swing.JComboBox<String> cbAnsvarigAgent;
-    private javax.swing.JComboBox<String> cbPlats;
-    private javax.swing.JComboBox<String> cbRas;
+    private javax.swing.JComboBox<String> cbBehorig;
+    private javax.swing.JComboBox<String> cbOmrade;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -397,14 +293,11 @@ public class RegistreraNyAlien extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel lblRasDetalj;
     private javax.swing.JTabbedPane tabbedPane;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtLosenord;
     private javax.swing.JTextField txtNamn;
-    private javax.swing.JTextField txtRasDetalj;
     private javax.swing.JTextField txtTelefon;
     // End of variables declaration//GEN-END:variables
 }

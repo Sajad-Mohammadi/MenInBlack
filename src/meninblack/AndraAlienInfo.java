@@ -371,10 +371,13 @@ public class AndraAlienInfo extends javax.swing.JFrame {
 
             try {
                 idb.update(sqlQuery);
+                JOptionPane.showMessageDialog(null, "Ändringar har sparats");
             } catch (InfException ex) {
                 JOptionPane.showMessageDialog(null, "Databasfel! update");
                 System.out.println(ex.getMessage());
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Du måste först välja vems information du vill ändra");
         }
     }//GEN-LAST:event_btnSparaActionPerformed
 
