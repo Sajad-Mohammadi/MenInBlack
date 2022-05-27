@@ -209,7 +209,7 @@ public class AgentInfo extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Ta Bort Alien");
+        jButton1.setText("Ta Bort Agent");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

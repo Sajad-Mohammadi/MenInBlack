@@ -114,6 +114,7 @@ public class Administrator extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         txtAreaOmrade = new javax.swing.JTextArea();
         btnAndraOmradeschef = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -538,26 +539,31 @@ public class Administrator extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Ändra kontorschef för ett områdeskontor");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlOmradeLayout = new javax.swing.GroupLayout(pnlOmrade);
         pnlOmrade.setLayout(pnlOmradeLayout);
         pnlOmradeLayout.setHorizontalGroup(
             pnlOmradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlOmradeLayout.createSequentialGroup()
+                .addGap(150, 150, 150)
                 .addGroup(pnlOmradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
                     .addGroup(pnlOmradeLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pnlOmradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)))
-                    .addGroup(pnlOmradeLayout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addComponent(cbOmradesKontor, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pnlOmradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cbOmradesKontor, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnlOmradeLayout.createSequentialGroup()
+                                .addComponent(btnAndraOmradeschef, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(pnlOmradeLayout.createSequentialGroup()
-                .addGap(158, 158, 158)
-                .addComponent(btnAndraOmradeschef, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlOmradeLayout.setVerticalGroup(
             pnlOmradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -569,7 +575,9 @@ public class Administrator extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(btnAndraOmradeschef, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlOmradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAndraOmradeschef, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
@@ -816,6 +824,10 @@ public class Administrator extends javax.swing.JFrame {
         new AndraOmradesChef(idb).setVisible(true);
     }//GEN-LAST:event_btnAndraOmradeschefActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     private void gorFetchColumnUtrustning(String tabel, JTextArea textarea) {
         ArrayList<String> allaAlternativ;
         String fraga = "SELECT benamning FROM utrustning join " + tabel + " on " + tabel + ".Utrustnings_ID=utrustning.Utrustnings_ID where " + tabel + ".Utrustnings_ID=utrustning.Utrustnings_ID;";
@@ -956,6 +968,7 @@ public class Administrator extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbOmradesKontor;
     private javax.swing.JComboBox<String> cbValjUtrustning;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

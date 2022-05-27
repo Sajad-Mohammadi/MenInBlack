@@ -5,6 +5,7 @@
 package meninblack;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
@@ -17,6 +18,8 @@ import oru.inf.InfException;
 public class AndraOmradesChef extends javax.swing.JFrame {
 
     private static InfDB idb;
+    String omradesID = "";
+    String agentID = "";
 
     /**
      * Creates new form AndraOmradesChef
@@ -26,6 +29,7 @@ public class AndraOmradesChef extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         gorFetchColumn("Benamning", "Omrade", cbOmrade);
+        gorFetchColumn("Namn", "Agent", cbOmradeschef);
     }
 
     /**
@@ -82,11 +86,35 @@ public class AndraOmradesChef extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbOmradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbOmradeActionPerformed
-        // TODO add your handling code here:
+        String omrade = cbOmrade.getSelectedItem().toString();
+
+        try {
+            omradesID = idb.fetchSingle("SELECT omrades_id FROM omrade where benamning='" + omrade + "'");
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Databasfel! ---");
+            System.out.println("****" + ex.getMessage());
+        }
     }//GEN-LAST:event_cbOmradeActionPerformed
 
     private void cbOmradeschefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbOmradeschefActionPerformed
-        // TODO add your handling code here:
+        String agent = cbOmradeschef.getSelectedItem().toString();
+
+        try {
+            ArrayList<HashMap<String, String>> omradeList;
+            String agentID = idb.fetchSingle("Select Agent_ID from agent where namn ='" + agent + "'");
+            omradeList = idb.fetchRows("select * from omradeschef where Agent_ID =" + agentID);
+
+            if (!omradeList.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Agenten är omradeschef i ett annat område!");
+            } else {
+                idb.update("UPDATE omradeschef SET Agent_ID=" + agentID + " where omrade=" + omradesID);
+                JOptionPane.showMessageDialog(null, "Omradeschef har ändrats");
+                dispose();
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Databasfel! +++");
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_cbOmradeschefActionPerformed
 
     private void gorFetchColumn(String kolumn, String tabel, JComboBox comboBox) {
@@ -99,7 +127,7 @@ public class AndraOmradesChef extends javax.swing.JFrame {
                 comboBox.addItem(alternativ);
             }
         } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Databasfel!");
+            JOptionPane.showMessageDialog(null, "Databasfel! ***");
             System.out.println(e.getMessage());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
