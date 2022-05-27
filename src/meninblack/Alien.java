@@ -4,7 +4,9 @@
  */
 package meninblack;
 
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
@@ -60,6 +62,29 @@ public class Alien extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAndralosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndralosenordActionPerformed
+        new AndraLosenord(idb, nuvarandeAnvandare).setVisible(true);
+    }//GEN-LAST:event_btnAndralosenordActionPerformed
+
+
+    private void btnAnsvarigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnsvarigActionPerformed
+        
+        try {
+            String infoAgent = idb.fetchSingle("SELECT namn from agent where agent_id =(select ansvarig_agent from alien where namn ='" + nuvarandeAnvandare + "')");
+            JOptionPane.showMessageDialog(null, "Ditt ansvarig agent heter: "+ infoAgent);
+
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+            //System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnAnsvarigActionPerformed
+
+
+    private void btnLoggautActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggautActionPerformed
+        new HuvudFonster(idb).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnLoggautActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
