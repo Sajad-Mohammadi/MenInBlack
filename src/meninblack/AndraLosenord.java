@@ -18,15 +18,17 @@ public class AndraLosenord extends javax.swing.JFrame {
 
     private static InfDB idb;
     private String nuvarandeAnvandare;
+    private String tabel;
 
     /**
      * Creates new form AndraLosenord
      */
-    public AndraLosenord(InfDB idb, String nuvarandeAnvandare) {
+    public AndraLosenord(InfDB idb, String nuvarandeAnvandare, String tabel) {
         initComponents();
 
         this.idb = idb;
         this.nuvarandeAnvandare = nuvarandeAnvandare;
+        this.tabel = tabel;
     }
 
     /**
@@ -121,10 +123,10 @@ public class AndraLosenord extends javax.swing.JFrame {
         String nyaLosenord = new String(pswNyaLosenord.getPassword());
 
         try {
-            String dbLosenord = idb.fetchSingle("Select losenord from agent where Namn='" + nuvarandeAnvandare + "'");
+            String dbLosenord = idb.fetchSingle("Select losenord from " + tabel + " where Namn='" + nuvarandeAnvandare + "'");
 
             if (gamlaLosenord.equals(dbLosenord)) {
-                idb.update("update agent set losenord ='" + nyaLosenord + "' where namn='" + nuvarandeAnvandare + "'");
+                idb.update("update " + tabel + " set losenord ='" + nyaLosenord + "' where namn='" + nuvarandeAnvandare + "'");
                 JOptionPane.showMessageDialog(null, "Lösenord har ändrat");
                 dispose();
             } else {

@@ -138,7 +138,7 @@ public class HuvudFonster extends javax.swing.JFrame {
         boolean isAgent = false;
 
         try {
-            if ((nuvarandeAnvandare.substring(0, 5).equals("AGENT"))) {
+            if (nuvarandeAnvandare.substring(0, 5).equals("AGENT")) {
                 isAgent = true;
             }
         } catch (Exception e) {

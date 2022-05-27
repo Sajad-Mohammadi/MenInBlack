@@ -549,7 +549,7 @@ public class Agent extends javax.swing.JFrame {
     }//GEN-LAST:event_lblUtrustningMouseClicked
 
     private void btnAndraLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenordActionPerformed
-        new AndraLosenord(idb, nuvarandeAnvandare).setVisible(true);
+        new AndraLosenord(idb, nuvarandeAnvandare, "agent").setVisible(true);
     }//GEN-LAST:event_btnAndraLosenordActionPerformed
 
     private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtActionPerformed
