@@ -39,7 +39,7 @@ public class Administrator extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.nuvarandeAnvandare = nuvarandeAnvandare;
-        lblTapClicked(sida);
+        lblFlikClicked(sida);
         HashMap<String, String> agentInfo;
         gorFetchColumn("Benamning", "Plats", cbOmradesKontor);
 
@@ -829,7 +829,7 @@ public class Administrator extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAndraOmradeschefActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        new AndraKontorschef(idb).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void gorFetchColumnUtrustning(String tabel, JTextArea textarea) {
@@ -902,7 +902,7 @@ public class Administrator extends javax.swing.JFrame {
         slutDatum = datum.substring(0, 4) + "-" + datum.substring(4, 6) + "-" + datum.substring(6, 8);
     }
 
-    public void lblTapClicked(String title) {
+    public void lblFlikClicked(String title) {
         switch (title) {
             case "MinSida":
                 tabbedPane.setSelectedIndex(0);
