@@ -217,7 +217,7 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
             isOkej = false;
         }
         if (!(txtNamn.getText().isEmpty())) {
-            sqlQuery = sqlQuery + txtNamn.getText() + "', '";
+            sqlQuery = sqlQuery + Validering.valideraNamn(txtNamn) + "', '";
         } else {
             isOkej = false;
         }

@@ -5,6 +5,7 @@
 package meninblack;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -13,10 +14,9 @@ import oru.inf.InfException;
  * @author Sajjad
  */
 public class Validering {
-    
-    
+
     public static boolean valideraDatum(String datum) {
-        
+
         boolean isDatum = false;
         if (datum.length() == 8) {
             isDatum = true;
@@ -32,8 +32,7 @@ public class Validering {
         }
         return isDatum;
     }
-    
-    
+
     public static boolean isPSWright(InfDB idb, String tabel, String anvandare, String losenord) {
         boolean isRight = false;
         try {
@@ -48,5 +47,24 @@ public class Validering {
             System.out.println(e.getMessage());
         }
         return isRight;
+    }
+
+    public static String valideraNamn(JTextField txtNamn) {
+        String namn = "";
+        boolean isOkej = false;
+        try {
+            if (txtNamn.getText().substring(0, 5).equals("agent")) {
+                namn = txtNamn.getText();
+                isOkej = true;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        if (!isOkej) {
+            namn = "Agent " + txtNamn.getText();
+        }
+        
+        return namn;
     }
 }
