@@ -40,8 +40,8 @@ public class TilldelaAnsvaret extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblInfoRad1 = new javax.swing.JLabel();
+        lblInfoRad2 = new javax.swing.JLabel();
         cbValjAgent = new javax.swing.JComboBox<>();
         btnAvbryt = new javax.swing.JButton();
 
@@ -49,13 +49,13 @@ public class TilldelaAnsvaret extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("Franklin Gothic Book", 0, 14)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Agenten du vill ta bort har ansvar för alien.");
+        lblInfoRad1.setFont(new java.awt.Font("Franklin Gothic Book", 0, 14)); // NOI18N
+        lblInfoRad1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblInfoRad1.setText("Agenten du vill ta bort har ansvar för alien.");
 
-        jLabel2.setFont(new java.awt.Font("Franklin Gothic Book", 0, 14)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Vill du tilldela ansvaret till en annan agent?");
+        lblInfoRad2.setFont(new java.awt.Font("Franklin Gothic Book", 0, 14)); // NOI18N
+        lblInfoRad2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblInfoRad2.setText("Vill du tilldela ansvaret till en annan agent?");
 
         cbValjAgent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,8 +79,8 @@ public class TilldelaAnsvaret extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblInfoRad1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblInfoRad2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -92,9 +92,9 @@ public class TilldelaAnsvaret extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel1)
+                .addComponent(lblInfoRad1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(lblInfoRad2)
                 .addGap(33, 33, 33)
                 .addComponent(cbValjAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -143,7 +143,7 @@ public class TilldelaAnsvaret extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvbryt;
     private javax.swing.JComboBox<String> cbValjAgent;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lblInfoRad1;
+    private javax.swing.JLabel lblInfoRad2;
     // End of variables declaration//GEN-END:variables
 }

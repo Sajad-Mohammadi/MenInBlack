@@ -64,7 +64,7 @@
                       <Component id="pswLosenord" alignment="2" min="-2" pref="250" max="-2" attributes="0"/>
                       <Component id="lblAnvandernamn" alignment="2" min="-2" pref="250" max="-2" attributes="0"/>
                       <Component id="btnLoggaIn" alignment="2" min="-2" pref="110" max="-2" attributes="0"/>
-                      <Component id="jLabel1" alignment="2" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="MenInBlack" alignment="2" min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -76,7 +76,7 @@
                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   <Component id="lblLoggaIn" min="-2" pref="51" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="MenInBlack" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="lblAnvandernamn" min="-2" pref="24" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -144,7 +144,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoggaInActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="MenInBlack">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="66" type="rgb"/>

@@ -61,8 +61,8 @@ public class AgentInfo extends javax.swing.JFrame {
         pnlAgent = new javax.swing.JPanel();
         cbFilter1 = new javax.swing.JComboBox<>();
         cbFilter2 = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblSokFilter1 = new javax.swing.JLabel();
+        lblSokFilter2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaResultat = new javax.swing.JTextArea();
         andraAgentInfo = new javax.swing.JButton();
@@ -181,9 +181,9 @@ public class AgentInfo extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Sökfilter 1:");
+        lblSokFilter1.setText("Sökfilter 1:");
 
-        jLabel6.setText("Sökfilter 2:");
+        lblSokFilter2.setText("Sökfilter 2:");
 
         txtAreaResultat.setColumns(20);
         txtAreaResultat.setRows(5);
@@ -225,12 +225,12 @@ public class AgentInfo extends javax.swing.JFrame {
                 .addGroup(pnlAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAgentLayout.createSequentialGroup()
                         .addGroup(pnlAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
+                            .addComponent(lblSokFilter1)
                             .addComponent(cbFilter1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnlAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbFilter2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)))
+                            .addComponent(lblSokFilter2)))
                     .addComponent(jScrollPane1)
                     .addGroup(pnlAgentLayout.createSequentialGroup()
                         .addComponent(btnRegistreraAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,11 +246,11 @@ public class AgentInfo extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addGroup(pnlAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlAgentLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addComponent(lblSokFilter2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbFilter2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlAgentLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
+                        .addComponent(lblSokFilter1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbFilter1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
@@ -400,14 +400,14 @@ public class AgentInfo extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbFilter1;
     private javax.swing.JComboBox<String> cbFilter2;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAlien;
     private javax.swing.JLabel lblMinSida;
     private javax.swing.JLabel lblOmrade;
+    private javax.swing.JLabel lblSokFilter1;
+    private javax.swing.JLabel lblSokFilter2;
     private javax.swing.JLabel lblUtrustning;
     private javax.swing.JPanel pnlAgent;
     private javax.swing.JPanel pnlHeader;

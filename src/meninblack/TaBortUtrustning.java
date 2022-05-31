@@ -43,7 +43,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         cbUtrustning = new javax.swing.JComboBox<>();
         pwdLosenord = new javax.swing.JPasswordField();
         lblLosenord = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblUtrustning = new javax.swing.JLabel();
         btnTaBort = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,7 +57,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
 
         lblLosenord.setText("Ditt lösenord:");
 
-        jLabel2.setText("Utrusning:");
+        lblUtrustning.setText("Utrusning:");
 
         btnTaBort.setText("Ta bort");
         btnTaBort.addActionListener(new java.awt.event.ActionListener() {
@@ -74,7 +74,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblLosenord)
-                    .addComponent(jLabel2))
+                    .addComponent(lblUtrustning))
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cbUtrustning, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -88,7 +88,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(lblUtrustning))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(pwdLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -156,8 +156,8 @@ public class TaBortUtrustning extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnTaBort;
     private javax.swing.JComboBox<String> cbUtrustning;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblLosenord;
+    private javax.swing.JLabel lblUtrustning;
     private javax.swing.JPasswordField pwdLosenord;
     // End of variables declaration//GEN-END:variables
 }

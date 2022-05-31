@@ -42,7 +42,7 @@ public class HuvudFonster extends javax.swing.JFrame {
         lblLosenord = new javax.swing.JLabel();
         pswLosenord = new javax.swing.JPasswordField();
         btnLoggaIn = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        MenInBlack = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Men In Black");
@@ -77,9 +77,9 @@ public class HuvudFonster extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Men In Black");
+        MenInBlack.setForeground(new java.awt.Color(102, 102, 102));
+        MenInBlack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        MenInBlack.setText("Men In Black");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -94,7 +94,7 @@ public class HuvudFonster extends javax.swing.JFrame {
                     .addComponent(pswLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblAnvandernamn, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLoggaIn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(MenInBlack, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -103,7 +103,7 @@ public class HuvudFonster extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addComponent(lblLoggaIn, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
-                .addComponent(jLabel1)
+                .addComponent(MenInBlack)
                 .addGap(18, 18, 18)
                 .addComponent(lblAnvandernamn, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -171,8 +171,8 @@ public class HuvudFonster extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel MenInBlack;
     private javax.swing.JButton btnLoggaIn;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAnvandernamn;
     private javax.swing.JLabel lblLoggaIn;

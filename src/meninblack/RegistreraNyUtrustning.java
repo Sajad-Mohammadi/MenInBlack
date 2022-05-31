@@ -42,8 +42,8 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
         txtID = new javax.swing.JTextField();
         txtNamn = new javax.swing.JTextField();
         txtDetalj = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblID = new javax.swing.JLabel();
+        lblNamn = new javax.swing.JLabel();
         lblDetalj = new javax.swing.JLabel();
         btnLaggTill = new javax.swing.JButton();
 
@@ -76,11 +76,11 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
         txtDetalj.setPreferredSize(new java.awt.Dimension(64, 30));
         pnlFalt.add(txtDetalj, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 115, 220, -1));
 
-        jLabel3.setText("ID: *");
-        pnlFalt.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 26, -1, -1));
+        lblID.setText("ID: *");
+        pnlFalt.add(lblID, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 26, -1, -1));
 
-        jLabel4.setText("Namn: *");
-        pnlFalt.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 74, -1, -1));
+        lblNamn.setText("Namn: *");
+        pnlFalt.add(lblNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 74, -1, -1));
 
         lblDetalj.setText("Detalj:");
         pnlFalt.add(lblDetalj, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 122, -1, -1));
@@ -205,9 +205,9 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLaggTill;
     private javax.swing.JComboBox<String> cbValjTyp;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel lblDetalj;
+    private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblNamn;
     private javax.swing.JPanel pnlFalt;
     private javax.swing.JTextField txtDetalj;
     private javax.swing.JTextField txtID;

@@ -43,7 +43,7 @@ public class TaBortAlien extends javax.swing.JFrame {
         cbAlien = new javax.swing.JComboBox<>();
         pwdLosenord = new javax.swing.JPasswordField();
         lblLosenord = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblAlien = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,7 +57,7 @@ public class TaBortAlien extends javax.swing.JFrame {
 
         lblLosenord.setText("Ditt lösenord:");
 
-        jLabel2.setText("Alien:");
+        lblAlien.setText("Alien:");
 
         jButton1.setText("Ta bort alien");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -74,7 +74,7 @@ public class TaBortAlien extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblLosenord)
-                    .addComponent(jLabel2))
+                    .addComponent(lblAlien))
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cbAlien, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -88,7 +88,7 @@ public class TaBortAlien extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(lblAlien))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(pwdLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -157,7 +157,7 @@ public class TaBortAlien extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbAlien;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lblAlien;
     private javax.swing.JLabel lblLosenord;
     private javax.swing.JPasswordField pwdLosenord;
     // End of variables declaration//GEN-END:variables

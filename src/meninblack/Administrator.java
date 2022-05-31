@@ -84,7 +84,7 @@ public class Administrator extends javax.swing.JFrame {
         lblDBAdministrator = new javax.swing.JLabel();
         btnAndraLosenord = new javax.swing.JButton();
         btnLoggaUt = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        lblAdminInfoRED = new javax.swing.JLabel();
         pnlAlien = new javax.swing.JPanel();
         cbFilter1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
@@ -247,9 +247,9 @@ public class Administrator extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setForeground(new java.awt.Color(255, 102, 102));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("DU ÄR INLOGGAD MED ADMINISTRATÖR BEHÖRIGHET !");
+        lblAdminInfoRED.setForeground(new java.awt.Color(255, 102, 102));
+        lblAdminInfoRED.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAdminInfoRED.setText("DU ÄR INLOGGAD MED ADMINISTRATÖR BEHÖRIGHET !");
 
         javax.swing.GroupLayout pnlMinSidaLayout = new javax.swing.GroupLayout(pnlMinSida);
         pnlMinSida.setLayout(pnlMinSidaLayout);
@@ -279,7 +279,7 @@ public class Administrator extends javax.swing.JFrame {
                                 .addComponent(btnAndraLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblAdminInfoRED, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 183, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -303,7 +303,7 @@ public class Administrator extends javax.swing.JFrame {
                     .addComponent(btnAndraLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
-                .addComponent(jLabel2)
+                .addComponent(lblAdminInfoRED)
                 .addContainerGap())
         );
 
@@ -957,7 +957,6 @@ public class Administrator extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -968,6 +967,7 @@ public class Administrator extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblAdminInfoRED;
     private javax.swing.JLabel lblAdministrator;
     private javax.swing.JLabel lblAgent;
     private javax.swing.JLabel lblAlien;

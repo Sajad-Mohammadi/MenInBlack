@@ -134,7 +134,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="lblID">
           <Properties>
             <Property name="text" type="java.lang.String" value="ID: *"/>
           </Properties>
@@ -144,7 +144,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="lblNamn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Namn: *"/>
           </Properties>
