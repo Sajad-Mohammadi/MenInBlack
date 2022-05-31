@@ -136,7 +136,8 @@ public class HuvudFonster extends javax.swing.JFrame {
         nuvarandeAnvandare = txtAnvandernamn.getText().toUpperCase();
         String losenord = new String(pswLosenord.getPassword());
         boolean isAgent = false;
-
+        
+        //kontrollerar om det är AGENT eller ALIEN som vill loga in.
         try {
             if (nuvarandeAnvandare.substring(0, 5).equals("AGENT")) {
                 isAgent = true;
@@ -144,8 +145,8 @@ public class HuvudFonster extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
-        if (isAgent && isPSWright("Agent", nuvarandeAnvandare, losenord)) {
+        
+        if (isAgent && Validering.isPSWright(idb, "Agent", nuvarandeAnvandare, losenord)) { //kontrollerar om Agents lösenord är rätt.
             try {
                 String isAdmin = idb.fetchSingle("SELECT administrator FROM agent where namn='" + nuvarandeAnvandare + "'");
                 if (isAdmin.equals("J")) {
@@ -158,29 +159,15 @@ public class HuvudFonster extends javax.swing.JFrame {
                 System.out.println(e.getMessage());
             }
             dispose();
-        } else if (!isAgent) {
-            if (isPSWright("Alien", nuvarandeAnvandare, losenord)) {
+        } else if (!isAgent) { //kontrollerar om Aliens lösenord är rätt.
+            if (Validering.isPSWright(idb, "Alien", nuvarandeAnvandare, losenord)) {
                 new Alien(idb, nuvarandeAnvandare).setVisible(true);
                 dispose();
             }
         }
     }//GEN-LAST:event_btnLoggaInActionPerformed
 
-    private boolean isPSWright(String tabel, String anvandare, String losenord) {
-        boolean isRight = false;
-        try {
-            String dbLosenord = idb.fetchSingle("Select losenord from " + tabel + " where Namn='" + anvandare + "'");
-            if (losenord.equals(dbLosenord)) {
-                isRight = true;
-            } else {
-                JOptionPane.showMessageDialog(null, "Felaktigt användarnamn eller lösenord.");
-            }
-        } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Databasfel 2!");
-            System.out.println(e.getMessage());
-        }
-        return isRight;
-    }
+    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

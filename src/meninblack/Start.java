@@ -27,7 +27,8 @@ public class Start {
         } catch (InfException ex) {
             Logger.getLogger(HuvudFonster.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
+        // ändrar programmets utseendet.
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (UnsupportedLookAndFeelException ex) {

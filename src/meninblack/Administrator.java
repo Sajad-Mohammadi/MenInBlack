@@ -34,7 +34,7 @@ public class Administrator extends javax.swing.JFrame {
     /**
      * Creates new form Administrator
      */
-    public Administrator(InfDB idb, String nuvarandeAnvandare,String sida) {
+    public Administrator(InfDB idb, String nuvarandeAnvandare, String sida) {
 
         initComponents();
         this.idb = idb;
@@ -590,6 +590,7 @@ public class Administrator extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAlienMouseClicked
+        //väljer Alien fliket som aktuellt flik
         tabbedPane.setSelectedIndex(1);
         lblAlien.setFont(minFont1);
         lblMinSida.setFont(minFont2);
@@ -598,6 +599,7 @@ public class Administrator extends javax.swing.JFrame {
     }//GEN-LAST:event_lblAlienMouseClicked
 
     private void lblMinSidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinSidaMouseClicked
+        //väljer Min sida fliket som aktuellt flik
         tabbedPane.setSelectedIndex(0);
         lblAlien.setFont(minFont2);
         lblMinSida.setFont(minFont1);
@@ -606,6 +608,7 @@ public class Administrator extends javax.swing.JFrame {
     }//GEN-LAST:event_lblMinSidaMouseClicked
 
     private void lblUtrustningMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUtrustningMouseClicked
+        //väljer Utrustning fliket som aktuellt flik
         tabbedPane.setSelectedIndex(2);
         lblAlien.setFont(minFont2);
         lblMinSida.setFont(minFont2);
@@ -624,6 +627,7 @@ public class Administrator extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnLoggaUtActionPerformed
 
+    //kontrollerar vad typ av sökning.
     private void cbFilter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFilter1ActionPerformed
         int filter1 = cbFilter1.getSelectedIndex();
         String kolumn = "";
@@ -699,17 +703,17 @@ public class Administrator extends javax.swing.JFrame {
         txtAreaResultat.setText("");
 
         if (!(txtStartDatum.getText().equals("ÅÅÅÅMMDD")) && txtSlutDatum.getText().equals("ÅÅÅÅMMDD")) {
-            if (valideraDatum(txtStartDatum.getText())) {
+            if (Validering.valideraDatum(txtStartDatum.getText())) {
                 getStartDatum(txtStartDatum.getText());
                 filterFraga = filterFraga + " and Registreringsdatum >= '" + startDatum + "'";
             }
         } else if (txtStartDatum.getText().equals("ÅÅÅÅMMDD") && !(txtSlutDatum.getText().equals("ÅÅÅÅMMDD"))) {
-            if (valideraDatum(txtSlutDatum.getText())) {
+            if (Validering.valideraDatum(txtSlutDatum.getText())) {
                 getSlutDatum(txtSlutDatum.getText());
                 filterFraga = filterFraga + " and Registreringsdatum <= '" + slutDatum + "'";
             }
         } else if (!(txtStartDatum.getText().equals("ÅÅÅÅMMDD")) && !(txtSlutDatum.getText().equals("ÅÅÅÅMMDD"))) {
-            if (valideraDatum(txtStartDatum.getText()) && valideraDatum(txtSlutDatum.getText())) {
+            if (Validering.valideraDatum(txtStartDatum.getText()) && Validering.valideraDatum(txtSlutDatum.getText())) {
                 getStartDatum(txtStartDatum.getText());
                 getSlutDatum(txtSlutDatum.getText());
                 filterFraga = filterFraga + " and Registreringsdatum between '" + startDatum + "' and '" + slutDatum + "'";
@@ -888,23 +892,6 @@ public class Administrator extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("////" + e.getMessage());
         }
-    }
-
-    private boolean valideraDatum(String datum) {
-        boolean isDatum = false;
-        if (datum.length() == 8) {
-            isDatum = true;
-            try {
-                Integer.parseInt(datum);
-            } catch (NumberFormatException e) {
-                System.out.println("vvvv" + e.getMessage());
-                return false;
-            }
-        }
-        if (!isDatum) {
-            JOptionPane.showMessageDialog(null, "Felaktigt datumformat!");
-        }
-        return isDatum;
     }
 
     private void getStartDatum(String datum) {

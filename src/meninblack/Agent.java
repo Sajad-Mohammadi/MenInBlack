@@ -632,17 +632,17 @@ public class Agent extends javax.swing.JFrame {
         txtAreaResultat.setText("");
 
         if (!(txtStartDatum.getText().equals("ÅÅÅÅMMDD")) && txtSlutDatum.getText().equals("ÅÅÅÅMMDD")) {
-            if (valideraDatum(txtStartDatum.getText())) {
+            if (Validering.valideraDatum(txtStartDatum.getText())) {
                 getStartDatum(txtStartDatum.getText());
                 filterFraga = filterFraga + " and Registreringsdatum >= '" + startDatum + "'";
             }
         } else if (txtStartDatum.getText().equals("ÅÅÅÅMMDD") && !(txtSlutDatum.getText().equals("ÅÅÅÅMMDD"))) {
-            if (valideraDatum(txtSlutDatum.getText())) {
+            if (Validering.valideraDatum(txtSlutDatum.getText())) {
                 getSlutDatum(txtSlutDatum.getText());
                 filterFraga = filterFraga + " and Registreringsdatum <= '" + slutDatum + "'";
             }
         } else if (!(txtStartDatum.getText().equals("ÅÅÅÅMMDD")) && !(txtSlutDatum.getText().equals("ÅÅÅÅMMDD"))) {
-            if (valideraDatum(txtStartDatum.getText()) && valideraDatum(txtSlutDatum.getText())) {
+            if (Validering.valideraDatum(txtStartDatum.getText()) && Validering.valideraDatum(txtSlutDatum.getText())) {
                 getStartDatum(txtStartDatum.getText());
                 getSlutDatum(txtSlutDatum.getText());
                 filterFraga = filterFraga + " and Registreringsdatum between '" + startDatum + "' and '" + slutDatum + "'";
@@ -800,23 +800,6 @@ public class Agent extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("////" + e.getMessage());
         }
-    }
-
-    private boolean valideraDatum(String datum) {
-        boolean isDatum = false;
-        if (datum.length() == 8) {
-            isDatum = true;
-            try {
-                Integer.parseInt(datum);
-            } catch (NumberFormatException e) {
-                System.out.println("vvvv" + e.getMessage());
-                return false;
-            }
-        }
-        if (!isDatum) {
-            JOptionPane.showMessageDialog(null, "Felaktigt datumformat!");
-        }
-        return isDatum;
     }
 
     private void getStartDatum(String datum) {
