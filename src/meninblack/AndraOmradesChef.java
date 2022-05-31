@@ -91,7 +91,7 @@ public class AndraOmradesChef extends javax.swing.JFrame {
         try {
             omradesID = idb.fetchSingle("SELECT omrades_id FROM omrade where benamning='" + omrade + "'");
         } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Databasfel! ---");
+            JOptionPane.showMessageDialog(null, "Databasfel!");
             System.out.println("****" + ex.getMessage());
         }
     }//GEN-LAST:event_cbOmradeActionPerformed
@@ -112,7 +112,7 @@ public class AndraOmradesChef extends javax.swing.JFrame {
                 dispose();
             }
         } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Databasfel! +++");
+            JOptionPane.showMessageDialog(null, "Databasfel!");
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_cbOmradeschefActionPerformed

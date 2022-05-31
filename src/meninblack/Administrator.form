@@ -186,41 +186,39 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblNamn" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="208" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblDBTelefon" min="-2" pref="92" max="-2" attributes="0"/>
-                                          <Component id="lblTelefon" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="lblDBAnstallningsdatum" min="-2" pref="100" max="-2" attributes="0"/>
-                                          <Component id="lblAnstallningsdatum" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblAdministrator" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblDBAdministrator" min="-2" pref="70" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="btnAndraLosenord" min="-2" pref="183" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="btnLoggaUt" min="-2" pref="183" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="lblAdminInfoRED" alignment="1" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="183" max="32767" attributes="0"/>
-                          </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="lblNamn" alignment="2" max="32767" attributes="0"/>
+                          <Component id="lblAdminInfoRED" alignment="2" min="-2" pref="106" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="208" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblDBTelefon" min="-2" pref="92" max="-2" attributes="0"/>
+                                  <Component id="lblTelefon" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="lblDBAnstallningsdatum" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="lblAnstallningsdatum" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblAdministrator" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblDBAdministrator" min="-2" pref="70" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="btnAndraLosenord" min="-2" pref="183" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btnLoggaUt" min="-2" pref="183" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="189" pref="189" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -229,7 +227,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="lblNamn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblAdminInfoRED" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblTelefon" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblAdministrator" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -246,9 +246,7 @@
                           <Component id="btnAndraLosenord" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="btnLoggaUt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="lblAdminInfoRED" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -315,7 +313,7 @@
                   <Color blue="66" green="66" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="DU &#xc4;R INLOGGAD MED ADMINISTRAT&#xd6;R BEH&#xd6;RIGHET !"/>
+                <Property name="text" type="java.lang.String" value="(ADMIN)"/>
               </Properties>
             </Component>
           </SubComponents>
