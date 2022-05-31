@@ -42,6 +42,7 @@ public class Administrator extends javax.swing.JFrame {
         lblFlikClicked(sida);
         HashMap<String, String> agentInfo;
         gorFetchColumn("Benamning", "Plats", cbOmradesKontor);
+        gorFetchColumn("Namn", "Agent", cbOmradeschef);
 
         try {
             agentInfo = idb.fetchRow("SELECT Telefon, Anstallningsdatum, Administrator FROM agent where namn ='" + nuvarandeAnvandare + "'");
@@ -114,7 +115,9 @@ public class Administrator extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         txtAreaOmrade = new javax.swing.JTextArea();
         btnAndraOmradeschef = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnAndraKontorschef = new javax.swing.JButton();
+        cbOmradeschef = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -521,8 +524,7 @@ public class Administrator extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Franklin Gothic Book", 0, 18)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setText("Sök fram vem som är områdeschef för ett valt områdeskontor!");
         jLabel8.setPreferredSize(new java.awt.Dimension(37, 30));
 
@@ -538,45 +540,59 @@ public class Administrator extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Ändra kontorschef för ett områdeskontor");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnAndraKontorschef.setText("Ändra kontorschef för ett områdeskontor");
+        btnAndraKontorschef.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnAndraKontorschefActionPerformed(evt);
             }
         });
+
+        cbOmradeschef.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj områdeschef" }));
+        cbOmradeschef.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbOmradeschefActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel9.setText("Sök fram vilket område ett valt agent är områdeschef för!");
+        jLabel9.setPreferredSize(new java.awt.Dimension(37, 30));
 
         javax.swing.GroupLayout pnlOmradeLayout = new javax.swing.GroupLayout(pnlOmrade);
         pnlOmrade.setLayout(pnlOmradeLayout);
         pnlOmradeLayout.setHorizontalGroup(
             pnlOmradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlOmradeLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlOmradeLayout.createSequentialGroup()
-                .addContainerGap(155, Short.MAX_VALUE)
+                .addGap(155, 155, 155)
                 .addGroup(pnlOmradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cbOmradesKontor, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlOmradeLayout.createSequentialGroup()
                         .addComponent(btnAndraOmradeschef, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)))
-                .addGap(145, 145, 145))
+                        .addComponent(btnAndraKontorschef))
+                    .addComponent(jScrollPane3)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbOmradeschef, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbOmradesKontor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
         pnlOmradeLayout.setVerticalGroup(
             pnlOmradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlOmradeLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(34, 34, 34)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbOmradesKontor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbOmradeschef, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addGroup(pnlOmradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAndraOmradeschef, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAndraKontorschef, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
@@ -788,7 +804,6 @@ public class Administrator extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLaggTillNyUtrustningActionPerformed
 
     private void cbOmradesKontorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbOmradesKontorActionPerformed
-
         txtAreaOmrade.setText("");
         String plats = cbOmradesKontor.getSelectedItem().toString();
         ArrayList<HashMap<String, String>> agentInfo;
@@ -827,9 +842,28 @@ public class Administrator extends javax.swing.JFrame {
         new AndraOmradesChef(idb).setVisible(true);
     }//GEN-LAST:event_btnAndraOmradeschefActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnAndraKontorschefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraKontorschefActionPerformed
         new AndraKontorschef(idb).setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnAndraKontorschefActionPerformed
+
+    private void cbOmradeschefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbOmradeschefActionPerformed
+        txtAreaOmrade.setText("");
+        String omradeschef = cbOmradeschef.getSelectedItem().toString();
+
+        try {
+            String agentID = idb.fetchSingle("Select Agent_ID from agent where namn ='" + omradeschef + "'");
+            String omrade = idb.fetchSingle("SELECT Benamning FROM omrade join omradeschef on omradeschef.omrade = omrade.omrades_ID where omradeschef.agent_id =" + agentID);
+
+            txtAreaOmrade.append("omrade:" + "\n \n");
+            txtAreaOmrade.append(omrade + "\n");
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Databasfel!");
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("////" + e.getMessage());
+        }
+    }//GEN-LAST:event_cbOmradeschefActionPerformed
 
     private void gorFetchColumnUtrustning(String tabel, JTextArea textarea) {
         ArrayList<String> allaAlternativ;
@@ -942,6 +976,7 @@ public class Administrator extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea UTresultat;
     private javax.swing.JButton andraAlienInfo;
+    private javax.swing.JButton btnAndraKontorschef;
     private javax.swing.JButton btnAndraLosenord;
     private javax.swing.JButton btnAndraOmradeschef;
     private javax.swing.JButton btnLaggTillNyUtrustning;
@@ -952,9 +987,9 @@ public class Administrator extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbFilter1;
     private javax.swing.JComboBox<String> cbFilter2;
     private javax.swing.JComboBox<String> cbOmradesKontor;
+    private javax.swing.JComboBox<String> cbOmradeschef;
     private javax.swing.JComboBox<String> cbValjUtrustning;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -962,6 +997,7 @@ public class Administrator extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
